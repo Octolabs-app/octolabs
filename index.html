@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Umba Studio — Build What Matters</title>
-  <meta name="description" content="Umba Studio builds tools for local communities. Made in Mauritius.">
-  <meta property="og:title" content="Umba Studio">
+  <title>Octolabs — Build What Matters</title>
+  <meta name="description" content="Octolabs builds tools for local communities. Made in Mauritius.">
+  <meta property="og:title" content="Octolabs">
   <meta property="og:description" content="Build what matters. Products for real people.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230A1914'/><rect x='15' y='12' width='34' height='36' rx='2' fill='%23C6A87C'/><rect x='21' y='12' width='22' height='30' rx='1' fill='%230A1914'/><circle cx='32' cy='52' r='3.5' fill='%239E7E52'/><circle cx='32' cy='52' r='1.6' fill='%230A1914'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230A1914'/><ellipse cx='32' cy='24' rx='14' ry='12' fill='%23C6A87C'/><circle cx='27' cy='23' r='1.8' fill='%230A1914'/><circle cx='37' cy='23' r='1.8' fill='%230A1914'/><path d='M19,32 Q15,42 18,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M24,33 Q21,44 26,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M32,34 Q32,46 32,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M40,33 Q43,44 38,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M45,32 Q49,42 46,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/></svg>">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#C6A87C">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,7 @@ body{font-family:'Jura',sans-serif;background:var(--dark);color:white;overflow-x
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:all 0.4s;}
 nav.scrolled{background:rgba(10,25,20,0.93);backdrop-filter:blur(20px);border-bottom-color:var(--border);}
 .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
-.nav-logo-mark{width:34px;height:34px;flex-shrink:0;}
+.nav-logo-mark{width:36px;height:36px;flex-shrink:0;}
 .nav-logo-name{font-family:'Jura',sans-serif;font-size:17px;font-weight:300;letter-spacing:5px;color:var(--gold);text-transform:uppercase;}
 .nav-links{display:flex;gap:28px;}
 .nav-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
@@ -37,7 +37,14 @@ nav.scrolled{background:rgba(10,25,20,0.93);backdrop-filter:blur(20px);border-bo
 .hero-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:32px;display:flex;align-items:center;gap:14px;}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:24px;height:1px;background:var(--gold);opacity:0.4;}
 .hero-mark{margin:0 auto 44px;opacity:0;animation:fadeUp 1s ease 0.2s forwards;}
-.hero h1{font-family:'Jura',sans-serif;font-size:clamp(56px,7vw,100px);font-weight:300;letter-spacing:14px;text-transform:uppercase;color:white;line-height:1;margin-bottom:20px;opacity:0;animation:fadeUp 1s ease 0.4s forwards;}
+.hero-mark .tentacle{animation:wave 3.2s ease-in-out infinite;transform-origin:center top;}
+.hero-mark .t1{animation-delay:0s;}
+.hero-mark .t2{animation-delay:0.2s;}
+.hero-mark .t3{animation-delay:0.4s;}
+.hero-mark .t4{animation-delay:0.6s;}
+.hero-mark .t5{animation-delay:0.8s;}
+@keyframes wave{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.hero h1{font-family:'Jura',sans-serif;font-size:clamp(48px,6vw,84px);font-weight:300;letter-spacing:10px;text-transform:uppercase;color:white;line-height:1;margin-bottom:20px;opacity:0;animation:fadeUp 1s ease 0.4s forwards;}
 .hero h1 span{color:var(--gold);}
 .hero-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:clamp(16px,2vw,22px);color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:1px;opacity:0;animation:fadeUp 1s ease 0.6s forwards;}
 .hero-divider{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin:44px auto;opacity:0;animation:fadeUp 1s ease 0.8s forwards;}
@@ -73,7 +80,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
 @media(max-width:640px){
   nav{padding:0 20px;}
   .hero{padding:100px 24px 60px;}
-  .hero h1{letter-spacing:7px;}
+  .hero h1{letter-spacing:6px;}
   .products,.about{padding:80px 20px;}
   .product-card{padding:32px 24px;}
   footer{padding:32px 20px;}
@@ -85,51 +92,48 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
 
 <nav id="main-nav">
   <a class="nav-logo" href="/">
-    <!-- U-mark SVG -->
     <svg class="nav-logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="15" y="12" width="34" height="36" rx="2" fill="#C6A87C"/>
-      <rect x="21" y="12" width="22" height="30" rx="1" fill="#0A1914"/>
-      <circle cx="32" cy="52" r="3.5" fill="#9E7E52"/>
-      <circle cx="32" cy="52" r="1.6" fill="#0A1914"/>
+      <ellipse cx="32" cy="24" rx="14" ry="12" fill="#C6A87C"/>
+      <circle cx="27" cy="23" r="1.8" fill="#0A1914"/>
+      <circle cx="37" cy="23" r="1.8" fill="#0A1914"/>
+      <path d="M19,32 Q15,42 18,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M24,33 Q21,44 26,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M32,34 Q32,46 32,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M40,33 Q43,44 38,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M45,32 Q49,42 46,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
     </svg>
-    <span class="nav-logo-name">Umba</span>
+    <span class="nav-logo-name">Octolabs</span>
   </a>
   <div class="nav-links">
     <a class="nav-link" href="#products">Products</a>
     <a class="nav-link" href="#about">About</a>
-    <a class="nav-link" href="mailto:hello@umbastudio.com">Contact</a>
+    <a class="nav-link" href="mailto:hello@octolabs.app">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">Mauritius</div>
-  <!-- Larger hero mark -->
-  <svg class="hero-mark" width="72" height="90" viewBox="0 0 72 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="4" y="4" width="64" height="66" rx="3" fill="#C6A87C"/>
-    <!-- chamfer corners -->
-    <polygon points="4,4 16,4 4,16" fill="#9E7E52"/>
-    <polygon points="68,4 56,4 68,16" fill="#9E7E52"/>
-    <!-- inner void -->
-    <rect x="16" y="4" width="40" height="56" rx="2" fill="#0A1914"/>
-    <!-- stem -->
-    <rect x="33" y="70" width="6" height="10" fill="#9E7E52"/>
-    <!-- seed -->
-    <circle cx="36" cy="84" r="5.5" fill="#9E7E52"/>
-    <circle cx="36" cy="84" r="2.4" fill="#0A1914"/>
+  <svg class="hero-mark" width="130" height="130" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="32" cy="24" rx="14" ry="12" fill="#C6A87C"/>
+    <circle cx="27" cy="23" r="1.8" fill="#0A1914"/>
+    <circle cx="37" cy="23" r="1.8" fill="#0A1914"/>
+    <path class="tentacle t1" d="M19,32 Q15,42 18,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <path class="tentacle t2" d="M24,33 Q21,44 26,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <path class="tentacle t3" d="M32,34 Q32,46 32,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <path class="tentacle t4" d="M40,33 Q43,44 38,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <path class="tentacle t5" d="M45,32 Q49,42 46,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
   </svg>
-  <h1><span>U</span>mba</h1>
+  <h1><span>O</span>ctolabs</h1>
   <p class="hero-tagline">build what matters</p>
   <div class="hero-divider"></div>
   <p class="hero-origin">Est. 2026 &nbsp;&middot;&nbsp; Maurice</p>
 </section>
 
-<!-- PRODUCTS -->
 <section class="products" id="products">
   <p class="section-label">Products</p>
   <div class="product-grid">
 
-    <a class="product-card" href="https://artisanmu.umbastudio.com" target="_blank">
+    <a class="product-card" href="https://artisanmu.octolabs.app" target="_blank">
       <div class="product-tag">Marketplace &middot; Live</div>
       <div class="product-name">ArtisanMU</div>
       <p class="product-desc">On-demand platform connecting Mauritians with verified local artisans. Post a job, get matched, invoiced on WhatsApp.</p>
@@ -144,7 +148,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
     <div class="product-card product-coming">
       <div class="product-tag">In development</div>
       <div class="product-name">&mdash;</div>
-      <p class="product-desc">The next Umba product is being built. Something for the people around us.</p>
+      <p class="product-desc">The next Octolabs product is being built. Something for the people around us.</p>
       <div class="product-meta">
         <span>Mauritius</span><span class="product-meta-dot"></span>
         <span>2026</span>
@@ -154,7 +158,6 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about" id="about">
   <p class="about-quote">
     We build tools for the people next to us &mdash;<br>
@@ -162,16 +165,16 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
     Things that <strong>actually work</strong> in the hands of people<br>
     who don&rsquo;t have time for things that don&rsquo;t.
   </p>
-  <p class="about-attribution">Umba Studio &nbsp;&middot;&nbsp; Mauritius</p>
+  <p class="about-attribution">Octolabs &nbsp;&middot;&nbsp; Mauritius</p>
 </section>
 
 <footer>
-  <span class="footer-brand">Umba</span>
+  <span class="footer-brand">Octolabs</span>
   <div class="footer-links">
-    <a class="footer-link" href="mailto:hello@umbastudio.com">hello@umbastudio.com</a>
+    <a class="footer-link" href="mailto:hello@octolabs.app">hello@octolabs.app</a>
     <a class="footer-link" href="https://github.com/A1l4n" target="_blank">GitHub</a>
   </div>
-  <span class="footer-copy">&copy; 2026 Umba Studio</span>
+  <span class="footer-copy">&copy; 2026 Octolabs</span>
 </footer>
 
 <script>

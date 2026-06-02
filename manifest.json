@@ -1,6 +1,6 @@
 {
-  "name": "Umba Studio",
-  "short_name": "Umba",
+  "name": "Octolabs",
+  "short_name": "Octolabs",
   "description": "Build what matters. A product studio from Mauritius.",
   "start_url": "/",
   "display": "standalone",
