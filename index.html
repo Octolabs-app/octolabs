@@ -4,103 +4,283 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Octolabs — Build What Matters</title>
-  <meta name="description" content="Octolabs builds tools for local communities. Made in Mauritius.">
-  <meta property="og:title" content="Octolabs">
-  <meta property="og:description" content="Build what matters. Products for real people.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230A1914'/><ellipse cx='32' cy='24' rx='14' ry='12' fill='%23C6A87C'/><circle cx='27' cy='23' r='1.8' fill='%230A1914'/><circle cx='37' cy='23' r='1.8' fill='%230A1914'/><path d='M19,32 Q15,42 18,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M24,33 Q21,44 26,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M32,34 Q32,46 32,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M40,33 Q43,44 38,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/><path d='M45,32 Q49,42 46,52' stroke='%23C6A87C' stroke-width='2.4' stroke-linecap='round' fill='none'/></svg>">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#C6A87C">
+  <meta name="description" content="Octolabs builds practical tools for local communities and global users. Studio behind ArtisanMU, AniCal, and OctoQuiz. Made in Mauritius.">
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Octolabs — Build What Matters">
+  <meta property="og:description" content="Practical tools for real people. Made in Mauritius.">
+  <meta property="og:image" content="https://octolabs.app/og.png">
+  <meta property="og:url" content="https://octolabs.app">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1120'/><circle cx='32' cy='26' r='12' fill='%23C6A87C'/><circle cx='28' cy='24' r='1.6' fill='%230B1120'/><circle cx='36' cy='24' r='1.6' fill='%230B1120'/><path d='M22,36 Q18,46 20,54' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M27,37 Q24,47 28,54' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M32,38 Q32,48 32,54' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M37,37 Q40,47 36,54' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M42,36 Q46,46 44,54' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/></svg>">
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --dark:#0A1914;
-  --gold:#C6A87C;--gold2:#9E7E52;
-  --border:rgba(198,168,124,0.15);
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0B1120;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --gold: #C6A87C;
+  --gold-dim: rgba(198, 168, 124, 0.15);
+  --text: #E8E6E1;
+  --text-muted: rgba(232, 230, 225, 0.45);
+  --border: rgba(198, 168, 124, 0.12);
 }
-html{scroll-behavior:smooth;}
-body{font-family:'Jura',sans-serif;background:var(--dark);color:white;overflow-x:hidden;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:all 0.4s;}
-nav.scrolled{background:rgba(10,25,20,0.93);backdrop-filter:blur(20px);border-bottom-color:var(--border);}
-.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
-.nav-logo-mark{width:36px;height:36px;flex-shrink:0;}
-.nav-logo-name{font-family:'Jura',sans-serif;font-size:17px;font-weight:300;letter-spacing:5px;color:var(--gold);text-transform:uppercase;}
-.nav-links{display:flex;gap:28px;}
-.nav-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
-.nav-link:hover{color:var(--gold);}
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(198,168,124,0.05) 0%,transparent 70%);pointer-events:none;}
-.hero-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:32px;display:flex;align-items:center;gap:14px;}
-.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:24px;height:1px;background:var(--gold);opacity:0.4;}
-.hero-mark{margin:0 auto 44px;opacity:0;animation:fadeUp 1s ease 0.2s forwards;}
-.hero-mark .tentacle{animation:wave 3.2s ease-in-out infinite;transform-origin:center top;}
-.hero-mark .t1{animation-delay:0s;}
-.hero-mark .t2{animation-delay:0.2s;}
-.hero-mark .t3{animation-delay:0.4s;}
-.hero-mark .t4{animation-delay:0.6s;}
-.hero-mark .t5{animation-delay:0.8s;}
-@keyframes wave{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-.hero h1{font-family:'Jura',sans-serif;font-size:clamp(48px,6vw,84px);font-weight:300;letter-spacing:10px;text-transform:uppercase;color:white;line-height:1;margin-bottom:20px;opacity:0;animation:fadeUp 1s ease 0.4s forwards;}
-.hero h1 span{color:var(--gold);}
-.hero-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:clamp(16px,2vw,22px);color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:1px;opacity:0;animation:fadeUp 1s ease 0.6s forwards;}
-.hero-divider{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin:44px auto;opacity:0;animation:fadeUp 1s ease 0.8s forwards;}
-.hero-origin{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.18);opacity:0;animation:fadeUp 1s ease 1s forwards;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+body {
+  font-family: 'Jura', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-.products{padding:120px 48px;max-width:1100px;margin:0 auto;}
-.section-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:0.55;margin-bottom:60px;text-align:center;}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2px;}
-.product-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:48px 40px;transition:all 0.4s;position:relative;text-decoration:none;display:block;}
-.product-card:hover{background:rgba(198,168,124,0.035);border-color:rgba(198,168,124,0.28);}
-.product-card:hover .product-arrow{opacity:1;transform:translateX(0);}
-.product-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.55;margin-bottom:18px;}
-.product-name{font-family:'Jura',sans-serif;font-size:26px;font-weight:300;letter-spacing:3px;color:white;text-transform:uppercase;margin-bottom:14px;}
-.product-desc{font-family:'Crimson Pro',serif;font-size:16px;line-height:1.75;color:rgba(255,255,255,0.42);font-weight:300;margin-bottom:28px;}
-.product-meta{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.product-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:0.4;}
-.product-arrow{font-size:16px;color:var(--gold);opacity:0;transform:translateX(-8px);transition:all 0.3s;position:absolute;bottom:40px;right:40px;}
-.product-coming{opacity:0.28;pointer-events:none;}
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 48px; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid transparent;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(11, 17, 32, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom-color: var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.nav-logo-mark { width: 36px; height: 36px; flex-shrink: 0; }
+.nav-logo-name {
+  font-family: 'Jura', sans-serif; font-size: 17px; font-weight: 400;
+  letter-spacing: 5px; color: var(--gold); text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-link {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none; transition: color 0.25s;
+}
+.nav-link:hover { color: var(--gold); }
 
-.about{padding:120px 48px;border-top:1px solid var(--border);max-width:760px;margin:0 auto;text-align:center;}
-.about-quote{font-family:'Crimson Pro',serif;font-size:clamp(19px,2.4vw,27px);font-weight:300;font-style:italic;line-height:1.7;color:rgba(255,255,255,0.6);margin-bottom:44px;}
-.about-quote strong{color:var(--gold);font-weight:400;font-style:normal;}
-.about-attribution{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.18);}
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 120px 48px 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 45%, rgba(198,168,124,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); opacity: 0.6; margin-bottom: 32px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.4;
+}
 
-footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-.footer-brand{font-family:'Jura',sans-serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:0.4;}
-.footer-copy{font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.14);}
-.footer-links{display:flex;gap:24px;}
-.footer-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18);text-decoration:none;transition:color 0.2s;}
-.footer-link:hover{color:var(--gold);}
+/* Swimming Octopus Logo */
+.octo-wrapper {
+  margin: 0 auto 44px; width: 130px; height: 130px;
+  opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+}
+.octo-swim {
+  animation: swim 4s ease-in-out infinite;
+  transform-origin: center center;
+}
+.octo-head { fill: var(--gold); }
+.octo-eye { fill: var(--bg); }
+.octo-tentacle {
+  stroke: var(--gold); stroke-width: 2.2; stroke-linecap: round; fill: none;
+  transform-origin: center top;
+}
+.t1 { animation: undulate 3s ease-in-out infinite; animation-delay: 0s; }
+.t2 { animation: undulate 3s ease-in-out infinite; animation-delay: 0.12s; }
+.t3 { animation: undulate 3s ease-in-out infinite; animation-delay: 0.24s; }
+.t4 { animation: undulate 3s ease-in-out infinite; animation-delay: 0.36s; }
+.t5 { animation: undulate 3s ease-in-out infinite; animation-delay: 0.48s; }
 
-@media(max-width:640px){
-  nav{padding:0 20px;}
-  .hero{padding:100px 24px 60px;}
-  .hero h1{letter-spacing:6px;}
-  .products,.about{padding:80px 20px;}
-  .product-card{padding:32px 24px;}
-  footer{padding:32px 20px;}
-  .nav-links{display:none;}
+@keyframes swim {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-6px) rotate(1deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(4px) rotate(-1deg); }
+}
+@keyframes undulate {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  25% { transform: translateX(-2px) scaleY(1.05); }
+  75% { transform: translateX(2px) scaleY(0.95); }
+}
+
+.hero h1 {
+  font-family: 'Jura', sans-serif; font-size: clamp(48px, 6vw, 84px);
+  font-weight: 300; letter-spacing: 10px; text-transform: uppercase;
+  color: var(--text); line-height: 1; margin-bottom: 20px;
+  opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
+}
+.hero h1 span { color: var(--gold); }
+.hero-tagline {
+  font-family: 'Crimson Pro', serif; font-style: italic;
+  font-size: clamp(16px, 2vw, 22px); color: var(--text-muted);
+  font-weight: 300; letter-spacing: 1px;
+  opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+}
+.hero-divider {
+  width: 1px; height: 56px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  margin: 44px auto; opacity: 0; animation: fadeUp 1s ease 0.8s forwards;
+}
+.hero-origin {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(232,230,225,0.18);
+  opacity: 0; animation: fadeUp 1s ease 1s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+  padding: 120px 48px; max-width: 1100px; margin: 0 auto;
+}
+.section-label {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); opacity: 0.55; margin-bottom: 60px; text-align: center;
+}
+.product-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2px;
+}
+.product-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 48px 40px; transition: all 0.4s ease;
+  position: relative; text-decoration: none; display: block;
+  opacity: 0; transform: translateY(24px);
+}
+.product-card.visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease, background 0.4s ease, border-color 0.4s ease;
+}
+.product-card:hover {
+  background: rgba(198, 168, 124, 0.04);
+  border-color: rgba(198, 168, 124, 0.25);
+  transform: translateY(-4px);
+}
+.product-card:hover .product-arrow { opacity: 1; transform: translateX(0); }
+.product-tag {
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); opacity: 0.55; margin-bottom: 18px;
+}
+.product-name {
+  font-family: 'Jura', sans-serif; font-size: 26px; font-weight: 400;
+  letter-spacing: 3px; color: var(--text); text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.product-desc {
+  font-family: 'Crimson Pro', serif; font-size: 16px; line-height: 1.75;
+  color: var(--text-muted); font-weight: 300; margin-bottom: 28px;
+}
+.product-meta {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(232,230,225,0.18); display: flex; align-items: center;
+  gap: 10px; flex-wrap: wrap;
+}
+.product-meta-dot {
+  width: 3px; height: 3px; border-radius: 50%; background: var(--gold); opacity: 0.4;
+}
+.product-arrow {
+  font-size: 16px; color: var(--gold); opacity: 0;
+  transform: translateX(-8px); transition: all 0.3s ease;
+  position: absolute; bottom: 40px; right: 40px;
+}
+
+/* Coming Soon Card */
+.product-coming {
+  opacity: 0 !important; transform: translateY(24px);
+  border-style: dashed; cursor: default;
+}
+.product-coming.visible {
+  opacity: 0.35 !important; transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.product-coming:hover { transform: none !important; background: var(--bg-card) !important; }
+.product-coming .product-arrow { display: none; }
+
+/* ===== ABOUT ===== */
+.about {
+  padding: 120px 48px; border-top: 1px solid var(--border);
+  max-width: 760px; margin: 0 auto; text-align: center;
+}
+.about-quote {
+  font-family: 'Crimson Pro', serif; font-size: clamp(19px, 2.4vw, 27px);
+  font-weight: 300; font-style: italic; line-height: 1.7;
+  color: rgba(232,230,225,0.6); margin-bottom: 44px;
+}
+.about-quote strong { color: var(--gold); font-weight: 400; font-style: normal; }
+.about-attribution {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(232,230,225,0.18);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 44px 48px; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-brand {
+  font-family: 'Jura', sans-serif; font-size: 13px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold); opacity: 0.4;
+}
+.footer-copy {
+  font-size: 11px; letter-spacing: 1px; color: rgba(232,230,225,0.14);
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-link {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(232,230,225,0.18); text-decoration: none; transition: color 0.25s;
+}
+.footer-link:hover { color: var(--gold); }
+
+/* ===== MOBILE ===== */
+@media (max-width: 640px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 100px 24px 60px; }
+  .hero h1 { letter-spacing: 6px; }
+  .products, .about { padding: 80px 20px; }
+  .product-card { padding: 32px 24px; }
+  footer { padding: 32px 20px; }
+  .nav-links { display: none; }
 }
 </style>
 </head>
 <body>
 
-<nav id="main-nav">
-  <a class="nav-logo" href="/">
-    <svg class="nav-logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="32" cy="24" rx="14" ry="12" fill="#C6A87C"/>
-      <circle cx="27" cy="23" r="1.8" fill="#0A1914"/>
-      <circle cx="37" cy="23" r="1.8" fill="#0A1914"/>
-      <path d="M19,32 Q15,42 18,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-      <path d="M24,33 Q21,44 26,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-      <path d="M32,34 Q32,46 32,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-      <path d="M40,33 Q43,44 38,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-      <path d="M45,32 Q49,42 46,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
+  <a class="nav-logo" href="/" aria-label="Octolabs Home">
+    <svg class="nav-logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle class="octo-head" cx="32" cy="26" r="12"/>
+      <circle class="octo-eye" cx="28" cy="24" r="1.6"/>
+      <circle class="octo-eye" cx="36" cy="24" r="1.6"/>
+      <path class="octo-tentacle t1" d="M22,36 Q18,46 20,54"/>
+      <path class="octo-tentacle t2" d="M27,37 Q24,47 28,54"/>
+      <path class="octo-tentacle t3" d="M32,38 Q32,48 32,54"/>
+      <path class="octo-tentacle t4" d="M37,37 Q40,47 36,54"/>
+      <path class="octo-tentacle t5" d="M42,36 Q46,46 44,54"/>
     </svg>
     <span class="nav-logo-name">Octolabs</span>
   </a>
@@ -113,16 +293,18 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
 
 <section class="hero">
   <div class="hero-eyebrow">Mauritius</div>
-  <svg class="hero-mark" width="130" height="130" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="32" cy="24" rx="14" ry="12" fill="#C6A87C"/>
-    <circle cx="27" cy="23" r="1.8" fill="#0A1914"/>
-    <circle cx="37" cy="23" r="1.8" fill="#0A1914"/>
-    <path class="tentacle t1" d="M19,32 Q15,42 18,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-    <path class="tentacle t2" d="M24,33 Q21,44 26,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-    <path class="tentacle t3" d="M32,34 Q32,46 32,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-    <path class="tentacle t4" d="M40,33 Q43,44 38,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-    <path class="tentacle t5" d="M45,32 Q49,42 46,52" stroke="#C6A87C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-  </svg>
+  <div class="octo-wrapper">
+    <svg class="octo-swim" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle class="octo-head" cx="32" cy="26" r="12"/>
+      <circle class="octo-eye" cx="28" cy="24" r="1.6"/>
+      <circle class="octo-eye" cx="36" cy="24" r="1.6"/>
+      <path class="octo-tentacle t1" d="M22,36 Q18,46 20,54"/>
+      <path class="octo-tentacle t2" d="M27,37 Q24,47 28,54"/>
+      <path class="octo-tentacle t3" d="M32,38 Q32,48 32,54"/>
+      <path class="octo-tentacle t4" d="M37,37 Q40,47 36,54"/>
+      <path class="octo-tentacle t5" d="M42,36 Q46,46 44,54"/>
+    </svg>
+  </div>
   <h1><span>O</span>ctolabs</h1>
   <p class="hero-tagline">build what matters</p>
   <div class="hero-divider"></div>
@@ -133,7 +315,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
   <p class="section-label">Products</p>
   <div class="product-grid">
 
-    <a class="product-card" href="https://artisanmu.octolabs.app" target="_blank">
+    <a class="product-card" href="https://artisanmu.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="ArtisanMU - Local artisan marketplace">
       <div class="product-tag">Marketplace &middot; Live</div>
       <div class="product-name">ArtisanMU</div>
       <p class="product-desc">On-demand platform connecting Mauritians with verified local artisans. Post a job, get matched, invoiced on WhatsApp.</p>
@@ -142,10 +324,10 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
         <span>Home Services</span><span class="product-meta-dot"></span>
         <span>2026</span>
       </div>
-      <span class="product-arrow">&rarr;</span>
+      <span class="product-arrow" aria-hidden="true">&rarr;</span>
     </a>
 
-    <a class="product-card" href="https://anical.octolabs.app" target="_blank">
+    <a class="product-card" href="https://anical.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="AniCal - Anime tracker">
       <div class="product-tag">App &middot; Live</div>
       <div class="product-name">AniCal</div>
       <p class="product-desc">Clean, ad-free anime tracker. Weekly schedule, episode tracker, streaming links, community voting &mdash; no account needed.</p>
@@ -154,28 +336,16 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
         <span>Entertainment</span><span class="product-meta-dot"></span>
         <span>2026</span>
       </div>
-      <span class="product-arrow">&rarr;</span>
+      <span class="product-arrow" aria-hidden="true">&rarr;</span>
     </a>
 
-    <a class="product-card" href="https://moris.octolabs.app" target="_blank">
-      <div class="product-tag">Guide &middot; Live</div>
-      <div class="product-name">Moris Guide</div>
-      <p class="product-desc">Local guide to Mauritius &mdash; beaches, hidden spots, restaurants, things to do. Made for residents and visitors alike.</p>
-      <div class="product-meta">
-        <span>Mauritius</span><span class="product-meta-dot"></span>
-        <span>Travel</span><span class="product-meta-dot"></span>
-        <span>2026</span>
-      </div>
-      <span class="product-arrow">&rarr;</span>
-    </a>
-
-    <div class="product-card product-coming">
+    <div class="product-card product-coming" role="note" aria-label="OctoQuiz - Coming soon">
       <div class="product-tag">In development</div>
-      <div class="product-name">Yomu Game Night</div>
-      <p class="product-desc">Multiplayer TV party game &mdash; trivia, imposter, truth or dare. Coming soon on games.octolabs.app.</p>
+      <div class="product-name">OctoQuiz</div>
+      <p class="product-desc">Interactive quiz platform for teams and classrooms. Real-time scoring, custom decks, and leaderboards. Launching Q3 2026.</p>
       <div class="product-meta">
         <span>Global</span><span class="product-meta-dot"></span>
-        <span>Games</span><span class="product-meta-dot"></span>
+        <span>Education</span><span class="product-meta-dot"></span>
         <span>2026</span>
       </div>
     </div>
@@ -185,10 +355,10 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
 
 <section class="about" id="about">
   <p class="about-quote">
-    We build tools for the people next to us &mdash;<br>
-    the plumber, the accountant, the market vendor.<br>
-    Things that <strong>actually work</strong> in the hands of people<br>
-    who don&rsquo;t have time for things that don&rsquo;t.
+    We’re just having fun online &mdash;<br>
+    building weird stuff, shipping fast,<br>
+    and making the internet a little more<br>
+    <strong>funky</strong> than it was yesterday.
   </p>
   <p class="about-attribution">Octolabs &nbsp;&middot;&nbsp; Mauritius</p>
 </section>
@@ -197,15 +367,30 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
   <span class="footer-brand">Octolabs</span>
   <div class="footer-links">
     <a class="footer-link" href="mailto:hello@octolabs.app">hello@octolabs.app</a>
-    <a class="footer-link" href="https://github.com/A1l4n" target="_blank">GitHub</a>
+    <a class="footer-link" href="https://github.com/octolabs-app" target="_blank" rel="noopener noreferrer" aria-label="Octolabs GitHub Organization">GitHub</a>
   </div>
   <span class="footer-copy">&copy; 2026 Octolabs</span>
 </footer>
 
 <script>
-window.addEventListener('scroll',()=>{
-  document.getElementById('main-nav').classList.toggle('scrolled',scrollY>20);
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').classList.toggle('scrolled', scrollY > 20);
 });
+
+// Scroll reveal animation for product cards
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 120);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
 </script>
 </body>
 </html>
