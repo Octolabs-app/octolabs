@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umba Studio — Build What Matters</title>
+  <meta name="description" content="Umba Studio builds tools for local communities. Made in Mauritius.">
+  <meta property="og:title" content="Umba Studio">
+  <meta property="og:description" content="Build what matters. Products for real people.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230A1914'/><rect x='15' y='12' width='34' height='36' rx='2' fill='%23C6A87C'/><rect x='21' y='12' width='22' height='30' rx='1' fill='%230A1914'/><circle cx='32' cy='52' r='3.5' fill='%239E7E52'/><circle cx='32' cy='52' r='1.6' fill='%230A1914'/></svg>">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#C6A87C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --dark:#0A1914;
+  --gold:#C6A87C;--gold2:#9E7E52;
+  --border:rgba(198,168,124,0.15);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Jura',sans-serif;background:var(--dark);color:white;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:all 0.4s;}
+nav.scrolled{background:rgba(10,25,20,0.93);backdrop-filter:blur(20px);border-bottom-color:var(--border);}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.nav-logo-mark{width:34px;height:34px;flex-shrink:0;}
+.nav-logo-name{font-family:'Jura',sans-serif;font-size:17px;font-weight:300;letter-spacing:5px;color:var(--gold);text-transform:uppercase;}
+.nav-links{display:flex;gap:28px;}
+.nav-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.nav-link:hover{color:var(--gold);}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(198,168,124,0.05) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:32px;display:flex;align-items:center;gap:14px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:24px;height:1px;background:var(--gold);opacity:0.4;}
+.hero-mark{margin:0 auto 44px;opacity:0;animation:fadeUp 1s ease 0.2s forwards;}
+.hero h1{font-family:'Jura',sans-serif;font-size:clamp(56px,7vw,100px);font-weight:300;letter-spacing:14px;text-transform:uppercase;color:white;line-height:1;margin-bottom:20px;opacity:0;animation:fadeUp 1s ease 0.4s forwards;}
+.hero h1 span{color:var(--gold);}
+.hero-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:clamp(16px,2vw,22px);color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:1px;opacity:0;animation:fadeUp 1s ease 0.6s forwards;}
+.hero-divider{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin:44px auto;opacity:0;animation:fadeUp 1s ease 0.8s forwards;}
+.hero-origin{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.18);opacity:0;animation:fadeUp 1s ease 1s forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.products{padding:120px 48px;max-width:1100px;margin:0 auto;}
+.section-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:0.55;margin-bottom:60px;text-align:center;}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2px;}
+.product-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:48px 40px;transition:all 0.4s;position:relative;text-decoration:none;display:block;}
+.product-card:hover{background:rgba(198,168,124,0.035);border-color:rgba(198,168,124,0.28);}
+.product-card:hover .product-arrow{opacity:1;transform:translateX(0);}
+.product-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.55;margin-bottom:18px;}
+.product-name{font-family:'Jura',sans-serif;font-size:26px;font-weight:300;letter-spacing:3px;color:white;text-transform:uppercase;margin-bottom:14px;}
+.product-desc{font-family:'Crimson Pro',serif;font-size:16px;line-height:1.75;color:rgba(255,255,255,0.42);font-weight:300;margin-bottom:28px;}
+.product-meta{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.product-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:0.4;}
+.product-arrow{font-size:16px;color:var(--gold);opacity:0;transform:translateX(-8px);transition:all 0.3s;position:absolute;bottom:40px;right:40px;}
+.product-coming{opacity:0.28;pointer-events:none;}
+
+.about{padding:120px 48px;border-top:1px solid var(--border);max-width:760px;margin:0 auto;text-align:center;}
+.about-quote{font-family:'Crimson Pro',serif;font-size:clamp(19px,2.4vw,27px);font-weight:300;font-style:italic;line-height:1.7;color:rgba(255,255,255,0.6);margin-bottom:44px;}
+.about-quote strong{color:var(--gold);font-weight:400;font-style:normal;}
+.about-attribution{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.18);}
+
+footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-brand{font-family:'Jura',sans-serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:0.4;}
+.footer-copy{font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.14);}
+.footer-links{display:flex;gap:24px;}
+.footer-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18);text-decoration:none;transition:color 0.2s;}
+.footer-link:hover{color:var(--gold);}
+
+@media(max-width:640px){
+  nav{padding:0 20px;}
+  .hero{padding:100px 24px 60px;}
+  .hero h1{letter-spacing:7px;}
+  .products,.about{padding:80px 20px;}
+  .product-card{padding:32px 24px;}
+  footer{padding:32px 20px;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="/">
+    <!-- U-mark SVG -->
+    <svg class="nav-logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="15" y="12" width="34" height="36" rx="2" fill="#C6A87C"/>
+      <rect x="21" y="12" width="22" height="30" rx="1" fill="#0A1914"/>
+      <circle cx="32" cy="52" r="3.5" fill="#9E7E52"/>
+      <circle cx="32" cy="52" r="1.6" fill="#0A1914"/>
+    </svg>
+    <span class="nav-logo-name">Umba</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#products">Products</a>
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="mailto:hello@umbastudio.com">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Mauritius</div>
+  <!-- Larger hero mark -->
+  <svg class="hero-mark" width="72" height="90" viewBox="0 0 72 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4" y="4" width="64" height="66" rx="3" fill="#C6A87C"/>
+    <!-- chamfer corners -->
+    <polygon points="4,4 16,4 4,16" fill="#9E7E52"/>
+    <polygon points="68,4 56,4 68,16" fill="#9E7E52"/>
+    <!-- inner void -->
+    <rect x="16" y="4" width="40" height="56" rx="2" fill="#0A1914"/>
+    <!-- stem -->
+    <rect x="33" y="70" width="6" height="10" fill="#9E7E52"/>
+    <!-- seed -->
+    <circle cx="36" cy="84" r="5.5" fill="#9E7E52"/>
+    <circle cx="36" cy="84" r="2.4" fill="#0A1914"/>
+  </svg>
+  <h1><span>U</span>mba</h1>
+  <p class="hero-tagline">build what matters</p>
+  <div class="hero-divider"></div>
+  <p class="hero-origin">Est. 2026 &nbsp;&middot;&nbsp; Maurice</p>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <p class="section-label">Products</p>
+  <div class="product-grid">
+
+    <a class="product-card" href="https://artisanmu.umbastudio.com" target="_blank">
+      <div class="product-tag">Marketplace &middot; Live</div>
+      <div class="product-name">ArtisanMU</div>
+      <p class="product-desc">On-demand platform connecting Mauritians with verified local artisans. Post a job, get matched, invoiced on WhatsApp.</p>
+      <div class="product-meta">
+        <span>Mauritius</span><span class="product-meta-dot"></span>
+        <span>Home Services</span><span class="product-meta-dot"></span>
+        <span>2026</span>
+      </div>
+      <span class="product-arrow">&rarr;</span>
+    </a>
+
+    <a class="product-card" href="https://invoice.umbastudio.com" target="_blank">
+      <div class="product-tag">Tool &middot; Live</div>
+      <div class="product-name">Invoice</div>
+      <p class="product-desc">Professional invoicing for freelancers and small businesses. Create, send via WhatsApp, track payments &mdash; no login needed for clients.</p>
+      <div class="product-meta">
+        <span>Global</span><span class="product-meta-dot"></span>
+        <span>Finance</span><span class="product-meta-dot"></span>
+        <span>2026</span>
+      </div>
+      <span class="product-arrow">&rarr;</span>
+    </a>
+
+    <div class="product-card product-coming">
+      <div class="product-tag">In development</div>
+      <div class="product-name">&mdash;</div>
+      <p class="product-desc">The next Umba product is being built. Something for the people around us.</p>
+      <div class="product-meta">
+        <span>Mauritius</span><span class="product-meta-dot"></span>
+        <span>2026</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <p class="about-quote">
+    We build tools for the people next to us &mdash;<br>
+    the plumber, the accountant, the market vendor.<br>
+    Things that <strong>actually work</strong> in the hands of people<br>
+    who don&rsquo;t have time for things that don&rsquo;t.
+  </p>
+  <p class="about-attribution">Umba Studio &nbsp;&middot;&nbsp; Mauritius</p>
+</section>
+
+<footer>
+  <span class="footer-brand">Umba</span>
+  <div class="footer-links">
+    <a class="footer-link" href="mailto:hello@umbastudio.com">hello@umbastudio.com</a>
+    <a class="footer-link" href="https://github.com/A1l4n" target="_blank">GitHub</a>
+  </div>
+  <span class="footer-copy">&copy; 2026 Umba Studio</span>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled',scrollY>20);
+});
+</script>
+</body>
+</html>
