@@ -81,7 +81,7 @@ nav.scrolled {
   border-bottom-color: var(--border);
 }
 .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-.nav-logo-mark { width: 36px; height: 36px; flex-shrink: 0; }
+.nav-logo-mark { width: 34px; height: auto; flex-shrink: 0; }
 .nav-logo-name {
   font-family: 'Jura', sans-serif; font-size: 17px; font-weight: 400;
   letter-spacing: 5px; color: var(--gold); text-transform: uppercase;
@@ -92,23 +92,6 @@ nav.scrolled {
   color: var(--text-muted); text-decoration: none; transition: color 0.25s;
 }
 .nav-link:hover { color: var(--gold); }
-.nav-logo-mark .octo-head { fill: var(--gold); }
-.nav-logo-mark .octo-eye { fill: var(--bg); }
-.nav-logo-mark .octo-hat { fill: var(--mint); stroke: var(--gold); stroke-width: 1.8; stroke-linejoin: round; }
-.nav-logo-mark .octo-hat-band { stroke: var(--gold); stroke-width: 2.4; stroke-linecap: round; }
-.nav-logo-mark .octo-tentacle {
-  stroke: var(--gold); stroke-width: 4; stroke-linecap: round; fill: none;
-  transform-origin: 32px 37px;
-  animation: navTentacle 3.2s ease-in-out infinite;
-}
-.nav-logo-mark .t2 { animation-delay: 0.18s; }
-.nav-logo-mark .t3 { animation-delay: 0.34s; }
-.nav-logo-mark .t4 { animation-delay: 0.52s; }
-.nav-logo-mark .t5 { animation-delay: 0.68s; }
-@keyframes navTentacle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(2px); }
-}
 
 /* ===== HERO ===== */
 .hero {
@@ -439,16 +422,34 @@ footer {
 
 <nav id="main-nav" role="navigation" aria-label="Main navigation">
   <a class="nav-logo" href="/" aria-label="Octolabs Home">
-    <svg class="nav-logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path class="octo-tentacle t1" d="M19,43 C17,49 18,54 22,57"/>
-      <path class="octo-tentacle t2" d="M27,44 C25,50 27,55 31,58"/>
-      <path class="octo-tentacle t3" d="M37,44 C39,50 37,55 33,58"/>
-      <path class="octo-tentacle t4" d="M45,43 C47,49 46,54 42,57"/>
-      <circle class="octo-head" cx="32" cy="31" r="12"/>
-      <path class="octo-hat" d="M20 20 L44 15 L43 22 L22 27 Z"/>
-      <path class="octo-hat-band" d="M18 27 L45 22"/>
-      <circle class="octo-eye" cx="28" cy="29" r="1.6"/>
-      <circle class="octo-eye" cx="36" cy="29" r="1.6"/>
+    <svg class="nav-logo-mark" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="octoBodyNav" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#D9BC8C"/>
+          <stop offset="100%" stop-color="#B6915E"/>
+        </linearGradient>
+      </defs>
+      <g fill="#B6915E">
+        <path d="M58 120 C52 150 50 168 60 180 C66 172 64 152 70 128 Z"/>
+        <path d="M76 126 C72 158 70 182 78 192 C84 184 82 156 88 130 Z"/>
+        <path d="M93 130 C91 162 90 190 96 196 C102 190 101 162 107 130 Z"/>
+        <path d="M124 126 C128 158 130 182 122 192 C116 184 118 156 112 130 Z"/>
+        <path d="M142 120 C148 150 150 168 140 180 C134 172 136 152 130 128 Z"/>
+      </g>
+      <ellipse cx="100" cy="92" rx="58" ry="56" fill="url(#octoBodyNav)"/>
+      <g transform="rotate(-8 100 30)">
+        <ellipse cx="100" cy="40" rx="52" ry="10" fill="#15203A"/>
+        <path d="M72 42 L78 6 Q80 0 100 0 Q120 0 122 6 L128 42 Z" fill="#1B2748"/>
+        <rect x="71" y="33" width="58" height="8" rx="2" fill="#C6A87C"/>
+        <circle cx="118" cy="37" r="4" fill="#F08D78"/>
+      </g>
+      <circle cx="82" cy="94" r="15" fill="#FFFFFF"/>
+      <circle cx="118" cy="94" r="15" fill="#FFFFFF"/>
+      <circle cx="83" cy="95" r="7" fill="#0B1120"/>
+      <circle cx="117" cy="95" r="7" fill="#0B1120"/>
+      <circle cx="80" cy="91" r="2.4" fill="#FFFFFF"/>
+      <circle cx="114" cy="91" r="2.4" fill="#FFFFFF"/>
+      <path d="M90 112 Q100 122 110 112" stroke="#6B4A28" stroke-width="3" fill="none" stroke-linecap="round"/>
     </svg>
     <span class="nav-logo-name">Octolabs</span>
   </a>
