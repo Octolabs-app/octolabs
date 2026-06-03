@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Octolabs - Startup Playground</title>
-  <meta name="description" content="Octolabs is a Mauritius startup playground building useful, playful online products. Explore ArtisanMU, AniCal, and OctoQuiz.">
+  <title>Octolabs - Useful Internet Things</title>
+  <meta name="description" content="Octolabs is a small product studio building useful, playful online products. Explore ArtisanMU, AniCal, and OctoQuiz.">
   <meta name="theme-color" content="#0B1120">
   
   <!-- Open Graph / Social Sharing -->
-  <meta property="og:title" content="Octolabs - Startup Playground">
-  <meta property="og:description" content="A Mauritius startup studio shipping useful, playful online products.">
+  <meta property="og:title" content="Octolabs - Useful Internet Things">
+  <meta property="og:description" content="A small product studio shipping useful, playful online products.">
   <meta property="og:image" content="https://octolabs.app/og.png">
   <meta property="og:url" content="https://octolabs.app">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1120'/><path d='M20 21 L44 17 L43 23 L22 27 Z' fill='%237ED7C1'/><path d='M18 27 L45 22' stroke='%23C6A87C' stroke-width='3' stroke-linecap='round'/><circle cx='32' cy='31' r='12' fill='%23C6A87C'/><circle cx='28' cy='29' r='1.6' fill='%230B1120'/><circle cx='36' cy='29' r='1.6' fill='%230B1120'/><path d='M22,41 Q18,49 20,56' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M27,42 Q24,50 28,56' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M32,43 Q32,51 32,56' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M37,42 Q40,50 36,56' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M42,41 Q46,49 44,56' stroke='%23C6A87C' stroke-width='2' stroke-linecap='round' fill='none'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1120'/><path d='M19 43 C17 49 18 54 22 57' stroke='%23C6A87C' stroke-width='4' stroke-linecap='round' fill='none'/><path d='M27 44 C25 50 27 55 31 58' stroke='%23C6A87C' stroke-width='4' stroke-linecap='round' fill='none'/><path d='M37 44 C39 50 37 55 33 58' stroke='%23C6A87C' stroke-width='4' stroke-linecap='round' fill='none'/><path d='M45 43 C47 49 46 54 42 57' stroke='%23C6A87C' stroke-width='4' stroke-linecap='round' fill='none'/><circle cx='32' cy='31' r='14' fill='%23C6A87C'/><path d='M20 20 L45 15 L43 23 L22 28 Z' fill='%237ED7C1'/><path d='M18 28 L46 22' stroke='%230B1120' stroke-width='3' stroke-linecap='round' opacity='.55'/><circle cx='27' cy='31' r='3' fill='%230B1120'/><circle cx='37' cy='31' r='3' fill='%230B1120'/><path d='M27 39 C30 42 34 42 37 39' stroke='%230B1120' stroke-width='2' stroke-linecap='round' fill='none'/></svg>">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,7 +97,7 @@ nav.scrolled {
 .nav-logo-mark .octo-hat { fill: var(--mint); stroke: var(--gold); stroke-width: 1.8; stroke-linejoin: round; }
 .nav-logo-mark .octo-hat-band { stroke: var(--gold); stroke-width: 2.4; stroke-linecap: round; }
 .nav-logo-mark .octo-tentacle {
-  stroke: var(--gold); stroke-width: 2; stroke-linecap: round; fill: none;
+  stroke: var(--gold); stroke-width: 4; stroke-linecap: round; fill: none;
   transform-origin: 32px 37px;
   animation: navTentacle 3.2s ease-in-out infinite;
 }
@@ -146,6 +146,7 @@ nav.scrolled {
 #octo-svg:hover { filter: drop-shadow(0 0 22px rgba(198,168,124,0.6)); }
 .octo-tentacle-path {
   stroke: #C6A87C; fill: none; stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.18));
 }
 /* Ink particle */
 .ink-dot {
@@ -453,16 +454,15 @@ footer {
 <nav id="main-nav" role="navigation" aria-label="Main navigation">
   <a class="nav-logo" href="/" aria-label="Octolabs Home">
     <svg class="nav-logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path class="octo-tentacle t1" d="M19,43 C17,49 18,54 22,57"/>
+      <path class="octo-tentacle t2" d="M27,44 C25,50 27,55 31,58"/>
+      <path class="octo-tentacle t3" d="M37,44 C39,50 37,55 33,58"/>
+      <path class="octo-tentacle t4" d="M45,43 C47,49 46,54 42,57"/>
+      <circle class="octo-head" cx="32" cy="31" r="12"/>
       <path class="octo-hat" d="M20 20 L44 15 L43 22 L22 27 Z"/>
       <path class="octo-hat-band" d="M18 27 L45 22"/>
-      <circle class="octo-head" cx="32" cy="31" r="12"/>
       <circle class="octo-eye" cx="28" cy="29" r="1.6"/>
       <circle class="octo-eye" cx="36" cy="29" r="1.6"/>
-      <path class="octo-tentacle t1" d="M22,41 Q18,49 20,56"/>
-      <path class="octo-tentacle t2" d="M27,42 Q24,50 28,56"/>
-      <path class="octo-tentacle t3" d="M32,43 Q32,51 32,56"/>
-      <path class="octo-tentacle t4" d="M37,42 Q40,50 36,56"/>
-      <path class="octo-tentacle t5" d="M42,41 Q46,49 44,56"/>
     </svg>
     <span class="nav-logo-name">Octolabs</span>
   </a>
@@ -475,17 +475,17 @@ footer {
 </nav>
 
 <section class="hero">
-  <div class="hero-eyebrow">Mauritius Startup Playground</div>
+  <div class="hero-eyebrow">Small Product Studio</div>
   <h1><span>O</span>ctolabs</h1>
-  <p class="hero-tagline">A tiny internet lab building products with personality, revenue experiments, and one very serious octopus in a hat.</p>
+  <p class="hero-tagline">A quiet home for useful apps, playful tools, and small ideas that are nice to spend time with.</p>
   <div class="hero-actions" aria-label="Primary actions">
     <a class="button button-primary" href="#products">Explore products</a>
     <a class="button" href="#studio">Enter the studio</a>
   </div>
   <div class="hero-stats" aria-label="Octolabs portfolio snapshot">
     <div class="hero-stat"><strong>3</strong><span>Live products</span></div>
-    <div class="hero-stat"><strong>Hat</strong><span>Founder mode</span></div>
-    <div class="hero-stat"><strong>MU</strong><span>Mauritius made</span></div>
+    <div class="hero-stat"><strong>Lab</strong><span>Always tinkering</span></div>
+    <div class="hero-stat"><strong>Calm</strong><span>Built with care</span></div>
   </div>
   <div class="hero-divider"></div>
   <p class="hero-origin">Est. 2026 &nbsp;&middot;&nbsp; Useful internet things</p>
@@ -509,7 +509,7 @@ footer {
       </radialGradient>
     </defs>
 
-    <!-- 8 tentacles — paths animated by JS, drawn BEFORE body so they appear behind -->
+    <!-- Rounded arms, animated by JS and drawn behind the body -->
     <path id="t0" class="octo-tentacle-path" stroke-width="3.2"/>
     <path id="t1" class="octo-tentacle-path" stroke-width="3.2"/>
     <path id="t2" class="octo-tentacle-path" stroke-width="3.8"/>
@@ -519,48 +519,48 @@ footer {
     <path id="t6" class="octo-tentacle-path" stroke-width="3.2"/>
     <path id="t7" class="octo-tentacle-path" stroke-width="3.2"/>
 
-    <!-- Mantle connection band (bridges body to tentacles) -->
-    <ellipse id="mantle-band" cx="50" cy="63" rx="24" ry="5.5" fill="#b08846"/>
+    <!-- Soft lower body connection -->
+    <ellipse id="mantle-band" cx="50" cy="64" rx="25" ry="8" fill="#b08846"/>
 
     <!-- Main body/mantle -->
-    <ellipse id="octo-body" cx="50" cy="40" rx="26" ry="28" fill="url(#bodyGrad)"/>
+    <ellipse id="octo-body" cx="50" cy="40" rx="28" ry="29" fill="url(#bodyGrad)"/>
 
     <!-- Body highlight -->
     <ellipse cx="42" cy="27" rx="9" ry="7" fill="rgba(255,255,255,0.11)" transform="rotate(-10,42,27)"/>
 
-    <!-- Founder hat -->
+    <!-- Tilted hat -->
     <g id="octo-hat">
-      <path d="M30 16 L70 8 L68 24 L34 30 Z" fill="#7ED7C1" stroke="#C6A87C" stroke-width="2.2" stroke-linejoin="round"/>
-      <path d="M24 30 L75 22" stroke="#C6A87C" stroke-width="4" stroke-linecap="round"/>
+      <path d="M28 15 L70 9 L67 25 L34 30 Z" fill="#7ED7C1" stroke="#C6A87C" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M24 30 L74 22" stroke="#0B1120" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
       <path d="M38 18 L63 13" stroke="#0B1120" stroke-width="3" stroke-linecap="round" opacity="0.28"/>
       <circle cx="69" cy="23" r="3.2" fill="#F08D78"/>
     </g>
 
     <!-- Eye sockets -->
-    <ellipse id="sock-l" cx="36" cy="38" rx="8.5" ry="8" fill="#0B1120" opacity="0.9"/>
-    <ellipse id="sock-r" cx="64" cy="38" rx="8.5" ry="8" fill="#0B1120" opacity="0.9"/>
+    <ellipse id="sock-l" cx="36" cy="39" rx="8.5" ry="8" fill="#0B1120" opacity="0.88"/>
+    <ellipse id="sock-r" cx="64" cy="39" rx="8.5" ry="8" fill="#0B1120" opacity="0.88"/>
 
     <!-- Eye iris (gold) -->
-    <ellipse id="iris-l" cx="36" cy="38" rx="6" ry="5.5" fill="#C6A87C" opacity="0.55"/>
-    <ellipse id="iris-r" cx="64" cy="38" rx="6" ry="5.5" fill="#C6A87C" opacity="0.55"/>
+    <ellipse id="iris-l" cx="36" cy="39" rx="6" ry="5.5" fill="#C6A87C" opacity="0.62"/>
+    <ellipse id="iris-r" cx="64" cy="39" rx="6" ry="5.5" fill="#C6A87C" opacity="0.62"/>
 
     <!-- Pupils -->
-    <circle id="pupil-l" cx="36" cy="38" r="3.5" fill="#0B1120"/>
-    <circle id="pupil-r" cx="64" cy="38" r="3.5" fill="#0B1120"/>
+    <circle id="pupil-l" cx="36" cy="39" r="3.5" fill="#0B1120"/>
+    <circle id="pupil-r" cx="64" cy="39" r="3.5" fill="#0B1120"/>
 
     <!-- Pupil shine -->
     <circle id="shine-l" cx="34.5" cy="36.5" r="1.2" fill="rgba(255,255,255,0.7)"/>
     <circle id="shine-r" cx="62.5" cy="36.5" r="1.2" fill="rgba(255,255,255,0.7)"/>
 
     <!-- Mouth (changes with emotion) -->
-    <path id="octo-mouth" d="M42,52 Q50,58 58,52" stroke="#0B1120" stroke-width="1.8"
+    <path id="octo-mouth" d="M42,53 Q50,58 58,53" stroke="#0B1120" stroke-width="2"
           fill="none" stroke-linecap="round"/>
   </svg>
 </div>
 
 <section class="products" id="products">
   <p class="section-label">Products</p>
-  <p class="section-intro">Three little startups are already swimming. Some are local, some are global, all of them are built to be useful before they try to be loud.</p>
+  <p class="section-intro">A small collection of products, each with its own mood. Browse around, follow a thread, open what catches your eye.</p>
   <div class="product-grid">
 
     <a class="product-card" data-index="01" href="https://artisanmu.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="ArtisanMU - Local artisan marketplace">
@@ -568,12 +568,12 @@ footer {
       <div class="product-name">ArtisanMU</div>
       <p class="product-desc">On-demand platform connecting Mauritians with verified local artisans. Post a job, get matched, invoiced on WhatsApp.</p>
       <div class="product-focus">
-        <span class="focus-pill">Lead fees</span>
         <span class="focus-pill">Verified pros</span>
-        <span class="focus-pill">Local SEO</span>
+        <span class="focus-pill">Simple requests</span>
+        <span class="focus-pill">Local services</span>
       </div>
       <div class="product-meta">
-        <span>Mauritius</span><span class="product-meta-dot"></span>
+        <span>Local</span><span class="product-meta-dot"></span>
         <span>Home Services</span><span class="product-meta-dot"></span>
         <span>2026</span>
       </div>
@@ -585,9 +585,9 @@ footer {
       <div class="product-name">AniCal</div>
       <p class="product-desc">Clean, ad-free anime tracker. Weekly schedule, episode tracker, streaming links, community discussions &mdash; no account needed.</p>
       <div class="product-focus">
-        <span class="focus-pill">Affiliates</span>
+        <span class="focus-pill">Watchlist</span>
+        <span class="focus-pill">Schedule</span>
         <span class="focus-pill">Community</span>
-        <span class="focus-pill">Content moat</span>
       </div>
       <div class="product-meta">
         <span>Global</span><span class="product-meta-dot"></span>
@@ -602,9 +602,9 @@ footer {
       <div class="product-name">OctoQuiz</div>
       <p class="product-desc">Multiplayer party trivia for groups. Host on the TV, join from your phone &mdash; Brain Blitz, Flags, Imposter mode & more.</p>
       <div class="product-focus">
-        <span class="focus-pill">Party packs</span>
-        <span class="focus-pill">Paid themes</span>
-        <span class="focus-pill">Events</span>
+        <span class="focus-pill">Party rooms</span>
+        <span class="focus-pill">Fast rounds</span>
+        <span class="focus-pill">Group play</span>
       </div>
       <div class="product-meta">
         <span>Global</span><span class="product-meta-dot"></span>
@@ -619,39 +619,39 @@ footer {
 
 <section class="studio" id="studio">
   <div class="studio-inner">
-    <p class="section-label">Startup Shelf</p>
+    <p class="section-label">Studio Shelf</p>
     <div class="studio-board">
       <div class="studio-panel">
-        <p class="studio-kicker">Made in Mauritius, online everywhere</p>
+        <p class="studio-kicker">A small room for digital curiosities</p>
         <h2 class="studio-title">A small lab for <span>useful internet things</span>.</h2>
-        <p class="studio-copy">Octolabs is where local ideas, side quests, games, tools, and tiny experiments become real products people can actually use.</p>
+        <p class="studio-copy">Octolabs is where side quests, games, tools, and tiny experiments become little products people can actually use.</p>
         <div class="studio-stickers" aria-label="Octolabs studio tags">
           <span class="sticker">Ship fast</span>
           <span class="sticker">Have taste</span>
           <span class="sticker">Stay weird</span>
-          <span class="sticker">Earn online</span>
+          <span class="sticker">Keep it useful</span>
         </div>
       </div>
       <div class="studio-panel">
         <div class="signal-grid">
           <article class="signal-card">
             <strong>ArtisanMU</strong>
-            <p>Local service discovery with a practical path toward leads, verification, and trusted bookings.</p>
+            <p>Local service discovery for people who need help and the trusted pros who can show up.</p>
             <small>01</small>
           </article>
           <article class="signal-card">
             <strong>AniCal</strong>
-            <p>A global entertainment utility with room for content, community, affiliate links, and retention loops.</p>
+            <p>A calm anime schedule and tracker for staying close to the shows you actually follow.</p>
             <small>02</small>
           </article>
           <article class="signal-card">
             <strong>OctoQuiz</strong>
-            <p>A playful party-game surface built for rooms, friends, streams, paid packs, and themed events.</p>
+            <p>A playful party-game surface for rooms, friends, streams, and chaotic trivia nights.</p>
             <small>03</small>
           </article>
           <article class="signal-card">
             <strong>Next Drop</strong>
-            <p>The lab stays open: new experiments get tested, measured, polished, and either shipped or retired.</p>
+            <p>The lab stays open: new experiments get sketched, tested, polished, and sometimes shipped.</p>
             <small>04</small>
           </article>
         </div>
@@ -659,8 +659,8 @@ footer {
     </div>
     <div class="ticker" aria-label="Octolabs product ticker">
       <div class="ticker-track">
-        <span>ArtisanMU</span><span>AniCal</span><span>OctoQuiz</span><span>Founders hat on</span><span>Built in Mauritius</span><span>Useful internet things</span>
-        <span>ArtisanMU</span><span>AniCal</span><span>OctoQuiz</span><span>Founders hat on</span><span>Built in Mauritius</span><span>Useful internet things</span>
+        <span>ArtisanMU</span><span>AniCal</span><span>OctoQuiz</span><span>New sketches</span><span>Useful internet things</span><span>Small tools, good taste</span>
+        <span>ArtisanMU</span><span>AniCal</span><span>OctoQuiz</span><span>New sketches</span><span>Useful internet things</span><span>Small tools, good taste</span>
       </div>
     </div>
   </div>
@@ -668,11 +668,11 @@ footer {
 
 <section class="about" id="about">
   <p class="about-quote">
-    A startup page should feel alive.<br>
-    So Octolabs gets a mascot, a shelf of products,<br>
-    and enough weirdness to remember the name.
+    Built for wandering, not rushing.<br>
+    Open a product, follow a curiosity,<br>
+    or just let the little mascot drift by.
   </p>
-  <p class="about-attribution">Octolabs &nbsp;&middot;&nbsp; Mauritius &nbsp;&middot;&nbsp; Online-first</p>
+  <p class="about-attribution">Octolabs &nbsp;&middot;&nbsp; Online-first</p>
 </section>
 
 <footer>
@@ -740,12 +740,19 @@ document.querySelectorAll('.product-card').forEach(card => {
     : (callback) => window.setTimeout(callback, 16);
 
   // Eye socket centers in SVG local coords
-  const EYE = { l: {cx:36, cy:38}, r: {cx:64, cy:38} };
+  const EYE = { l: {cx:36, cy:39}, r: {cx:64, cy:39} };
   const EYE_RANGE = 2.8;
 
-  // 8 tentacle roots — evenly spread along mantle bottom arc (y≈63 in SVG)
-  // x positions: symmetric around center (50)
-  const ROOTS = [20, 27, 34, 41, 59, 66, 73, 80];
+  const ROOTS = [
+    { x: 22, bias: -1.25 },
+    { x: 29, bias: -0.78 },
+    { x: 37, bias: -0.34 },
+    { x: 46, bias: -0.08 },
+    { x: 54, bias: 0.08 },
+    { x: 63, bias: 0.34 },
+    { x: 71, bias: 0.78 },
+    { x: 78, bias: 1.25 }
+  ];
   const ROOT_Y = 63;
 
   // ── Physics state ────────────────────────────────────────────────────────────
@@ -858,10 +865,10 @@ document.querySelectorAll('.product-card').forEach(card => {
     bodyScaleX = squeeze;
     bodyScaleY = 2 - squeeze; // inverse: if X squishes, Y stretches
 
-    body.setAttribute('rx', 26 * bodyScaleX);
-    body.setAttribute('ry', 28 * bodyScaleY);
-    band.setAttribute('ry', 5.5 * bodyScaleX);
-    band.setAttribute('cy', 63 + (bodyScaleY - 1) * 5);
+    body.setAttribute('rx', 28 * bodyScaleX);
+    body.setAttribute('ry', 29 * bodyScaleY);
+    band.setAttribute('ry', 8 * bodyScaleX);
+    band.setAttribute('cy', 64 + (bodyScaleY - 1) * 5);
     hat.setAttribute('transform', `translate(0 ${(-jet * 2).toFixed(2)}) rotate(${(Math.sin(time * 1.7) * (scared ? 8 : 3)).toFixed(2)} 50 24)`);
 
     // ── Eye tracking ──────────────────────────────────────────────────────────
@@ -892,40 +899,33 @@ document.querySelectorAll('.product-card').forEach(card => {
     movePupil(pupilL, shineL, EYE.l);
     movePupil(pupilR, shineR, EYE.r);
 
-    // ── Tentacles ─────────────────────────────────────────────────────────────
-    // Tentacles trail behind direction of motion and wave
-    const trailMag = scared ? 18 : 8;
+    // ── Arms ──────────────────────────────────────────────────────────────────
+    const trailMag = scared ? 10 : 4;
     const velLen = Math.hypot(vx, vy) || 1;
-    // Normalised inverse velocity (trailing direction)
     const trailDX = -(vx / velLen) * trailMag;
     const trailDY = -(vy / velLen) * trailMag;
 
-    ROOTS.forEach((rx, i) => {
-      const phase = time * (scared ? 3.5 : 1.8) + i * 0.45;
-      const wave  = Math.sin(phase) * (scared ? 10 : 6);
-      const wave2 = Math.sin(phase * 1.3 + 0.8) * (scared ? 6 : 3);
+    ROOTS.forEach((root, i) => {
+      const phase = time * (scared ? 3.2 : 1.45) + i * 0.62;
+      const wave = Math.sin(phase) * (scared ? 5.5 : 2.8);
+      const curl = Math.cos(phase * 1.18) * (scared ? 3.8 : 2);
 
-      // Tentacle start (attached to mantle bottom)
-      const sx = rx, sy = ROOT_Y + (bodyScaleY - 1) * 4;
+      const sx = root.x;
+      const sy = ROOT_Y + (bodyScaleY - 1) * 4;
+      const outward = root.bias * 10;
+      const length = 24 + Math.abs(root.bias) * 5;
 
-      // Control point 1 (near body)
-      const c1x = sx + wave * 0.3 + trailDX * 0.25;
-      const c1y = sy + 18 + trailDY * 0.2;
+      const c1x = sx + outward * 0.35 + wave + trailDX * 0.18;
+      const c1y = sy + 9 + trailDY * 0.08;
+      const c2x = sx + outward * 0.72 + wave * 0.6 + trailDX * 0.32;
+      const c2y = sy + length * 0.72 + trailDY * 0.18;
+      const ex = sx + outward + curl + trailDX * 0.42;
+      const ey = sy + length + Math.abs(curl) * 0.6 + trailDY * 0.28;
 
-      // Control point 2 (mid-tentacle)
-      const c2x = sx + wave + trailDX * 0.65;
-      const c2y = sy + 36 + trailDY * 0.5;
-
-      // End point (tip — curls with secondary wave)
-      const ex  = sx + wave * 1.4 + wave2 * 0.6 + trailDX;
-      const ey  = sy + 52 + wave2 + trailDY * 0.85;
-
-      const d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${c1x.toFixed(1)} ${c1y.toFixed(1)},${c2x.toFixed(1)} ${c2y.toFixed(1)},${ex.toFixed(1)} ${ey.toFixed(1)}`;
-      document.getElementById('t'+i).setAttribute('d', d);
-
-      // Taper thickness by position (outer tentacles thinner)
-      const dist = Math.abs(i - 3.5);
-      document.getElementById('t'+i).setAttribute('stroke-width', (4.2 - dist * 0.25).toFixed(1));
+      const d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+      const arm = document.getElementById('t'+i);
+      arm.setAttribute('d', d);
+      arm.setAttribute('stroke-width', (scared ? 5.8 : 5.2).toFixed(1));
     });
 
     // ── Position SVG on page ──────────────────────────────────────────────────

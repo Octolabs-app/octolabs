@@ -1,7 +1,7 @@
 {
   "name": "Octolabs",
   "short_name": "Octolabs",
-  "description": "Startup playground for useful internet things from Mauritius.",
+  "description": "A small product studio for useful internet things.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B1120",
