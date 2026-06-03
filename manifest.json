@@ -1,7 +1,7 @@
 {
   "name": "Octolabs",
   "short_name": "Octolabs",
-  "description": "Build what earns. A product studio from Mauritius.",
+  "description": "Startup playground for useful internet things from Mauritius.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B1120",
