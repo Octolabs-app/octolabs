@@ -131,33 +131,21 @@ nav.scrolled {
   content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.4;
 }
 
-/* Swimming Octopus Logo */
-/* ===== INTERACTIVE OCTOPUS ===== */
-#octo-world {
-  position: fixed; inset: 0; pointer-events: none; z-index: 3; overflow: hidden;
+/* ===== HERO MASCOT ===== */
+.hero-mascot {
+  width: clamp(112px, 14vw, 168px);
+  margin-bottom: 30px;
+  opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
 }
-#octo-svg {
-  position: absolute; right: 7vw; top: 58vh; pointer-events: all; cursor: pointer;
-  width: 160px; height: 180px;
-  filter: drop-shadow(0 0 12px rgba(198,168,124,0.35));
-  transition: filter 0.3s;
-  will-change: transform;
+.hero-mascot svg {
+  width: 100%; height: auto; display: block;
+  filter: drop-shadow(0 12px 26px rgba(0,0,0,0.38));
+  animation: mascotFloat 6s ease-in-out infinite;
 }
-#octo-svg:hover { filter: drop-shadow(0 0 22px rgba(198,168,124,0.6)); }
-.octo-tentacle-path {
-  stroke: #C6A87C; fill: none; stroke-linecap: round; stroke-linejoin: round;
-  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.18));
+@keyframes mascotFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
 }
-/* Ink particle */
-.ink-dot {
-  position: absolute; border-radius: 50%; background: rgba(198,168,124,0.4);
-  pointer-events: none; animation: inkFade 1.2s ease-out forwards;
-}
-@keyframes inkFade {
-  from { transform: scale(1); opacity: 0.6; }
-  to   { transform: scale(3); opacity: 0; }
-}
-/* Hero no longer needs static octo */
 .hero-eyebrow { margin-bottom: 44px; }
 
 .hero h1 {
@@ -428,7 +416,6 @@ footer {
 /* ===== MOBILE ===== */
 @media (max-width: 640px) {
   nav { padding: 0 20px; }
-  #octo-svg { width: 104px; height: 120px; right: 8px; top: 430px; }
   .hero { padding: 100px 24px 60px; }
   .hero h1 { letter-spacing: 5px; }
   .hero-stats { grid-template-columns: 1fr; }
@@ -445,7 +432,6 @@ footer {
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
-  #octo-world { display: none; }
 }
 </style>
 </head>
@@ -475,6 +461,44 @@ footer {
 </nav>
 
 <section class="hero">
+  <div class="hero-mascot" aria-hidden="true">
+    <svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Octolabs octopus mascot">
+      <defs>
+        <linearGradient id="octoBody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#D9BC8C"/>
+          <stop offset="100%" stop-color="#B6915E"/>
+        </linearGradient>
+      </defs>
+      <!-- tentacles -->
+      <g fill="#B6915E">
+        <path d="M58 120 C52 150 50 168 60 180 C66 172 64 152 70 128 Z"/>
+        <path d="M76 126 C72 158 70 182 78 192 C84 184 82 156 88 130 Z"/>
+        <path d="M93 130 C91 162 90 190 96 196 C102 190 101 162 107 130 Z"/>
+        <path d="M124 126 C128 158 130 182 122 192 C116 184 118 156 112 130 Z"/>
+        <path d="M142 120 C148 150 150 168 140 180 C134 172 136 152 130 128 Z"/>
+      </g>
+      <!-- body -->
+      <ellipse cx="100" cy="92" rx="58" ry="56" fill="url(#octoBody)"/>
+      <ellipse cx="78" cy="64" rx="16" ry="11" fill="#FFFFFF" opacity="0.14" transform="rotate(-18 78 64)"/>
+      <!-- hat -->
+      <g transform="rotate(-8 100 30)">
+        <ellipse cx="100" cy="40" rx="52" ry="10" fill="#15203A"/>
+        <path d="M72 42 L78 6 Q80 0 100 0 Q120 0 122 6 L128 42 Z" fill="#1B2748"/>
+        <rect x="71" y="33" width="58" height="8" rx="2" fill="#C6A87C"/>
+        <circle cx="118" cy="37" r="4" fill="#F08D78"/>
+      </g>
+      <!-- face -->
+      <circle cx="82" cy="94" r="15" fill="#FFFFFF"/>
+      <circle cx="118" cy="94" r="15" fill="#FFFFFF"/>
+      <circle cx="83" cy="95" r="7" fill="#0B1120"/>
+      <circle cx="117" cy="95" r="7" fill="#0B1120"/>
+      <circle cx="80" cy="91" r="2.4" fill="#FFFFFF"/>
+      <circle cx="114" cy="91" r="2.4" fill="#FFFFFF"/>
+      <circle cx="64" cy="110" r="6" fill="#F08D78" opacity="0.35"/>
+      <circle cx="136" cy="110" r="6" fill="#F08D78" opacity="0.35"/>
+      <path d="M90 112 Q100 122 110 112" stroke="#6B4A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
   <div class="hero-eyebrow">Small Product Studio</div>
   <h1><span>O</span>ctolabs</h1>
   <p class="hero-tagline">A quiet studio building apps that earn their keep, tools that respect your time, and games worth actually playing.</p>
@@ -490,73 +514,6 @@ footer {
   <div class="hero-divider"></div>
   <p class="hero-origin">Est. 2026 &nbsp;&middot;&nbsp; An indie product studio</p>
 </section>
-
-<!-- ── Interactive full-page octopus ───────────────────────────────────────── -->
-<div id="octo-world" aria-hidden="true">
-  <svg id="octo-svg" width="160" height="180" viewBox="0 0 100 115"
-       xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Octolabs octopus">
-    <!-- Glow halo (behind everything) -->
-    <ellipse id="octo-glow" cx="50" cy="42" rx="30" ry="28" fill="rgba(198,168,124,0.06)" filter="url(#blur)"/>
-    <defs>
-      <filter id="blur"><feGaussianBlur stdDeviation="6"/></filter>
-      <radialGradient id="bodyGrad" cx="40%" cy="35%" r="60%">
-        <stop offset="0%" stop-color="#d4b98a"/>
-        <stop offset="100%" stop-color="#9a7040"/>
-      </radialGradient>
-      <radialGradient id="bodyGradScared" cx="40%" cy="35%" r="60%">
-        <stop offset="0%" stop-color="#e0c096"/>
-        <stop offset="100%" stop-color="#7a5030"/>
-      </radialGradient>
-    </defs>
-
-    <!-- Rounded arms, animated by JS and drawn behind the body -->
-    <path id="t0" class="octo-tentacle-path" stroke-width="3.2"/>
-    <path id="t1" class="octo-tentacle-path" stroke-width="3.2"/>
-    <path id="t2" class="octo-tentacle-path" stroke-width="3.8"/>
-    <path id="t3" class="octo-tentacle-path" stroke-width="4"/>
-    <path id="t4" class="octo-tentacle-path" stroke-width="4"/>
-    <path id="t5" class="octo-tentacle-path" stroke-width="3.8"/>
-    <path id="t6" class="octo-tentacle-path" stroke-width="3.2"/>
-    <path id="t7" class="octo-tentacle-path" stroke-width="3.2"/>
-
-    <!-- Soft lower body connection -->
-    <ellipse id="mantle-band" cx="50" cy="64" rx="25" ry="8" fill="#b08846"/>
-
-    <!-- Main body/mantle -->
-    <ellipse id="octo-body" cx="50" cy="40" rx="28" ry="29" fill="url(#bodyGrad)"/>
-
-    <!-- Body highlight -->
-    <ellipse cx="42" cy="27" rx="9" ry="7" fill="rgba(255,255,255,0.11)" transform="rotate(-10,42,27)"/>
-
-    <!-- Tilted hat -->
-    <g id="octo-hat">
-      <path d="M28 15 L70 9 L67 25 L34 30 Z" fill="#7ED7C1" stroke="#C6A87C" stroke-width="2.2" stroke-linejoin="round"/>
-      <path d="M24 30 L74 22" stroke="#C6A87C" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
-      <path d="M38 18 L63 13" stroke="#0B1120" stroke-width="3" stroke-linecap="round" opacity="0.28"/>
-      <circle cx="69" cy="23" r="3.2" fill="#F08D78"/>
-    </g>
-
-    <!-- Eye sockets -->
-    <ellipse id="sock-l" cx="36" cy="39" rx="8.5" ry="8" fill="#0B1120" opacity="0.88"/>
-    <ellipse id="sock-r" cx="64" cy="39" rx="8.5" ry="8" fill="#0B1120" opacity="0.88"/>
-
-    <!-- Eye iris (gold) -->
-    <ellipse id="iris-l" cx="36" cy="39" rx="6" ry="5.5" fill="#C6A87C" opacity="0.62"/>
-    <ellipse id="iris-r" cx="64" cy="39" rx="6" ry="5.5" fill="#C6A87C" opacity="0.62"/>
-
-    <!-- Pupils -->
-    <circle id="pupil-l" cx="36" cy="39" r="3.5" fill="#0B1120"/>
-    <circle id="pupil-r" cx="64" cy="39" r="3.5" fill="#0B1120"/>
-
-    <!-- Pupil shine -->
-    <circle id="shine-l" cx="34.5" cy="36.5" r="1.2" fill="rgba(255,255,255,0.7)"/>
-    <circle id="shine-r" cx="62.5" cy="36.5" r="1.2" fill="rgba(255,255,255,0.7)"/>
-
-    <!-- Mouth (changes with emotion) -->
-    <path id="octo-mouth" d="M42,53 Q50,58 58,53" stroke="#0B1120" stroke-width="2"
-          fill="none" stroke-linecap="round"/>
-  </svg>
-</div>
 
 <section class="products" id="products">
   <p class="section-label">Products</p>
@@ -670,7 +627,7 @@ footer {
   <p class="about-quote">
     Built for wandering, not rushing.<br>
     Open a product, follow a curiosity,<br>
-    or just let the little mascot drift by.
+    and stay as long as you like.
   </p>
   <p class="about-attribution">Octolabs &nbsp;&middot;&nbsp; Est. 2026</p>
 </section>
@@ -720,236 +677,6 @@ document.querySelectorAll('.product-card').forEach(card => {
     card.style.setProperty('--card-y', `${event.clientY - rect.top}px`);
   });
 });
-
-// ════════════════════════════════════════════════════════════════════════════════
-//  INTERACTIVE OCTOPUS — full-page swimming creature
-// ════════════════════════════════════════════════════════════════════════════════
-(function() {
-  const svg   = document.getElementById('octo-svg');
-  const body  = document.getElementById('octo-body');
-  const band  = document.getElementById('mantle-band');
-  const mouth = document.getElementById('octo-mouth');
-  const hat   = document.getElementById('octo-hat');
-  const pupilL = document.getElementById('pupil-l');
-  const pupilR = document.getElementById('pupil-r');
-  const shineL = document.getElementById('shine-l');
-  const shineR = document.getElementById('shine-r');
-  const world  = document.getElementById('octo-world');
-  const scheduleFrame = window.requestAnimationFrame
-    ? window.requestAnimationFrame.bind(window)
-    : (callback) => window.setTimeout(callback, 16);
-
-  // Eye socket centers in SVG local coords
-  const EYE = { l: {cx:36, cy:39}, r: {cx:64, cy:39} };
-  const EYE_RANGE = 2.8;
-
-  const ROOTS = [
-    { x: 22, bias: -1.25 },
-    { x: 29, bias: -0.78 },
-    { x: 37, bias: -0.34 },
-    { x: 46, bias: -0.08 },
-    { x: 54, bias: 0.08 },
-    { x: 63, bias: 0.34 },
-    { x: 71, bias: 0.78 },
-    { x: 78, bias: 1.25 }
-  ];
-  const ROOT_Y = 63;
-
-  // ── Physics state ────────────────────────────────────────────────────────────
-  let px = window.innerWidth < 640 ? window.innerWidth * 0.78 : window.innerWidth * 0.5;
-  let py = window.innerWidth < 640 ? window.innerHeight * 0.34 : window.innerHeight * 0.42;
-  let vx = 1.6, vy = 0.7;
-  let time = 0;
-  let scared = false, scaredT = 0;
-  let curious = false;
-  let mouseX = px, mouseY = py;
-  let flipX = 1; // 1=right, -1=left
-  let bodyScaleX = 1, bodyScaleY = 1;
-
-  // Smooth eye target
-  let eyeTX = 0.5, eyeTY = 0.5;
-
-  // ── Mouse tracking ───────────────────────────────────────────────────────────
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-  document.addEventListener('touchmove', e => {
-    mouseX = e.touches[0].clientX;
-    mouseY = e.touches[0].clientY;
-  }, { passive: true });
-
-  // ── Click / tap to scare ─────────────────────────────────────────────────────
-  svg.addEventListener('click', e => {
-    e.stopPropagation();
-    scared   = true;
-    scaredT  = 90;
-    // Burst away from cursor
-    const dx = px - mouseX, dy = py - mouseY;
-    const d  = Math.hypot(dx, dy) || 1;
-    vx = (dx / d) * 9 + (Math.random() - 0.5) * 3;
-    vy = (dy / d) * 9 + (Math.random() - 0.5) * 3;
-    // Ink puffs
-    for (let i = 0; i < 6; i++) spawnInk(px, py);
-    mouth.setAttribute('d', 'M44,52 Q50,47 56,52'); // scared mouth (O shape)
-  });
-
-  function spawnInk(x, y) {
-    const dot = document.createElement('div');
-    dot.className = 'ink-dot';
-    const sz = 10 + Math.random() * 16;
-    dot.style.cssText = `width:${sz}px;height:${sz}px;left:${x + (Math.random()-0.5)*40}px;top:${y + (Math.random()-0.5)*40}px;`;
-    world.appendChild(dot);
-    window.setTimeout(() => dot.remove(), 1300);
-  }
-
-  // ── Direction change timer ───────────────────────────────────────────────────
-  let dirChangeT = 0;
-
-  // ── Main animation loop ──────────────────────────────────────────────────────
-  function tick() {
-    scheduleFrame(tick);
-    time += 0.035;
-    dirChangeT++;
-
-    const W = window.innerWidth, H = window.innerHeight;
-    const margin = 90;
-
-    // Occasional random direction nudge (every ~5s)
-    if (!scared && dirChangeT > 160 && Math.random() < 0.008) {
-      dirChangeT = 0;
-      vx += (Math.random() - 0.5) * 2.5;
-      vy += (Math.random() - 0.5) * 2.5;
-      // Speed cap
-      const spd = Math.hypot(vx, vy);
-      if (spd > 3) { vx = vx/spd * 3; vy = vy/spd * 3; }
-      if (spd < 1) { vx = vx/spd * 1.2; vy = vy/spd * 1.2; }
-    }
-
-    // Boundary bounce with smooth deflection
-    if (px < margin)     vx = Math.abs(vx) * 1.1;
-    if (px > W - margin) vx = -Math.abs(vx) * 1.1;
-    if (py < margin)     vy = Math.abs(vy) * 1.1;
-    if (py > H - margin) vy = -Math.abs(vy) * 1.1;
-
-    // Scared decay
-    if (scared) {
-      scaredT--;
-      if (scaredT <= 0) {
-        scared = false;
-        // Return to calm speed
-        const spd = Math.hypot(vx, vy);
-        vx = vx/spd * 1.8;
-        vy = vy/spd * 0.9;
-        mouth.setAttribute('d', 'M42,52 Q50,58 58,52'); // happy mouth
-      }
-      // Fast decay of scared velocity
-      vx *= 0.97; vy *= 0.97;
-    }
-
-    // Jet propulsion — sinusoidal speed pulse
-    const jetFreq = scared ? 3.5 : 1.4;
-    const jet = Math.max(0, Math.sin(time * jetFreq));
-    const spd = scared ? (1.5 + jet * 1.2) : (1 + jet * 0.6);
-
-    px += vx * spd;
-    py += vy * spd;
-
-    // Flip direction
-    if (vx >  0.1) flipX =  1;
-    if (vx < -0.1) flipX = -1;
-
-    // Body deformation during jet (pulse)
-    const squeeze = scared ? (0.88 + 0.12 * Math.abs(Math.sin(time * 3.5)))
-                           : (1 - 0.07 * jet);
-    bodyScaleX = squeeze;
-    bodyScaleY = 2 - squeeze; // inverse: if X squishes, Y stretches
-
-    body.setAttribute('rx', 28 * bodyScaleX);
-    body.setAttribute('ry', 29 * bodyScaleY);
-    band.setAttribute('ry', 8 * bodyScaleX);
-    band.setAttribute('cy', 64 + (bodyScaleY - 1) * 5);
-    hat.setAttribute('transform', `translate(0 ${(-jet * 2).toFixed(2)}) rotate(${(Math.sin(time * 1.7) * (scared ? 8 : 3)).toFixed(2)} 50 24)`);
-
-    // ── Eye tracking ──────────────────────────────────────────────────────────
-    // Convert mouse to local SVG space
-    const rect = svg.getBoundingClientRect();
-    const svgW = rect.width, svgH = rect.height;
-    // Flip-adjusted mouse local
-    const mlx = flipX === 1
-      ? (mouseX - rect.left) / svgW * 100
-      : 100 - (mouseX - rect.left) / svgW * 100;
-    const mly = (mouseY - rect.top) / svgH * 115;
-
-    // Smooth follow
-    eyeTX += (mlx - eyeTX) * 0.08;
-    eyeTY += (mly - eyeTY) * 0.08;
-
-    function movePupil(pEl, shEl, eye) {
-      const dx = eyeTX - eye.cx, dy = eyeTY - eye.cy;
-      const dist = Math.hypot(dx, dy) || 1;
-      const move = Math.min(EYE_RANGE, dist * 0.25);
-      const nx = eye.cx + (dx / dist) * move;
-      const ny = eye.cy + (dy / dist) * move;
-      pEl.setAttribute('cx', nx);
-      pEl.setAttribute('cy', ny);
-      shEl.setAttribute('cx', nx - 1.5);
-      shEl.setAttribute('cy', ny - 1.5);
-    }
-    movePupil(pupilL, shineL, EYE.l);
-    movePupil(pupilR, shineR, EYE.r);
-
-    // ── Arms ──────────────────────────────────────────────────────────────────
-    const trailMag = scared ? 10 : 4;
-    const velLen = Math.hypot(vx, vy) || 1;
-    const trailDX = -(vx / velLen) * trailMag;
-    const trailDY = -(vy / velLen) * trailMag;
-
-    ROOTS.forEach((root, i) => {
-      const phase = time * (scared ? 3.2 : 1.45) + i * 0.62;
-      const wave = Math.sin(phase) * (scared ? 5.5 : 2.8);
-      const curl = Math.cos(phase * 1.18) * (scared ? 3.8 : 2);
-
-      const sx = root.x;
-      const sy = ROOT_Y + (bodyScaleY - 1) * 4;
-      const outward = root.bias * 10;
-      const length = 24 + Math.abs(root.bias) * 5;
-
-      const c1x = sx + outward * 0.35 + wave + trailDX * 0.18;
-      const c1y = sy + 9 + trailDY * 0.08;
-      const c2x = sx + outward * 0.72 + wave * 0.6 + trailDX * 0.32;
-      const c2y = sy + length * 0.72 + trailDY * 0.18;
-      const ex = sx + outward + curl + trailDX * 0.42;
-      const ey = sy + length + Math.abs(curl) * 0.6 + trailDY * 0.28;
-
-      const d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
-      const arm = document.getElementById('t'+i);
-      arm.setAttribute('d', d);
-      arm.setAttribute('stroke-width', (scared ? 5.8 : 5.2).toFixed(1));
-    });
-
-    // ── Position SVG on page ──────────────────────────────────────────────────
-    const svgHalfW = svg.offsetWidth / 2;
-    const svgHalfH = svg.offsetHeight * 0.32;
-    svg.style.left      = (px - svgHalfW) + 'px';
-    svg.style.top       = (py - svgHalfH) + 'px';
-    svg.style.transform = `scaleX(${flipX})`;
-
-    // ── Glow pulse ────────────────────────────────────────────────────────────
-    const glowA = 0.04 + jet * 0.08 + (scared ? 0.1 : 0);
-    document.getElementById('octo-glow').setAttribute('fill', `rgba(198,168,124,${glowA.toFixed(3)})`);
-  }
-
-  // Start after short delay (let fonts/layout settle)
-  window.setTimeout(tick, 300);
-
-  // Tooltip hint on first hover
-  let hinted = false;
-  svg.addEventListener('mouseenter', () => {
-    if (hinted) return; hinted = true;
-    svg.title = 'Click me';
-  });
-})();
 </script>
 </body>
 </html>
