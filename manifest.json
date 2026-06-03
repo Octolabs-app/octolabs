@@ -1,9 +1,9 @@
 {
   "name": "Octolabs",
   "short_name": "Octolabs",
-  "description": "Build what matters. A product studio from Mauritius.",
+  "description": "Build what earns. A product studio from Mauritius.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A1914",
-  "theme_color": "#C6A87C"
+  "background_color": "#0B1120",
+  "theme_color": "#0B1120"
 }

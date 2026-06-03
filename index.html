@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Octolabs — Build What Matters</title>
-  <meta name="description" content="Octolabs builds practical tools for local communities and global users. Studio behind ArtisanMU, AniCal, and OctoQuiz. Made in Mauritius.">
+  <title>Octolabs - Build What Earns</title>
+  <meta name="description" content="Octolabs is a Mauritius-based product studio building small online products into useful, monetizable businesses. Explore ArtisanMU, AniCal, and OctoQuiz.">
+  <meta name="theme-color" content="#0B1120">
   
   <!-- Open Graph / Social Sharing -->
-  <meta property="og:title" content="Octolabs — Build What Matters">
-  <meta property="og:description" content="Practical tools for real people. Made in Mauritius.">
+  <meta property="og:title" content="Octolabs - Build What Earns">
+  <meta property="og:description" content="A Mauritius product lab turning useful web products into online revenue.">
   <meta property="og:image" content="https://octolabs.app/og.png">
   <meta property="og:url" content="https://octolabs.app">
   <meta property="og:type" content="website">
@@ -28,10 +29,15 @@
 :root {
   --bg: #0B1120;
   --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-strong: rgba(8, 13, 24, 0.76);
   --gold: #C6A87C;
   --gold-dim: rgba(198, 168, 124, 0.15);
+  --mint: #7ED7C1;
+  --coral: #F08D78;
+  --blue: #87A7FF;
   --text: #E8E6E1;
   --text-muted: rgba(232, 230, 225, 0.45);
+  --text-soft: rgba(232, 230, 225, 0.68);
   --border: rgba(198, 168, 124, 0.12);
 }
 
@@ -39,10 +45,26 @@ html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
   font-family: 'Jura', sans-serif;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 20%), rgba(126, 215, 193, 0.12), transparent 26rem),
+    linear-gradient(135deg, rgba(240, 141, 120, 0.08), transparent 28%),
+    radial-gradient(ellipse at 80% 18%, rgba(135, 167, 255, 0.1), transparent 30rem),
+    var(--bg);
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(232,230,225,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,230,225,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at center, #000 0%, transparent 78%);
 }
 
 /* ===== NAVIGATION ===== */
@@ -70,13 +92,29 @@ nav.scrolled {
   color: var(--text-muted); text-decoration: none; transition: color 0.25s;
 }
 .nav-link:hover { color: var(--gold); }
+.nav-logo-mark .octo-head { fill: var(--gold); }
+.nav-logo-mark .octo-eye { fill: var(--bg); }
+.nav-logo-mark .octo-tentacle {
+  stroke: var(--gold); stroke-width: 2; stroke-linecap: round; fill: none;
+  transform-origin: 32px 37px;
+  animation: navTentacle 3.2s ease-in-out infinite;
+}
+.nav-logo-mark .t2 { animation-delay: 0.18s; }
+.nav-logo-mark .t3 { animation-delay: 0.34s; }
+.nav-logo-mark .t4 { animation-delay: 0.52s; }
+.nav-logo-mark .t5 { animation-delay: 0.68s; }
+@keyframes navTentacle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
 
 /* ===== HERO ===== */
 .hero {
   min-height: 100vh; display: flex; flex-direction: column;
   justify-content: center; align-items: center; text-align: center;
-  padding: 120px 48px 80px; position: relative; overflow: hidden;
+  padding: 120px 48px 64px; position: relative; overflow: hidden;
 }
+.hero > *, .products, .roadmap, .about, footer { position: relative; z-index: 5; }
 .hero::before {
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(ellipse 70% 50% at 50% 45%, rgba(198,168,124,0.06) 0%, transparent 70%);
@@ -94,10 +132,11 @@ nav.scrolled {
 /* Swimming Octopus Logo */
 /* ===== INTERACTIVE OCTOPUS ===== */
 #octo-world {
-  position: fixed; inset: 0; pointer-events: none; z-index: 998; overflow: hidden;
+  position: fixed; inset: 0; pointer-events: none; z-index: 3; overflow: hidden;
 }
 #octo-svg {
-  position: absolute; pointer-events: all; cursor: pointer;
+  position: absolute; right: 7vw; top: 58vh; pointer-events: all; cursor: pointer;
+  width: 160px; height: 180px;
   filter: drop-shadow(0 0 12px rgba(198,168,124,0.35));
   transition: filter 0.3s;
   will-change: transform;
@@ -119,7 +158,7 @@ nav.scrolled {
 .hero-eyebrow { margin-bottom: 44px; }
 
 .hero h1 {
-  font-family: 'Jura', sans-serif; font-size: clamp(48px, 6vw, 84px);
+  font-family: 'Jura', sans-serif; font-size: clamp(54px, 7vw, 112px);
   font-weight: 300; letter-spacing: 10px; text-transform: uppercase;
   color: var(--text); line-height: 1; margin-bottom: 20px;
   opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
@@ -127,9 +166,39 @@ nav.scrolled {
 .hero h1 span { color: var(--gold); }
 .hero-tagline {
   font-family: 'Crimson Pro', serif; font-style: italic;
-  font-size: clamp(16px, 2vw, 22px); color: var(--text-muted);
-  font-weight: 300; letter-spacing: 1px;
+  font-size: clamp(18px, 2.2vw, 28px); color: var(--text-soft);
+  font-weight: 300; letter-spacing: 1px; max-width: 720px; line-height: 1.45;
   opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+}
+.hero-actions {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  margin-top: 34px; opacity: 0; animation: fadeUp 1s ease 0.72s forwards;
+}
+.button {
+  min-height: 46px; display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 0 18px; border: 1px solid var(--border);
+  color: var(--text); text-decoration: none; text-transform: uppercase;
+  font-size: 11px; letter-spacing: 2px; background: rgba(255,255,255,0.035);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.button:hover { transform: translateY(-2px); border-color: rgba(126,215,193,0.45); background: rgba(126,215,193,0.08); }
+.button-primary { color: var(--bg); background: var(--gold); border-color: var(--gold); font-weight: 600; }
+.button-primary:hover { background: var(--mint); border-color: var(--mint); }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 1px; width: min(720px, 100%); margin-top: 48px;
+  border: 1px solid var(--border); background: var(--border);
+  opacity: 0; animation: fadeUp 1s ease 0.9s forwards;
+}
+.hero-stat {
+  background: var(--bg-strong); padding: 18px 16px;
+}
+.hero-stat strong {
+  display: block; color: var(--gold); font-size: 22px; font-weight: 500;
+}
+.hero-stat span {
+  display: block; color: rgba(232,230,225,0.38); text-transform: uppercase;
+  font-size: 9px; letter-spacing: 2px; margin-top: 8px;
 }
 .hero-divider {
   width: 1px; height: 56px;
@@ -149,11 +218,16 @@ nav.scrolled {
 
 /* ===== PRODUCTS ===== */
 .products {
-  padding: 120px 48px; max-width: 1100px; margin: 0 auto;
+  padding: 120px 48px; max-width: 1180px; margin: 0 auto;
 }
 .section-label {
   font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
   color: var(--gold); opacity: 0.55; margin-bottom: 60px; text-align: center;
+}
+.section-intro {
+  max-width: 720px; margin: -34px auto 58px; text-align: center;
+  font-family: 'Crimson Pro', serif; font-size: clamp(18px, 2vw, 24px);
+  color: var(--text-soft); line-height: 1.55;
 }
 .product-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -163,7 +237,17 @@ nav.scrolled {
   background: var(--bg-card); border: 1px solid var(--border);
   padding: 48px 40px; transition: all 0.4s ease;
   position: relative; text-decoration: none; display: block;
-  opacity: 0; transform: translateY(24px);
+  opacity: 1; transform: translateY(0);
+  min-height: 330px; overflow: hidden;
+}
+.product-card::before {
+  content: ''; position: absolute; inset: 0; opacity: 0;
+  background: radial-gradient(circle at var(--card-x, 50%) var(--card-y, 40%), rgba(126,215,193,0.16), transparent 18rem);
+  transition: opacity 0.35s ease; pointer-events: none;
+}
+.product-card::after {
+  content: attr(data-index); position: absolute; top: 28px; right: 34px;
+  font-size: 42px; letter-spacing: 2px; color: rgba(232,230,225,0.045);
 }
 .product-card.visible {
   opacity: 1; transform: translateY(0);
@@ -174,6 +258,7 @@ nav.scrolled {
   border-color: rgba(198, 168, 124, 0.25);
   transform: translateY(-4px);
 }
+.product-card:hover::before { opacity: 1; }
 .product-card:hover .product-arrow { opacity: 1; transform: translateX(0); }
 .product-tag {
   font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
@@ -192,6 +277,14 @@ nav.scrolled {
   font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
   color: rgba(232,230,225,0.18); display: flex; align-items: center;
   gap: 10px; flex-wrap: wrap;
+}
+.product-focus {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+}
+.focus-pill {
+  border: 1px solid rgba(232,230,225,0.1); color: rgba(232,230,225,0.54);
+  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 7px 9px; background: rgba(255,255,255,0.025);
 }
 .product-meta-dot {
   width: 3px; height: 3px; border-radius: 50%; background: var(--gold); opacity: 0.4;
@@ -230,6 +323,32 @@ nav.scrolled {
   color: rgba(232,230,225,0.18);
 }
 
+/* ===== ROADMAP ===== */
+.roadmap {
+  padding: 120px 48px; border-top: 1px solid var(--border);
+}
+.roadmap-inner { max-width: 1100px; margin: 0 auto; }
+.roadmap-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  border: 1px solid var(--border); background: var(--border);
+}
+.roadmap-step {
+  background: rgba(8,13,24,0.82); padding: 34px 28px; min-height: 230px;
+}
+.roadmap-step span {
+  display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center;
+  border: 1px solid rgba(198,168,124,0.25); color: var(--gold);
+  font-size: 11px; margin-bottom: 26px;
+}
+.roadmap-step h3 {
+  color: var(--text); text-transform: uppercase; letter-spacing: 2px;
+  font-size: 15px; font-weight: 500; margin-bottom: 16px;
+}
+.roadmap-step p {
+  color: var(--text-muted); font-family: 'Crimson Pro', serif;
+  font-size: 16px; line-height: 1.65;
+}
+
 /* ===== FOOTER ===== */
 footer {
   padding: 44px 48px; border-top: 1px solid var(--border);
@@ -253,12 +372,23 @@ footer {
 /* ===== MOBILE ===== */
 @media (max-width: 640px) {
   nav { padding: 0 20px; }
+  #octo-svg { width: 104px; height: 120px; right: 8px; top: 430px; }
   .hero { padding: 100px 24px 60px; }
-  .hero h1 { letter-spacing: 6px; }
-  .products, .about { padding: 80px 20px; }
+  .hero h1 { letter-spacing: 5px; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .products, .about, .roadmap { padding: 80px 20px; }
   .product-card { padding: 32px 24px; }
+  .product-card::after { top: 22px; right: 22px; }
+  .roadmap-grid { grid-template-columns: 1fr; }
   footer { padding: 32px 20px; }
   .nav-links { display: none; }
+}
+@media (min-width: 641px) and (max-width: 960px) {
+  .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
+  #octo-world { display: none; }
 }
 </style>
 </head>
@@ -280,17 +410,27 @@ footer {
   </a>
   <div class="nav-links">
     <a class="nav-link" href="#products">Products</a>
+    <a class="nav-link" href="#roadmap">Roadmap</a>
     <a class="nav-link" href="#about">About</a>
     <a class="nav-link" href="mailto:hello@octolabs.app">Contact</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-eyebrow">Mauritius</div>
+  <div class="hero-eyebrow">Mauritius Product Lab</div>
   <h1><span>O</span>ctolabs</h1>
-  <p class="hero-tagline">build what matters</p>
+  <p class="hero-tagline">Building useful web products, then turning the best ones into simple online revenue streams.</p>
+  <div class="hero-actions" aria-label="Primary actions">
+    <a class="button button-primary" href="#products">Explore products</a>
+    <a class="button" href="mailto:hello@octolabs.app">Start a project</a>
+  </div>
+  <div class="hero-stats" aria-label="Octolabs portfolio snapshot">
+    <div class="hero-stat"><strong>3</strong><span>Live products</span></div>
+    <div class="hero-stat"><strong>2026</strong><span>Launch cycle</span></div>
+    <div class="hero-stat"><strong>MU</strong><span>Made in Mauritius</span></div>
+  </div>
   <div class="hero-divider"></div>
-  <p class="hero-origin">Est. 2026 &nbsp;&middot;&nbsp; Maurice</p>
+  <p class="hero-origin">Est. 2026 &nbsp;&middot;&nbsp; Build what earns</p>
 </section>
 
 <!-- ── Interactive full-page octopus ───────────────────────────────────────── -->
@@ -354,12 +494,18 @@ footer {
 
 <section class="products" id="products">
   <p class="section-label">Products</p>
+  <p class="section-intro">Three products are already live. The next job is ruthless: find the strongest audience, tighten the offer, and put each product on a path to earn.</p>
   <div class="product-grid">
 
-    <a class="product-card" href="https://artisanmu.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="ArtisanMU - Local artisan marketplace">
+    <a class="product-card" data-index="01" href="https://artisanmu.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="ArtisanMU - Local artisan marketplace">
       <div class="product-tag">Marketplace &middot; Live</div>
       <div class="product-name">ArtisanMU</div>
       <p class="product-desc">On-demand platform connecting Mauritians with verified local artisans. Post a job, get matched, invoiced on WhatsApp.</p>
+      <div class="product-focus">
+        <span class="focus-pill">Lead fees</span>
+        <span class="focus-pill">Verified pros</span>
+        <span class="focus-pill">Local SEO</span>
+      </div>
       <div class="product-meta">
         <span>Mauritius</span><span class="product-meta-dot"></span>
         <span>Home Services</span><span class="product-meta-dot"></span>
@@ -368,10 +514,15 @@ footer {
       <span class="product-arrow" aria-hidden="true">&rarr;</span>
     </a>
 
-    <a class="product-card" href="https://anical.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="AniCal - Anime tracker">
+    <a class="product-card" data-index="02" href="https://anical.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="AniCal - Anime tracker">
       <div class="product-tag">App &middot; Live</div>
       <div class="product-name">AniCal</div>
       <p class="product-desc">Clean, ad-free anime tracker. Weekly schedule, episode tracker, streaming links, community discussions &mdash; no account needed.</p>
+      <div class="product-focus">
+        <span class="focus-pill">Affiliates</span>
+        <span class="focus-pill">Community</span>
+        <span class="focus-pill">Content moat</span>
+      </div>
       <div class="product-meta">
         <span>Global</span><span class="product-meta-dot"></span>
         <span>Entertainment</span><span class="product-meta-dot"></span>
@@ -380,10 +531,15 @@ footer {
       <span class="product-arrow" aria-hidden="true">&rarr;</span>
     </a>
 
-    <a class="product-card" href="https://octoquiz.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="OctoQuiz - Multiplayer party trivia">
+    <a class="product-card" data-index="03" href="https://octoquiz.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="OctoQuiz - Multiplayer party trivia">
       <div class="product-tag">Game &middot; Live</div>
       <div class="product-name">OctoQuiz</div>
       <p class="product-desc">Multiplayer party trivia for groups. Host on the TV, join from your phone &mdash; Brain Blitz, Flags, Imposter mode & more.</p>
+      <div class="product-focus">
+        <span class="focus-pill">Party packs</span>
+        <span class="focus-pill">Paid themes</span>
+        <span class="focus-pill">Events</span>
+      </div>
       <div class="product-meta">
         <span>Global</span><span class="product-meta-dot"></span>
         <span>Entertainment</span><span class="product-meta-dot"></span>
@@ -395,14 +551,42 @@ footer {
   </div>
 </section>
 
+<section class="roadmap" id="roadmap">
+  <div class="roadmap-inner">
+    <p class="section-label">Operator Roadmap</p>
+    <p class="section-intro">Landing page first, then one focused sprint per product. Each sprint should end with a sharper funnel, a clearer price point, and one measurable growth loop.</p>
+    <div class="roadmap-grid">
+      <article class="roadmap-step">
+        <span>01</span>
+        <h3>Audit</h3>
+        <p>Map each product's audience, traffic sources, conversion points, and quickest money path.</p>
+      </article>
+      <article class="roadmap-step">
+        <span>02</span>
+        <h3>Package</h3>
+        <p>Turn features into offers: simple landing copy, pricing, trust signals, and a clean first CTA.</p>
+      </article>
+      <article class="roadmap-step">
+        <span>03</span>
+        <h3>Launch</h3>
+        <p>Ship the smallest monetization test and connect analytics before adding more complexity.</p>
+      </article>
+      <article class="roadmap-step">
+        <span>04</span>
+        <h3>Compound</h3>
+        <p>Double down on what works with content, SEO, partnerships, and better retention loops.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="about" id="about">
   <p class="about-quote">
-    We’re just having fun online &mdash;<br>
-    building weird stuff, shipping fast,<br>
-    and making the internet a little more<br>
-    <strong>funky</strong> than it was yesterday.
+    Small products, shipped fast,<br>
+    measured honestly, improved weekly.<br>
+    The internet rewards the builders who keep showing up.
   </p>
-  <p class="about-attribution">Octolabs &nbsp;&middot;&nbsp; Mauritius</p>
+  <p class="about-attribution">Octolabs &nbsp;&middot;&nbsp; Mauritius &nbsp;&middot;&nbsp; Online-first</p>
 </section>
 
 <footer>
@@ -420,16 +604,36 @@ window.addEventListener('scroll', () => {
   document.getElementById('main-nav').classList.toggle('scrolled', scrollY > 20);
 });
 
+// ── Cursor-reactive ambient light ───────────────────────────────────────────────
+document.addEventListener('pointermove', (event) => {
+  const x = (event.clientX / window.innerWidth * 100).toFixed(2);
+  const y = (event.clientY / window.innerHeight * 100).toFixed(2);
+  document.documentElement.style.setProperty('--cursor-x', `${x}%`);
+  document.documentElement.style.setProperty('--cursor-y', `${y}%`);
+});
+
 // ── Product card reveal ─────────────────────────────────────────────────────────
-const cardObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 120);
-      cardObserver.unobserve(entry.target);
-    }
+const productCards = document.querySelectorAll('.product-card');
+if ('IntersectionObserver' in window) {
+  const cardObserver = new window.IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        window.setTimeout(() => entry.target.classList.add('visible'), i * 120);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  productCards.forEach(c => cardObserver.observe(c));
+} else {
+  productCards.forEach(c => c.classList.add('visible'));
+}
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('pointermove', (event) => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--card-x', `${event.clientX - rect.left}px`);
+    card.style.setProperty('--card-y', `${event.clientY - rect.top}px`);
   });
-}, { threshold: 0.15 });
-document.querySelectorAll('.product-card').forEach(c => cardObserver.observe(c));
+});
 
 // ════════════════════════════════════════════════════════════════════════════════
 //  INTERACTIVE OCTOPUS — full-page swimming creature
@@ -444,6 +648,9 @@ document.querySelectorAll('.product-card').forEach(c => cardObserver.observe(c))
   const shineL = document.getElementById('shine-l');
   const shineR = document.getElementById('shine-r');
   const world  = document.getElementById('octo-world');
+  const scheduleFrame = window.requestAnimationFrame
+    ? window.requestAnimationFrame.bind(window)
+    : (callback) => window.setTimeout(callback, 16);
 
   // Eye socket centers in SVG local coords
   const EYE = { l: {cx:36, cy:38}, r: {cx:64, cy:38} };
@@ -455,8 +662,8 @@ document.querySelectorAll('.product-card').forEach(c => cardObserver.observe(c))
   const ROOT_Y = 63;
 
   // ── Physics state ────────────────────────────────────────────────────────────
-  let px = window.innerWidth  * 0.5;
-  let py = window.innerHeight * 0.42;
+  let px = window.innerWidth < 640 ? window.innerWidth * 0.78 : window.innerWidth * 0.5;
+  let py = window.innerWidth < 640 ? window.innerHeight * 0.34 : window.innerHeight * 0.42;
   let vx = 1.6, vy = 0.7;
   let time = 0;
   let scared = false, scaredT = 0;
@@ -499,7 +706,7 @@ document.querySelectorAll('.product-card').forEach(c => cardObserver.observe(c))
     const sz = 10 + Math.random() * 16;
     dot.style.cssText = `width:${sz}px;height:${sz}px;left:${x + (Math.random()-0.5)*40}px;top:${y + (Math.random()-0.5)*40}px;`;
     world.appendChild(dot);
-    setTimeout(() => dot.remove(), 1300);
+    window.setTimeout(() => dot.remove(), 1300);
   }
 
   // ── Direction change timer ───────────────────────────────────────────────────
@@ -507,7 +714,7 @@ document.querySelectorAll('.product-card').forEach(c => cardObserver.observe(c))
 
   // ── Main animation loop ──────────────────────────────────────────────────────
   function tick() {
-    requestAnimationFrame(tick);
+    scheduleFrame(tick);
     time += 0.035;
     dirChangeT++;
 
@@ -634,8 +841,8 @@ document.querySelectorAll('.product-card').forEach(c => cardObserver.observe(c))
     });
 
     // ── Position SVG on page ──────────────────────────────────────────────────
-    const svgHalfW = 80; // visual centre offset
-    const svgHalfH = 55;
+    const svgHalfW = svg.offsetWidth / 2;
+    const svgHalfH = svg.offsetHeight * 0.32;
     svg.style.left      = (px - svgHalfW) + 'px';
     svg.style.top       = (py - svgHalfH) + 'px';
     svg.style.transform = `scaleX(${flipX})`;
@@ -646,13 +853,13 @@ document.querySelectorAll('.product-card').forEach(c => cardObserver.observe(c))
   }
 
   // Start after short delay (let fonts/layout settle)
-  setTimeout(tick, 300);
+  window.setTimeout(tick, 300);
 
   // Tooltip hint on first hover
   let hinted = false;
   svg.addEventListener('mouseenter', () => {
     if (hinted) return; hinted = true;
-    svg.title = 'Click me! 🐙';
+    svg.title = 'Click me';
   });
 })();
 </script>
