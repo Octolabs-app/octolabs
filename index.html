@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Octolabs - Useful Internet Things</title>
-  <meta name="description" content="Octolabs is a small product studio building useful, playful online products. Explore ArtisanMU, AniCal, and OctoQuiz.">
+  <meta name="description" content="Octolabs is a small product studio building useful, playful online products. Explore ArtisanMU, AniCal, OctoQuiz and Rezavu.">
   <meta name="theme-color" content="#0B1120">
-  
+
   <!-- Open Graph / Social Sharing -->
   <meta property="og:title" content="Octolabs - Useful Internet Things">
   <meta property="og:description" content="A small product studio shipping useful, playful online products.">
@@ -14,10 +14,10 @@
   <meta property="og:url" content="https://octolabs.app">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1120'/><path d='M19 43 C17 49 18 54 22 57' stroke='%23C6A87C' stroke-width='4' stroke-linecap='round' fill='none'/><path d='M27 44 C25 50 27 55 31 58' stroke='%23C6A87C' stroke-width='4' stroke-linecap='round' fill='none'/><path d='M37 44 C39 50 37 55 33 58' stroke='%23C6A87C' stroke-width='4' stroke-linecap='round' fill='none'/><path d='M45 43 C47 49 46 54 42 57' stroke='%23C6A87C' stroke-width='4' stroke-linecap='round' fill='none'/><circle cx='32' cy='31' r='14' fill='%23C6A87C'/><path d='M20 20 L45 15 L43 23 L22 28 Z' fill='%237ED7C1'/><path d='M18 28 L46 22' stroke='%230B1120' stroke-width='3' stroke-linecap='round' opacity='.55'/><circle cx='27' cy='31' r='3' fill='%230B1120'/><circle cx='37' cy='31' r='3' fill='%230B1120'/><path d='M27 39 C30 42 34 42 37 39' stroke='%230B1120' stroke-width='2' stroke-linecap='round' fill='none'/></svg>">
-  
+
+  <!-- Favicon — simplified version of the hero mascot (gold octopus, navy top hat) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1120'/><g fill='%23B6915E'><path d='M20 42 C18 50 18 55 21 59 C24 56 23 49 25 44 Z'/><path d='M29 44 C28 52 28 57 31 60 C34 57 33 50 34 45 Z'/><path d='M39 44 C40 52 40 57 37 60 C34 57 35 50 34 45 Z'/><path d='M46 42 C48 50 48 55 45 59 C42 56 43 49 41 44 Z'/></g><ellipse cx='33' cy='33' rx='17' ry='16' fill='%23C6A87C'/><g transform='rotate(-8 33 14)'><ellipse cx='33' cy='17' rx='15' ry='3' fill='%2315203A'/><path d='M25 17 L27 7 Q27.5 5 33 5 Q38.5 5 39 7 L41 17 Z' fill='%231B2748'/><rect x='25' y='14' width='16' height='2.6' rx='1' fill='%23C6A87C'/><circle cx='38' cy='15.4' r='1.4' fill='%23F08D78'/></g><circle cx='28' cy='34' r='4.4' fill='%23FFFFFF'/><circle cx='38' cy='34' r='4.4' fill='%23FFFFFF'/><circle cx='28.3' cy='34.3' r='2' fill='%230B1120'/><circle cx='37.7' cy='34.3' r='2' fill='%230B1120'/><path d='M29.5 40 Q33 43 36.5 40' stroke='%236B4A28' stroke-width='1.4' fill='none' stroke-linecap='round'/></svg>">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,6 +66,8 @@ body::before {
   background-size: 44px 44px;
   mask-image: radial-gradient(circle at center, #000 0%, transparent 78%);
 }
+::selection { background: var(--gold); color: var(--bg); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
 /* ===== NAVIGATION ===== */
 nav {
@@ -90,6 +92,7 @@ nav.scrolled {
 .nav-link {
   font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
   color: var(--text-muted); text-decoration: none; transition: color 0.25s;
+  padding: 8px 0;
 }
 .nav-link:hover { color: var(--gold); }
 
@@ -105,13 +108,23 @@ nav.scrolled {
   background: radial-gradient(ellipse 70% 50% at 50% 45%, rgba(198,168,124,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
-.hero-eyebrow {
-  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
-  color: var(--gold); opacity: 0.6; margin-bottom: 32px;
-  display: flex; align-items: center; gap: 14px;
+.hero-announce {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(135,167,255,0.3); background: rgba(135,167,255,0.08);
+  color: var(--blue); text-decoration: none;
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+  padding: 9px 16px; border-radius: 999px; margin-bottom: 34px;
+  opacity: 0; animation: fadeUp 1s ease 0.1s forwards;
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.4;
+.hero-announce:hover { border-color: rgba(135,167,255,0.6); background: rgba(135,167,255,0.14); }
+.hero-announce .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--blue);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 /* ===== HERO MASCOT ===== */
@@ -129,7 +142,14 @@ nav.scrolled {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-9px); }
 }
-.hero-eyebrow { margin-bottom: 44px; }
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); opacity: 0.6; margin-bottom: 44px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.4;
+}
 
 .hero h1 {
   font-family: 'Jura', sans-serif; font-size: clamp(54px, 7vw, 112px);
@@ -204,10 +224,13 @@ nav.scrolled {
   color: var(--text-soft); line-height: 1.55;
 }
 .product-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2px;
 }
+/* Each card carries its own accent via --accent / --accent-soft */
 .product-card {
+  --accent: var(--gold);
+  --accent-soft: rgba(198, 168, 124, 0.14);
   background: var(--bg-card); border: 1px solid var(--border);
   padding: 48px 40px; transition: all 0.4s ease;
   position: relative; text-decoration: none; display: block;
@@ -216,7 +239,7 @@ nav.scrolled {
 }
 .product-card::before {
   content: ''; position: absolute; inset: 0; opacity: 0;
-  background: radial-gradient(circle at var(--card-x, 50%) var(--card-y, 40%), rgba(126,215,193,0.16), transparent 18rem);
+  background: radial-gradient(circle at var(--card-x, 50%) var(--card-y, 40%), var(--accent-soft), transparent 18rem);
   transition: opacity 0.35s ease; pointer-events: none;
 }
 .product-card::after {
@@ -229,14 +252,14 @@ nav.scrolled {
 }
 .product-card:hover {
   background: rgba(198, 168, 124, 0.04);
-  border-color: rgba(198, 168, 124, 0.25);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
   transform: translateY(-4px);
 }
 .product-card:hover::before { opacity: 1; }
 .product-card:hover .product-arrow { opacity: 1; transform: translateX(0); }
 .product-tag {
   font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); opacity: 0.55; margin-bottom: 18px;
+  color: var(--accent); opacity: 0.75; margin-bottom: 18px;
 }
 .product-name {
   font-family: 'Jura', sans-serif; font-size: 26px; font-weight: 400;
@@ -256,30 +279,32 @@ nav.scrolled {
   display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
 }
 .focus-pill {
-  border: 1px solid rgba(232,230,225,0.1); color: rgba(232,230,225,0.54);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  color: rgba(232,230,225,0.54);
   font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
   padding: 7px 9px; background: rgba(255,255,255,0.025);
 }
 .product-meta-dot {
-  width: 3px; height: 3px; border-radius: 50%; background: var(--gold); opacity: 0.4;
+  width: 3px; height: 3px; border-radius: 50%; background: var(--accent); opacity: 0.5;
 }
 .product-arrow {
-  font-size: 16px; color: var(--gold); opacity: 0;
+  font-size: 16px; color: var(--accent); opacity: 0;
   transform: translateX(-8px); transition: all 0.3s ease;
   position: absolute; bottom: 40px; right: 40px;
 }
+.product-card[data-accent="mint"] { --accent: var(--mint); --accent-soft: rgba(126, 215, 193, 0.14); }
+.product-card[data-accent="coral"] { --accent: var(--coral); --accent-soft: rgba(240, 141, 120, 0.13); }
+.product-card[data-accent="blue"] { --accent: var(--blue); --accent-soft: rgba(135, 167, 255, 0.13); }
 
-/* Coming Soon Card */
-.product-coming {
-  opacity: 0 !important; transform: translateY(24px);
-  border-style: dashed; cursor: default;
+/* Launching-soon card — present but quiet, no dead link */
+.product-soon { cursor: default; }
+.product-soon .product-arrow { display: none; }
+.product-soon:hover { transform: none; }
+.soon-badge {
+  display: inline-block; border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--accent); font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 10px; border-radius: 999px; margin-bottom: 0;
 }
-.product-coming.visible {
-  opacity: 0.35 !important; transform: translateY(0);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.product-coming:hover { transform: none !important; background: var(--bg-card) !important; }
-.product-coming .product-arrow { display: none; }
 
 /* ===== ABOUT ===== */
 .about {
@@ -342,16 +367,18 @@ nav.scrolled {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;
 }
 .signal-card {
+  --accent: var(--gold);
   min-height: 194px; padding: 26px; background: rgba(255,255,255,0.035);
   border: 1px solid rgba(232,230,225,0.1); position: relative; overflow: hidden;
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 .signal-card:hover {
-  transform: translateY(-4px); border-color: rgba(126,215,193,0.35);
-  background: rgba(126,215,193,0.06);
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
 }
 .signal-card strong {
-  display: block; color: var(--gold); text-transform: uppercase; letter-spacing: 2px;
+  display: block; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;
   font-size: 15px; margin-bottom: 18px;
 }
 .signal-card p {
@@ -362,6 +389,9 @@ nav.scrolled {
   position: absolute; right: 18px; bottom: 16px; color: rgba(232,230,225,0.12);
   font-size: 34px; letter-spacing: 1px;
 }
+.signal-card[data-accent="mint"] { --accent: var(--mint); }
+.signal-card[data-accent="coral"] { --accent: var(--coral); }
+.signal-card[data-accent="blue"] { --accent: var(--blue); }
 .ticker {
   display: flex; gap: 26px; overflow: hidden; border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border); padding: 17px 0; margin-top: 42px;
@@ -389,7 +419,7 @@ footer {
 .footer-copy {
   font-size: 11px; letter-spacing: 1px; color: rgba(232,230,225,0.14);
 }
-.footer-links { display: flex; gap: 24px; }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
 .footer-link {
   font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
   color: rgba(232,230,225,0.18); text-decoration: none; transition: color 0.25s;
@@ -398,17 +428,21 @@ footer {
 
 /* ===== MOBILE ===== */
 @media (max-width: 640px) {
-  nav { padding: 0 20px; }
-  .hero { padding: 100px 24px 60px; }
+  nav { padding: 0 16px; height: 60px; }
+  .nav-logo-name { font-size: 14px; letter-spacing: 3px; }
+  .nav-links { gap: 14px; }
+  .nav-link { font-size: 10px; letter-spacing: 1px; }
+  .nav-link-contact { display: none; }
+  .hero { padding: 96px 24px 60px; }
   .hero h1 { letter-spacing: 5px; }
   .hero-stats { grid-template-columns: 1fr; }
   .products, .about, .studio { padding: 80px 20px; }
-  .product-card { padding: 32px 24px; }
+  .product-card { padding: 32px 24px; min-height: 0; }
   .product-card::after { top: 22px; right: 22px; }
+  .product-arrow { bottom: 28px; right: 24px; }
   .studio-board, .signal-grid { grid-template-columns: 1fr; }
   .studio-panel { padding: 30px 24px; min-height: auto; }
   footer { padding: 32px 20px; }
-  .nav-links { display: none; }
 }
 @media (min-width: 641px) and (max-width: 960px) {
   .studio-board { grid-template-columns: 1fr; }
@@ -457,11 +491,15 @@ footer {
     <a class="nav-link" href="#products">Products</a>
     <a class="nav-link" href="#studio">Studio</a>
     <a class="nav-link" href="#about">About</a>
-    <a class="nav-link" href="mailto:hello@octolabs.app">Contact</a>
+    <a class="nav-link nav-link-contact" href="mailto:hello@octolabs.app">Contact</a>
   </div>
 </nav>
 
 <section class="hero">
+  <a class="hero-announce" href="#products">
+    <span class="dot" aria-hidden="true"></span>
+    New &mdash; Rezavu, WhatsApp-native booking
+  </a>
   <div class="hero-mascot" aria-hidden="true">
     <svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Octolabs octopus mascot">
       <defs>
@@ -508,7 +546,7 @@ footer {
     <a class="button" href="#studio">Enter the studio</a>
   </div>
   <div class="hero-stats" aria-label="Octolabs portfolio snapshot">
-    <div class="hero-stat"><strong>3</strong><span>Products live</span></div>
+    <div class="hero-stat"><strong>4</strong><span>Products &middot; 3 live, 1 launching</span></div>
     <div class="hero-stat"><strong>Indie</strong><span>No roadmap, no VC</span></div>
     <div class="hero-stat"><strong>Open</strong><span>Free to explore</span></div>
   </div>
@@ -538,7 +576,7 @@ footer {
       <span class="product-arrow" aria-hidden="true">&rarr;</span>
     </a>
 
-    <a class="product-card" data-index="02" href="https://anical.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="AniCal - Anime tracker">
+    <a class="product-card" data-index="02" data-accent="mint" href="https://anical.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="AniCal - Anime tracker">
       <div class="product-tag">App &middot; Live</div>
       <div class="product-name">AniCal</div>
       <p class="product-desc">Stay close to the shows you love. A clean space for your watchlist and weekly schedule &mdash; no account, no noise, no ads.</p>
@@ -555,7 +593,7 @@ footer {
       <span class="product-arrow" aria-hidden="true">&rarr;</span>
     </a>
 
-    <a class="product-card" data-index="03" href="https://octoquiz.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="OctoQuiz - Multiplayer party trivia">
+    <a class="product-card" data-index="03" data-accent="coral" href="https://octoquiz.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="OctoQuiz - Multiplayer party trivia">
       <div class="product-tag">Game &middot; Live</div>
       <div class="product-name">OctoQuiz</div>
       <p class="product-desc">Party trivia that runs in a browser. One person hosts, everyone joins from their phone &mdash; fast rounds, loud rooms, no app to install.</p>
@@ -571,6 +609,20 @@ footer {
       </div>
       <span class="product-arrow" aria-hidden="true">&rarr;</span>
     </a>
+
+    <div class="product-card product-soon" data-index="04" data-accent="blue" aria-label="Rezavu - WhatsApp-native booking, launching soon">
+      <div class="product-tag">Booking &middot; Launching soon</div>
+      <div class="product-name">Rezavu</div>
+      <p class="product-desc">Booking links for salons, barbers and small local businesses. Customers tap, pick a slot, and get a WhatsApp confirmation &mdash; no app, no account.</p>
+      <div class="product-focus">
+        <span class="focus-pill">Booking links</span>
+        <span class="focus-pill">WhatsApp replies</span>
+        <span class="focus-pill">EN / FR</span>
+      </div>
+      <div class="product-meta">
+        <span class="soon-badge">Launching soon</span>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -597,19 +649,19 @@ footer {
             <p>Local service discovery for people who need help and the trusted pros who can show up.</p>
             <small>01</small>
           </article>
-          <article class="signal-card">
+          <article class="signal-card" data-accent="mint">
             <strong>AniCal</strong>
             <p>A calm anime schedule and tracker for staying close to the shows you actually follow.</p>
             <small>02</small>
           </article>
-          <article class="signal-card">
+          <article class="signal-card" data-accent="coral">
             <strong>OctoQuiz</strong>
             <p>A party trivia game for rooms, friends, streams, and the kind of nights that get competitive.</p>
             <small>03</small>
           </article>
-          <article class="signal-card">
-            <strong>Next Drop</strong>
-            <p>The lab stays open: new experiments get sketched, tested, polished, and sometimes shipped.</p>
+          <article class="signal-card" data-accent="blue">
+            <strong>Rezavu</strong>
+            <p>Bookings that live where island businesses already talk to customers: WhatsApp.</p>
             <small>04</small>
           </article>
         </div>
@@ -617,8 +669,8 @@ footer {
     </div>
     <div class="ticker" aria-label="Octolabs product ticker">
       <div class="ticker-track">
-        <span>ArtisanMU</span><span>AniCal</span><span>OctoQuiz</span><span>New sketches</span><span>Useful internet things</span><span>Small tools, good taste</span>
-        <span>ArtisanMU</span><span>AniCal</span><span>OctoQuiz</span><span>New sketches</span><span>Useful internet things</span><span>Small tools, good taste</span>
+        <span>ArtisanMU</span><span>AniCal</span><span>OctoQuiz</span><span>Rezavu</span><span>Useful internet things</span><span>Small tools, good taste</span>
+        <span>ArtisanMU</span><span>AniCal</span><span>OctoQuiz</span><span>Rezavu</span><span>Useful internet things</span><span>Small tools, good taste</span>
       </div>
     </div>
   </div>
@@ -636,6 +688,9 @@ footer {
 <footer>
   <span class="footer-brand">Octolabs</span>
   <div class="footer-links">
+    <a class="footer-link" href="https://artisanmu.octolabs.app" target="_blank" rel="noopener noreferrer">ArtisanMU</a>
+    <a class="footer-link" href="https://anical.octolabs.app" target="_blank" rel="noopener noreferrer">AniCal</a>
+    <a class="footer-link" href="https://octoquiz.octolabs.app" target="_blank" rel="noopener noreferrer">OctoQuiz</a>
     <a class="footer-link" href="mailto:hello@octolabs.app">hello@octolabs.app</a>
     <a class="footer-link" href="https://github.com/octolabs-app" target="_blank" rel="noopener noreferrer" aria-label="Octolabs GitHub Organization">GitHub</a>
   </div>
