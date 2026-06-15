@@ -323,10 +323,7 @@ nav.scrolled {
 .product-featured {
   grid-column: 1 / -1; min-height: 0;
   display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 24px; align-items: center;
-  cursor: default;
 }
-.product-featured:hover { transform: none; }
-.product-featured .product-arrow { display: none; }
 .featured-visual {
   display: flex; align-items: center; justify-content: center; position: relative;
   min-height: 190px;
@@ -600,9 +597,9 @@ footer {
   <p class="section-intro">A small collection of products, each with its own mood. Browse around, follow a thread, open what catches your eye.</p>
   <div class="product-grid">
 
-    <div class="product-card product-featured" data-index="04" data-accent="blue" aria-label="Randevou - WhatsApp-native booking, launching soon">
+    <a class="product-card product-featured" data-index="04" data-accent="blue" href="https://randevou.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="Randevou - WhatsApp-native booking for small businesses">
       <div>
-        <div class="product-tag">Booking &middot; Next from the lab</div>
+        <div class="product-tag">Booking &middot; Live</div>
         <div class="product-name">Randevou</div>
         <p class="product-desc">Booking links for salons, barbers and small local businesses. Customers tap, pick a slot, and get a WhatsApp confirmation &mdash; no app, no account, in English or French.</p>
         <div class="product-focus">
@@ -611,7 +608,7 @@ footer {
           <span class="focus-pill">EN / FR</span>
         </div>
         <div class="product-meta">
-          <span class="soon-badge">Launching soon</span>
+          <span class="soon-badge">Try it →</span>
         </div>
       </div>
       <div class="featured-visual" aria-hidden="true">
@@ -624,7 +621,7 @@ footer {
           <path d="M22 38.5l7 7 13-13" fill="none" stroke="#87A7FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-    </div>
+    </a>
 
     <a class="product-card" data-index="01" href="https://artisanmu.octolabs.app" target="_blank" rel="noopener noreferrer" aria-label="ArtisanMU - Local artisan marketplace">
       <div class="product-tag">Marketplace &middot; Live</div>
