@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Octolabs — Useful Internet Things</title>
-  <meta name="description" content="Octolabs is a small product studio. Two products: Artizan Moris, the Mauritius home services marketplace, and OctoQuiz, party trivia for every screen.">
+  <meta name="description" content="Octolabs is a small product studio. Three products: Artizan Moris, the Mauritius home services marketplace; OctoQuiz, party trivia for every screen; and Invocto, tax-ready invoicing for freelancers.">
   <meta name="theme-color" content="#0B1120">
   <meta property="og:title" content="Octolabs — Useful Internet Things">
-  <meta property="og:description" content="A small studio. Two products worth using.">
+  <meta property="og:description" content="A small studio. Three products worth using.">
   <meta property="og:image" content="https://octolabs.app/og.png">
   <meta property="og:url" content="https://octolabs.app">
   <meta property="og:type" content="website">
@@ -256,6 +256,8 @@ nav.scrolled {
 
 .pc-artizan { --p-accent:#C6A87C; --p-accent-soft:rgba(198,168,124,0.13); }
 .pc-quiz    { --p-accent:#F08D78; --p-accent-soft:rgba(240,141,120,0.13); }
+.pc-invocto { --p-accent:#6CA8C4; --p-accent-soft:rgba(108,168,196,0.14); }
+.pc-wide    { grid-column: 1 / -1; }
 
 .pc-tag {
   font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
@@ -516,7 +518,7 @@ footer {
     <h1 id="hero-h"><span>O</span>ctolabs</h1>
     <p class="hero-sub">A quiet studio building apps that earn their keep, tools that respect your time, and games worth actually playing.</p>
     <div class="hero-pills" aria-label="Studio characteristics">
-      <span class="pill">2 Products</span>
+      <span class="pill">3 Products</span>
       <span class="pill">Indie &mdash; No roadmap, no VC</span>
       <span class="pill">Free to explore</span>
       <span class="pill">Est. 2026</span>
@@ -615,7 +617,7 @@ footer {
 
 <!-- ── PRODUCTS ── -->
 <section class="products" id="products" aria-labelledby="products-label">
-  <p class="section-eyebrow" id="products-label">Two products</p>
+  <p class="section-eyebrow" id="products-label">Three products</p>
 
   <div class="duo-grid">
 
@@ -670,6 +672,39 @@ footer {
       </a>
     </div>
 
+    <!-- Invocto -->
+    <div class="pc pc-invocto pc-wide">
+      <div class="pc-tag">Invoicing &middot; Live &middot; Freelancers</div>
+      <div class="pc-name">Invocto</div>
+      <p class="pc-desc">Tax-ready invoices in minutes. Build branded invoices and estimates, track expenses, set recurring billing, and export clean tax reports &mdash; free, with no limits.</p>
+      <div class="pc-pills">
+        <span class="pc-pill">Invoices &amp; estimates</span>
+        <span class="pc-pill">Tax reports</span>
+        <span class="pc-pill">Recurring</span>
+        <span class="pc-pill">Always free</span>
+      </div>
+
+      <div class="widget" aria-label="Invoice preview">
+        <div class="widget-label">Invoice preview</div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);border-bottom:1px solid var(--border-soft);padding-bottom:8px;margin-bottom:8px;letter-spacing:1px;">
+          <span>INV-0007</span><span>Due Apr 30</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text);margin-bottom:6px;">
+          <span>Brand identity design</span><span>1,200.00</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text);margin-bottom:10px;">
+          <span>Logo &amp; guidelines</span><span>450.00</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:600;color:var(--p-accent);border-top:1px solid var(--border-soft);padding-top:8px;">
+          <span>Total due</span><span>USD 1,650.00</span>
+        </div>
+      </div>
+
+      <a class="pc-cta" href="https://invocto.octolabs.app" target="_blank" rel="noopener noreferrer">
+        Open Invocto &rarr;
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -688,6 +723,10 @@ footer {
         <article class="signal-card quiz">
           <strong>OctoQuiz</strong>
           <p>A party trivia game for rooms, friends, streams, and the kind of nights that get competitive. Runs anywhere, requires nothing but a browser and a crowd.</p>
+        </article>
+        <article class="signal-card">
+          <strong>Invocto</strong>
+          <p>Calm, tax-ready invoicing for freelancers and small studios. Send branded invoices and estimates, track expenses, and stay ready for tax season &mdash; free.</p>
         </article>
       </div>
     </div>
@@ -710,6 +749,7 @@ footer {
   <div class="footer-links">
     <a class="footer-link" href="https://artisanmu.octolabs.app" target="_blank" rel="noopener noreferrer">Artizan Moris</a>
     <a class="footer-link" href="https://octoquiz.octolabs.app" target="_blank" rel="noopener noreferrer">OctoQuiz</a>
+    <a class="footer-link" href="https://invocto.octolabs.app" target="_blank" rel="noopener noreferrer">Invocto</a>
     <a class="footer-link" href="mailto:hello@octolabs.app">hello@octolabs.app</a>
     <a class="footer-link" href="https://github.com/octolabs-app" target="_blank" rel="noopener noreferrer" aria-label="Octolabs GitHub">GitHub</a>
   </div>
