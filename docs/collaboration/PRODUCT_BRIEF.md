@@ -1,46 +1,9 @@
 # Octolabs Product Brief
 
-## Product
+Updated 7 October 2026. This direction supersedes earlier octopus and multi-product briefs.
 
-Octolabs is the parent studio page for a small set of online products:
+Octolabs is a small studio focused on browser games for friends and family. Keep OctoQuiz as the only featured live game. Use a geometric number 8 as the brand mark, warm paper backgrounds, forest green, lime, and restrained game-piece accents.
 
-- ArtisanMU: local service discovery.
-- AniCal: anime schedule and tracker.
-- OctoQuiz: multiplayer party trivia.
+Homepage: clear studio identity, direct quiz link, one featured game, short studio introduction. No unrelated product promotions, fabricated statistics, release dates, or fake playable upcoming games.
 
-## Desired Feeling
-
-The page should feel like a polished internet studio: simple, intriguing, interactive, and tasteful. A visitor should want to stay, move around, and click into one of the products.
-
-## Brand Direction
-
-- Calm dark interface.
-- Warm gold mascot/brand mark.
-- Small mint/coral accents only where they add personality.
-- The octopus mascot should be charming, clean, and logo-like.
-- Interactions should feel light and intentional, not noisy.
-
-## Copy Direction
-
-Use language around:
-
-- Useful internet things.
-- Small product studio.
-- Apps, tools, games, experiments.
-- Curiosity, craft, and play.
-
-Avoid language around:
-
-- Earn money.
-- Revenue experiments.
-- Founder mode.
-- Hustle, funnels, lead fees, paid packs, affiliate mechanics.
-- Repeating Mauritius as the main identity.
-
-## First-Pass Priorities
-
-1. Improve the octopus mascot until it feels like a legitimate brand mark.
-2. Make the homepage more pleasant to linger on.
-3. Keep the layout simple and responsive.
-4. Make product cards clear, attractive, and clickable.
-5. Keep the code maintainable in the current static HTML setup.
+Next milestone: discuss an original letters-and-numbers multiplayer game with the founder before development.
