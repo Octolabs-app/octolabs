@@ -1,6 +1,6 @@
 # Octolabs
 
-Octolabs makes browser games for friends and family. The homepage currently features OctoQuiz only.
+Octolabs makes browser games for friends and family. The homepage features OctoQuiz and OctoBrain.
 
 ## Local preview
 
@@ -22,6 +22,6 @@ The mark is a geometric number 8, replacing the octopus. Forest green #254f38, l
 
 Other products are no longer promoted on this homepage. Their infrastructure and repositories have not been deleted. There were no separate public subpages in this repository to remove.
 
-## Next game
+## OctoBrain
 
-Discuss an original French/English letters-and-numbers family game before implementation. Decide round structure, player count, room flow, dictionary rules, scoring, and host recovery. Give it an original name and visual identity. No unreleased game is advertised as playable.
+OctoBrain is maintained in the private Octolabs-app/octobrain repository. Play at https://octolabs.app/octobrain. The Cloudflare Worker route `octolabs.app/octobrain*` serves the game, its prefixed assets and APIs directly; the root homepage remains on Pages. Its SQLite Durable Objects use the free tier, one room per object, native WebSocket hibernation and timed cleanup. The static octobrain.html is a fallback product page if that route is removed; it is not the live game.
