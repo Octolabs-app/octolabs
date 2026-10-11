@@ -838,6 +838,11 @@ h3 {
     font-size: 44px;
   }
 }
+@media (max-width: 360px) {
+  .nav nav > a:first-child { display: none; }
+  .nav .nav-install { white-space: nowrap; padding: 10px 12px; }
+  .pocket-preview { width: 100%; max-width: 230px; transform: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
