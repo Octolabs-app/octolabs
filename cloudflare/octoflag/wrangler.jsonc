@@ -1,0 +1,12 @@
+{
+ "$schema":"./node_modules/wrangler/config-schema.json",
+ "name":"octoflag-api",
+ "main":"worker.mjs",
+ "compatibility_date":"2026-10-11",
+ "compatibility_flags":["nodejs_compat"],
+ "d1_databases":[{"binding":"DB","database_name":"octoflag-leaderboard","database_id":"efe061c2-72b7-44d6-90e3-9b51c2e95c82","migrations_dir":"migrations"}],
+ "ratelimits":[{"name":"START_LIMIT","namespace_id":"10028","simple":{"limit":10,"period":60}},{"name":"API_LIMIT","namespace_id":"10029","simple":{"limit":120,"period":60}}],
+ "routes":[{"pattern":"octolabs.app/octoflag/api/*","zone_name":"octolabs.app"},{"pattern":"www.octolabs.app/octoflag/api/*","zone_name":"octolabs.app"}],
+ "triggers":{"crons":["17 3 * * *"]},
+ "observability":{"enabled":true,"head_sampling_rate":1,"redact_query_string":true}
+}

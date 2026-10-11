@@ -27,3 +27,27 @@ export function questionSet(countries,{seed,mode='tour',region='all',level='expl
 export function scoreAnswer(correct,streak){const next=correct?streak+1:0;return {streak:next,points:correct?100+Math.min(5,next-1)*10:0};}
 export function recordAnswer(state,question,value){if(state.answers.some(a=>a.id===question.id))return state;const correct=value===question.correct,s=scoreAnswer(correct,state.streak);return {...state,score:state.score+s.points,streak:s.streak,bestStreak:Math.max(state.bestStreak,s.streak),answers:[...state.answers,{id:question.id,value,correct,points:s.points,country:question.country.code}]};}
 export function dailySeed(now=new Date()){return 'octoflag-daily-'+now.toISOString().slice(0,10);}
+
+// The lifeline never removes a correct choice or changes the question itself.
+export function eliminateOptions(question,seed=question.id){
+ const wrong=[...new Set(question.options.filter(option=>option.value!==question.correct).map(option=>option.value))];
+ if(wrong.length<2)throw new RangeError('A fifty-fifty needs at least two wrong choices.');
+ return shuffle(wrong,rng(`${question.id??''}:${seed}`)).slice(0,2);
+}
+
+export function medalFor(correct,total){
+ if(!Number.isFinite(total)||total<=0)return {tier:'explorer'};
+ const ratio=Math.max(0,Math.min(total,Number.isFinite(correct)?correct:0))/total;
+ return {tier:ratio>=.9?'gold':ratio>=.75?'silver':ratio>=.5?'bronze':'explorer'};
+}
+
+const PROGRESSION_THRESHOLDS=[0,12,36,72,144,288];
+// Progress is the fraction completed within this level, independent of quiz size.
+export function progressionFor(totalCorrect){
+ const total=Number.isFinite(totalCorrect)?Math.max(0,Math.floor(totalCorrect)):0;
+ let index=0;
+ while(index+1<PROGRESSION_THRESHOLDS.length&&total>=PROGRESSION_THRESHOLDS[index+1])index++;
+ const nextAt=PROGRESSION_THRESHOLDS[index+1]??null;
+ const progress=nextAt===null?1:(total-PROGRESSION_THRESHOLDS[index])/(nextAt-PROGRESSION_THRESHOLDS[index]);
+ return {level:index+1,progress,nextAt};
+}

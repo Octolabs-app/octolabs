@@ -2,3 +2,8 @@
 .vercel
 node_modules/
 *.log
+cloudflare/**/node_modules/
+cloudflare/**/.wrangler/
+cloudflare/**/generated/
+cloudflare/**/worker-configuration.d.ts
+cloudflare/**/.dev.vars*

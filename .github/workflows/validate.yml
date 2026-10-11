@@ -14,4 +14,6 @@ jobs:
         with:
           node-version: '22'
       - run: node --check octoflag/app.mjs
-      - run: node --test tests/octoflag.test.mjs
+      - run: node --test tests/octoflag*.test.mjs
+      - run: npm ci --prefix cloudflare/octoflag
+      - run: npm test --prefix cloudflare/octoflag

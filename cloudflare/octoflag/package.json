@@ -1,0 +1,1 @@
+{"name":"octoflag-api","private":true,"type":"module","scripts":{"test":"node --test test.mjs","build":"esbuild worker.mjs --bundle --format=esm --outfile=generated/worker.mjs","dev":"wrangler dev --port 5181","deploy":"wrangler deploy"},"devDependencies":{"@cloudflare/workers-types":"latest","esbuild":"^0.28.0","miniflare":"^5.20261006.1-alpha","wrangler":"^4.149.0"}}

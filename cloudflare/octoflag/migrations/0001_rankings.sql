@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS ranked_runs (
+ id TEXT PRIMARY KEY,
+ player TEXT NOT NULL,
+ day TEXT NOT NULL,
+ questions TEXT NOT NULL,
+ answers TEXT NOT NULL DEFAULT '[]',
+ idx INTEGER NOT NULL DEFAULT 0,
+ deadline INTEGER NOT NULL,
+ score INTEGER NOT NULL DEFAULT 0,
+ streak INTEGER NOT NULL DEFAULT 0,
+ best_streak INTEGER NOT NULL DEFAULT 0,
+ correct INTEGER NOT NULL DEFAULT 0,
+ elapsed INTEGER NOT NULL DEFAULT 0,
+ expires INTEGER NOT NULL,
+ submitted INTEGER NOT NULL DEFAULT 0
+);
+CREATE INDEX IF NOT EXISTS runs_expiry ON ranked_runs(expires);
+CREATE TABLE IF NOT EXISTS daily_scores (
+ day TEXT NOT NULL,
+ player TEXT NOT NULL,
+ nickname TEXT NOT NULL,
+ score INTEGER NOT NULL,
+ correct INTEGER NOT NULL,
+ elapsed INTEGER NOT NULL,
+ created INTEGER NOT NULL,
+ PRIMARY KEY(day, player)
+);
+CREATE INDEX IF NOT EXISTS scores_day_rank ON daily_scores(day, score DESC, elapsed ASC);

@@ -24,7 +24,9 @@
         hosting provider.
       </p>
       <h2>OctoFlag</h2>
-      <p>OctoFlag runs its quizzes in your browser. Preferences, personal bests and daily scores stay in local storage on this device. Two-player names stay on the device. Sharing a challenge link includes the quiz seed and settings, without player names or scores. Country data and flags are hosted by Octolabs through Cloudflare.</p>
+      <p>Casual OctoFlag quizzes run in your browser. Preferences, personal bests, lifetime correct answers and two-player names stay on the device. Country data and flags are hosted by Octolabs through Cloudflare.</p>
+      <p>Daily Sprint sends answers to our Cloudflare Worker so it can check timing and calculate scores. A random private browser token identifies your daily best; the database stores its hash. Private run records expire after 30 minutes and are removed by daily cleanup. If you choose “Post my score”, your nickname, rank, score, correct-answer count, elapsed play time and days played become public on the leaderboard. Published scores are retained for up to 90 days before daily cleanup. No account is required; clearing browser storage creates a new identity.</p>
+      <p>Sharing a challenge includes its seed and game settings, without player names, scores or private tokens. Cloudflare may process normal request and operational logs as our hosting provider.</p>
       <h2>The Android app</h2>
       <p>
         The Android app opens our live Letters &amp; Numbers service in a restricted WebView. It
