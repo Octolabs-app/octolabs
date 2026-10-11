@@ -852,3 +852,7 @@ h3 {
     animation: none !important;
   }
 }
+/* OctoFlag shares the studio product-card rhythm. */
+.flags-art{background:#e9e0ff;color:#41346a}.flag-trio{display:flex;align-items:center;justify-content:center;gap:12px}.flag-trio img{width:54px;height:36px;object-fit:contain;filter:drop-shadow(0 3px 2px #41346a22)}
+@media(min-width:1000px){.game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.game-art{min-height:350px}.game-copy{padding:28px}.game-detail{min-height:120px}.art-tag,.art-caption{font-size:9px}}
+@media(min-width:1000px){.game-copy h3{min-height:75px}}

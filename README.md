@@ -1,6 +1,6 @@
 # Octolabs
 
-Octolabs makes browser games for friends and family. The homepage features OctoQuiz and Letters & Numbers.
+Octolabs makes browser games for friends and family. The homepage features OctoQuiz, Letters & Numbers and OctoFlag.
 
 The studio homepage uses a shared paper/forest palette with distinct purple quiz
 and blue/coral letters-and-numbers marks. Product cards, studio principles and
@@ -8,7 +8,7 @@ Android installation details replace the previous simple product listing.
 
 ## Android download
 
-`downloads/letters-and-numbers-1.0.0.apk` is the signed online Android client
+`downloads/letters-and-numbers-1.1.0.apk` is the signed online Android client
 built from `Octolabs-app/octobrain/android`. Its SHA-256 file sits alongside it.
 Android 8.0+, internet required. The signing key stays outside both repositories.
 For updates, use the same key, increment versionCode, publish a versioned file,
@@ -37,3 +37,11 @@ Other products are no longer promoted on this homepage. Their infrastructure and
 ## Letters & Numbers
 
 Letters & Numbers is maintained in the private Octolabs-app/octobrain repository. Play at https://octolabs.app/letters-and-numbers/. The Cloudflare Worker route `octolabs.app/letters-and-numbers*` (with the legacy `/octobrain*` alias retained) serves the game, its prefixed assets and APIs directly; the root homepage remains on Pages. Its SQLite Durable Objects use the free tier, one room per object, native WebSocket hibernation and timed cleanup. The static octobrain.html is a fallback product page if that route is removed; it is not the live game.
+
+## OctoFlag
+
+`octoflag/` is the static bilingual geography game at https://octolabs.app/octoflag/. It shares the framed game structure, responsive spacing and persistent light/dark preference with Letters & Numbers. No build step, environment variables, database or sign-in. Scores and preferences stay in browser local storage; there is no online leaderboard or live multiplayer. Two-player mode alternates turns on one device. Challenge URLs reproduce a seeded quiz; Daily Passport uses the UTC date.
+
+Five modes: mixed world tour, name the flag, find the flag, capital questions and world regions. Relaxed or 15-second sprint, regional filters, two difficulty pools, missed-country practice and a no-score flag explorer. Flags are local SVGs with their original proportions. Geography sources and ODbL license are documented in `octoflag/DATA_SOURCES.md` and `octoflag/DATA_LICENSE.txt`.
+
+Run `node --test tests/octoflag.test.mjs` before publishing. Checks cover all modes, regions, levels and languages, seeded reproducibility, scoring locks, unique answers and flag availability. Preview with the normal static server. After the Pages deployment, verify a full round, daily/challenge links, touch targets and light/dark screens on mobile/tablet, and confirm the country pack and flag responses. Roll back by reverting the release commit.

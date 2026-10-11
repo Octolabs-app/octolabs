@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-labelledby="octobrain-mark-title">
+  <title id="octobrain-mark-title">OctoBrain — two loops, one spark</title>
+  <g fill="none" stroke="currentColor" stroke-width="25">
+    <rect x="55" y="27" width="90" height="84" rx="35"/>
+    <rect x="42" y="128" width="116" height="85" rx="37"/>
+  </g>
+  <path fill="currentColor" d="M100 100 C103 110 109 116 120 120 C109 124 103 130 100 140 C97 130 91 124 80 120 C91 116 97 110 100 100Z"/>
+</svg>
