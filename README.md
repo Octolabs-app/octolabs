@@ -2,6 +2,18 @@
 
 Octolabs makes browser games for friends and family. The homepage features OctoQuiz and Letters & Numbers.
 
+The studio homepage uses a shared paper/forest palette with distinct purple quiz
+and blue/coral letters-and-numbers marks. Product cards, studio principles and
+Android installation details replace the previous simple product listing.
+
+## Android download
+
+`downloads/letters-and-numbers-1.0.0.apk` is the signed online Android client
+built from `Octolabs-app/octobrain/android`. Its SHA-256 file sits alongside it.
+Android 8.0+, internet required. The signing key stays outside both repositories.
+For updates, use the same key, increment versionCode, publish a versioned file,
+regenerate the checksum, and update the download link and version text together.
+
 ## Local preview
 
 Run `python -m http.server 8080` from the repository root and open http://localhost:8080.
