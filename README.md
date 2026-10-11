@@ -1,6 +1,6 @@
 # Octolabs
 
-Octolabs makes browser games for friends and family. The homepage features OctoQuiz and OctoBrain.
+Octolabs makes browser games for friends and family. The homepage features OctoQuiz and Letters & Numbers.
 
 ## Local preview
 
@@ -22,6 +22,6 @@ The mark is a geometric number 8, replacing the octopus. Forest green #254f38, l
 
 Other products are no longer promoted on this homepage. Their infrastructure and repositories have not been deleted. There were no separate public subpages in this repository to remove.
 
-## OctoBrain
+## Letters & Numbers
 
-OctoBrain is maintained in the private Octolabs-app/octobrain repository. Play at https://octolabs.app/octobrain. The Cloudflare Worker route `octolabs.app/octobrain*` serves the game, its prefixed assets and APIs directly; the root homepage remains on Pages. Its SQLite Durable Objects use the free tier, one room per object, native WebSocket hibernation and timed cleanup. The static octobrain.html is a fallback product page if that route is removed; it is not the live game.
+Letters & Numbers is maintained in the private Octolabs-app/octobrain repository. Play at https://octolabs.app/letters-and-numbers/. The Cloudflare Worker route `octolabs.app/letters-and-numbers*` (with the legacy `/octobrain*` alias retained) serves the game, its prefixed assets and APIs directly; the root homepage remains on Pages. Its SQLite Durable Objects use the free tier, one room per object, native WebSocket hibernation and timed cleanup. The static octobrain.html is a fallback product page if that route is removed; it is not the live game.
