@@ -1,0 +1,31 @@
+name: OctoHome Android
+on:
+  push:
+    branches: [main]
+    paths: ['octohome/**', '.github/workflows/octohome-android.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test octohome/tests/model.test.cjs
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - run: python3 octohome/android/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: octohome-android-0.1.0
+          path: octohome/android/build/octohome-0.1.0.apk
+          if-no-files-found: error
+          retention-days: 30

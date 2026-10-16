@@ -1,0 +1,10 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const M=require('../model.js');
+test('completed weekly chore keeps history and schedules future occurrence',()=>{const s=M.seed(),t=s.tasks[0];t.date='2026-10-11';M.completeTask(s,t.id,new Date('2026-10-18T08:00:00'));assert.equal(t.done,true);const next=s.tasks.find(x=>x.parent===t.id);assert.equal(next.date,'2026-10-25');assert.equal(next.done,false)});
+test('undo and recomplete does not duplicate future occurrence',()=>{const s=M.seed(),t=s.tasks[0],now=new Date();M.completeTask(s,t.id,now);M.completeTask(s,t.id,now);M.completeTask(s,t.id,now);assert.equal(s.tasks.filter(x=>x.parent===t.id).length,1)});
+test('daily task advances across month boundary',()=>{const s=M.seed(),t=s.tasks[2];t.date='2026-10-31';M.completeTask(s,t.id,new Date('2026-10-31T08:00:00'));assert.equal(s.tasks.find(x=>x.parent===t.id).date,'2026-11-01')});
+test('ingredients merge with shopping list without duplicate open items',()=>{const s=M.seed();assert.equal(M.addIngredients(s,{ingredients:'rice, Tomatoes, tomatoes'}),1);assert.equal(s.groceries.filter(x=>x.name.toLowerCase()==='tomatoes').length,1)});
+test('bought ingredient can be added for next shopping trip',()=>{const s=M.seed();s.groceries.find(x=>x.name==='Rice').bought=true;assert.equal(M.addIngredients(s,{ingredients:'Rice'}),1)});
+test('currency formatting supports nine currencies without altering prices',()=>{const s=M.seed(),before=M.total(s);for(const c of ['MUR','EUR','USD','GBP','ZAR','INR','AUD','CAD','AED'])assert.ok(M.money(before,c).length);assert.equal(M.total(s),550)});
+test('one-off chores do not generate a recurrence',()=>{const s=M.seed(),t=s.tasks[3];M.completeTask(s,t.id);assert.equal(s.tasks.length,4);assert.equal(t.completedBy,s.member)});
