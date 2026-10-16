@@ -1,0 +1,38 @@
+name: OctoHome hosted checks
+on:
+  push:
+    branches: [main]
+    paths: ['octohome/**', 'functions/octohome/**', '.github/workflows/octohome-hosted.yml']
+permissions:
+  contents: read
+jobs:
+  hosted:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Check hosted interface and supermarket lookup
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+          let report={};
+          for(let attempt=0;attempt<18;attempt++){
+            try{
+              const app=await fetch('https://octolabs.app/octohome/');
+              const html=await app.text();
+              const script=await fetch('https://octolabs.app/octohome/design.js?verify='+Date.now());
+              const js=await script.text();
+              const price=await fetch('https://octolabs.app/octohome/api/prices?q=milk');
+              const data=await price.json();
+              report={attempt,html:app.status,script:script.status,price:price.status,linked:html.includes('design.js'),hasPicker:js.includes('Find a product price'),productCount:data.products?.length,error:data.error,sample:data.products?.[0]};
+              console.log(JSON.stringify(report));
+              if(app.ok&&script.ok&&html.includes('design.js')&&js.includes('Find a product price')&&price.ok&&data.products?.length){
+                if(data.products.some(p=>p.currency!=='MUR'||!p.url.startsWith('https://winners.mu/')||!(p.price>0)||!p.checkedAt))throw Error('Invalid product metadata');
+                console.log('Hosted app and real listed supermarket prices verified.');
+                process.exit(0);
+              }
+            }catch(error){console.log('Not ready:',error.message);}
+            await pause(10000);
+          }
+          console.error('Hosted check failed:',JSON.stringify(report));process.exit(1);
+          JS

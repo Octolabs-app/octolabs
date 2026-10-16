@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class MainActivity extends Activity {
     private WebView web;
     private static final String HOST = "appassets.androidplatform.net";
-    private static final String[] ASSETS = {"index.html", "style.css", "model.js", "app.js"};
+    private static final String[] ASSETS = {"index.html", "style.css", "model.js", "app.js", "design.js", "design.css"};
     @Override public void onCreate(Bundle saved) {
         super.onCreate(saved);
         getWindow().setStatusBarColor(Color.rgb(245,245,247));

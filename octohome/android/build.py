@@ -19,7 +19,7 @@ def main():
         raise SystemExit('Install Android platform 35 and build-tools 35.0.0 first.')
     for directory in ['classes','dex','assets']:
         (BUILD / directory).mkdir(parents=True, exist_ok=True)
-    for asset in ['index.html','style.css','model.js','app.js']:
+    for asset in ['index.html','style.css','model.js','app.js','design.js','design.css']:
         shutil.copyfile(ROOT.parent / asset, BUILD / 'assets' / asset)
     sources = sorted((ROOT / 'src').rglob('*.java'))
     run('javac', '-source', '8', '-target', '8', '-classpath', PLATFORM, '-d', BUILD/'classes', *sources)
@@ -32,7 +32,7 @@ def main():
     key = BUILD/'development.keystore'
     if not key.exists():
         run('keytool','-genkeypair','-keystore',key,'-storepass','android','-keypass','android','-alias','androiddebugkey','-keyalg','RSA','-keysize','2048','-validity','10000','-dname','CN=OctoHome Development,O=Octolabs,C=MU')
-    out = BUILD/'octohome-0.1.0.apk'
+    out = BUILD/'octohome-0.2.0.apk'
     run(tool('apksigner',True),'sign','--ks',key,'--ks-pass','pass:android','--key-pass','pass:android','--out',out,BUILD/'aligned.apk')
     run(tool('apksigner',True),'verify','--verbose',out)
     run(tool('zipalign'),'-c','4',out)
