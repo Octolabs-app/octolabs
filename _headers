@@ -7,3 +7,6 @@
 /downloads/*.sha256
   Content-Type: text/plain; charset=utf-8
   X-Content-Type-Options: nosniff
+
+/octohome/*
+  Cache-Control: no-cache, must-revalidate
