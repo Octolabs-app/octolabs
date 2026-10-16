@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: octohome-android
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
