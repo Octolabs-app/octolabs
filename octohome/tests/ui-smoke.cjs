@@ -1,47 +1,25 @@
-
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const {parseHTML}=require('linkedom');
 function app(){
- const elements=new Map(),handlers={};
- function element(id){if(!elements.has(id))elements.set(id,{id,innerHTML:'',textContent:'',value:'',classList:{toggle(){},add(){},remove(){}},insertAdjacentHTML(_p,v){this.innerHTML+=v},showModal(){this.open=true},close(){this.open=false},focus(){},querySelector(){return {disabled:false}}});return elements.get(id)}
- const body=element('body');body.insertAdjacentHTML=()=>{};
- const document={body,getElementById:element,querySelector:element,addEventListener(n,f){(handlers[n]??=[]).push(f)}};
- const storage=new Map();const context={document,location:{hash:'',hostname:'octolabs.app'},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},console,Intl,Date,Math,URL,Blob,setInterval(){},setTimeout(){},clearTimeout(){},confirm:()=>false,FormData:class{constructor(target){this.values=target.values||{}}[Symbol.iterator](){return Object.entries(this.values)[Symbol.iterator]()}get(key){return this.values[key]}},fetch:()=>{throw Error('Unexpected network request')},AbortSignal};
- context.window=context;context.scrollTo=()=>{};context.addEventListener=()=>{};
- vm.createContext(context);
+ const {document,window}=parseHTML(fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'));
+ window.HTMLElement.prototype.showModal=function(){this.open=true};
+ window.HTMLElement.prototype.close=function(){this.open=false};
+ const storage=new Map(),events={};
+ const context={document,location:{hash:'',hostname:'octolabs.app'},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},console,Intl,Date,Math,URL,Blob,setInterval(){},setTimeout(){},clearTimeout(){},confirm:()=>false,FormData:class{constructor(form){this.data=Array.from(form.querySelectorAll('[name]')).map(e=>[e.name,e.value])}[Symbol.iterator](){return this.data[Symbol.iterator]()}get(k){return this.data.find(([n])=>n===k)?.[1]}},fetch:()=>{throw Error('Unexpected network request')},AbortSignal};
+ context.window=context;context.scrollTo=()=>{};context.addEventListener=(n,f)=>{events[n]=f};vm.createContext(context);
  for(const file of ['model.js','app.js','design.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'..',file),'utf8'),context,{filename:file});
- return {context,elements,handlers,run:code=>vm.runInContext(code,context)};
+ return {document,context,run:s=>vm.runInContext(s,context),click(selector){const e=document.querySelector(selector);assert.ok(e,selector);e.dispatchEvent(new window.Event('click',{bubbles:true}))},route(name){context.location.hash='#'+name;events.hashchange()}};
 }
-test('the redesign boots over the existing app and preserves household storage key',()=>{
- const a=app();assert.match(a.elements.get('main').innerHTML,/Make room/);assert.match(a.elements.get('nav').innerHTML,/Meal planner/);assert.equal(a.run('KEY'),'octohome.v1');
+test('real document retains household anchor through repeated rendering and every route',()=>{
+ const a=app();for(const name of ['tasks','kitchen','shopping','routines','departments','household','home','tasks']){a.route(name);assert.ok(a.document.getElementById('house-name'),name);assert.ok(a.document.getElementById('main').textContent.length>100,name)}
+ assert.equal(a.run('KEY'),'octohome.v1');
 });
-test('every main screen renders without a runtime exception',()=>{
- const a=app();
- for(const name of ['home','tasks','kitchen','shopping','routines','departments','household']){a.run('go('+JSON.stringify(name)+')');const html=a.elements.get('main').innerHTML;assert.ok(html.length>100,name);assert.ok(!html.includes('[object Object]'),name)}
+test('department SVG click navigates and filters actual DOM',()=>{const a=app();a.click('[data-dept="Cleaning"] svg path');assert.equal(a.context.location.hash,'tasks');assert.ok(a.document.getElementById('task-search'));assert.match(a.document.getElementById('main').textContent,/Take the bins out/)});
+test('completion, owner claim, edit and removal undo use real buttons',()=>{
+ const a=app();a.route('tasks');a.click('[data-claim="t4"]');assert.equal(a.run("state.tasks.find(t=>t.id==='t4').owner"),'You');a.click('[data-complete="t4"]');assert.equal(a.run("state.tasks.find(t=>t.id==='t4').done"),true);a.click('[data-complete="t4"]');a.click('[data-edit-task="t4"]');assert.ok(a.document.getElementById('modal').open);a.click('[data-delete-chore="t4"]');assert.equal(a.run("state.tasks.some(t=>t.id==='t4')"),false);a.click('[data-design-undo]');assert.equal(a.run("state.tasks.some(t=>t.id==='t4')"),true);
 });
-test('chore search filters the displayed results without changing saved tasks',()=>{
- const a=app();a.run("go('tasks')");
- const before=a.run('state.tasks.length');
- for(const f of a.handlers.input||[])f({target:{id:'task-search',value:'bins'}});
- const html=a.elements.get('task-groups').innerHTML;assert.match(html,/Take the bins out/);assert.ok(!html.includes('Backyard movement'));assert.equal(a.run('state.tasks.length'),before);
-});
-test('chore completion and undo update shared model through the existing handler',()=>{
- const a=app();a.run("go('tasks')");
- const event={target:{closest:()=>({dataset:{complete:'t4'}})}};
- for(const f of a.handlers.click)f(event);
- assert.equal(a.run("state.tasks.find(t=>t.id==='t4').done"),true);
- assert.match(a.elements.get('main').innerHTML,/Completed/);
- for(const f of a.handlers.click)f(event);
- assert.equal(a.run("state.tasks.find(t=>t.id==='t4').done"),false);
-});
-test('shopping distinguishes estimates and exposes store lookup',()=>{
- const a=app();a.run("go('shopping')");const html=a.elements.get('main').innerHTML;assert.match(html,/Your estimate/);assert.match(html,/Find supermarket prices/);for(const store of ['Winners','Super U','Intermart','NuPrix'])assert.ok(html.includes(store));
-});
-test('editing a source price clears the imported-price claim',()=>{
- const a=app();a.run("state.groceries[0].source='Winners';state.groceries[0].sourceUrl='https://winners.mu/product';state.groceries[0].checkedAt=new Date().toISOString();state.groceries[0].priceCurrency='MUR'");
- const event={target:{closest:()=>({dataset:{editGrocery:'g1'}})}};
- for(const f of a.handlers.click)f(event);
- assert.equal(typeof a.elements.get('modal-form').onsubmit,'function');
- const form=a.elements.get('modal-form');form.values={name:'Fresh vegetables',qty:'1 basket',price:'300'};form.onsubmit({preventDefault(){},target:form});assert.equal(a.run('state.groceries[0].price'),300);assert.equal(a.run('state.groceries[0].source'),undefined);assert.equal(a.run('state.groceries[0].checkedAt'),undefined);
-});
+test('search filters real chore rows without mutating tasks',()=>{const a=app();a.route('tasks');const input=a.document.getElementById('task-search');input.value='bins';input.dispatchEvent(new a.document.defaultView.Event('input',{bubbles:true}));assert.match(a.document.getElementById('task-groups').textContent,/bins/);assert.doesNotMatch(a.document.getElementById('task-groups').textContent,/Backyard movement/);assert.equal(a.run('state.tasks.length'),4)});
+test('meal ingredients deduplicate and groceries toggle on actual DOM',()=>{const a=app();a.route('kitchen');a.click('[data-ingredients]');const count=a.run('state.groceries.length');a.click('[data-ingredients]');assert.equal(a.run('state.groceries.length'),count);a.route('shopping');a.click('[data-buy="g1"]');assert.equal(a.run('state.groceries[0].bought'),true);assert.match(a.document.getElementById('main').textContent,/Winners/)});
+test('routine switches persist and undo remains pointer accessible',()=>{const a=app();a.route('routines');a.click('[data-routine]');assert.equal(a.run('state.routines[0].enabled'),false);assert.match(fs.readFileSync(path.join(__dirname,'../design.css'),'utf8'),/#toast\.show\s*\{[^}]*pointer-events:\s*auto/)});

@@ -18,7 +18,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: npm install --prefix "$RUNNER_TEMP/octohome-dom" --ignore-scripts --no-audit --no-fund linkedom@0.18.13
       - run: node --test octohome/tests/model.test.cjs octohome/tests/ui-smoke.cjs
+        env:
+          NODE_PATH: ${{ runner.temp }}/octohome-dom/node_modules
       - run: node --check octohome/design.js
       - run: node --check functions/octohome/api/prices.js
       - uses: actions/setup-java@v5
@@ -33,7 +36,7 @@ jobs:
       - run: python3 octohome/android/build.py
       - uses: actions/upload-artifact@v4
         with:
-          name: octohome-android-0.2.0
-          path: octohome/android/build/octohome-0.2.0.apk
+          name: octohome-android-0.2.1
+          path: octohome/android/build/octohome-0.2.1.apk
           if-no-files-found: error
           retention-days: 30

@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="app.octolabs.octohome" android:versionCode="2" android:versionName="0.2.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="app.octolabs.octohome" android:versionCode="3" android:versionName="0.2.1">
   <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="34" />
   <application android:label="OctoHome" android:theme="@android:style/Theme.Material.Light.NoActionBar" android:icon="@drawable/icon" android:allowBackup="false" android:usesCleartextTraffic="false" android:supportsRtl="true">
     <activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize|keyboardHidden" android:windowSoftInputMode="adjustResize">

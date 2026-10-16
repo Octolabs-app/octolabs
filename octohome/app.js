@@ -4,7 +4,7 @@ let page='home',filter='All',toastTimer;const main=document.getElementById('main
 const nav=[['home','⌂','Overview'],['tasks','✓','Chores'],['kitchen','♨','Meals'],['shopping','▧','Groceries'],['routines','◷','Routines'],['departments','▦','Departments'],['household','♡','Household']];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch{toast('Storage is full or unavailable. Changes may not persist.')}}
-function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3500)}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),6000)}
 function money(v){return M.money(v,state.currency)}
 function pending(){return state.tasks.filter(t=>!t.done)}
 function due(){return state.tasks.filter(t=>t.date<=M.localDate()).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))}
@@ -46,3 +46,4 @@ document.addEventListener('change',async e=>{if(e.target.id!=='import-file'||!e.
 window.addEventListener('hashchange',()=>{page=location.hash.slice(1)||'home';if(!nav.some(n=>n[0]===page))page='home';render()});
 function checkReminders(){const now=new Date(),time=now.toTimeString().slice(0,5),date=M.localDate(now);for(const r of state.routines){const k=r.id+date;if(r.enabled&&(r.day===null||r.day===now.getDay())&&r.time===time&&!state.notified[k]){state.notified[k]=true;toast('Time for '+r.name.toLowerCase());save()}}}
 setInterval(checkReminders,15000);page=location.hash.slice(1)||'home';if(!nav.some(n=>n[0]===page))page='home';render();checkReminders();
+

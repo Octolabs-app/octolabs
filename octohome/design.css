@@ -9,3 +9,8 @@
 
 /* Readable type and generous touch targets. */
 .task-title,.grocery-content h3{font-size:14px}.task-meta{font-size:10px}.task-meta .tag{font-size:10px}.claim,.claim.open{min-height:44px}.task-meta{color:#78836c}.caption,.page-footnote{color:#79856c}.grocery-content p{color:#7e896f}.estimate-badge{color:#7b876c}.source-badge{color:#59744a}.department p,.department-count{opacity:.85}.price-result h3{font-size:13px}.price-result p{color:#7b876c}.price-result a{color:#647f4f}.price-source-note{color:#78866a}.store-card>span:not(.store-letter){color:#7c886d}.meal-preview h3{font-size:13px}.stat-card p{color:#7c876c}.dark .caption,.dark .page-footnote,.dark .task-meta{color:#adb99b}@media(max-width:650px){.task-title,.grocery-content h3{font-size:13px}.task-meta{font-size:9px}.task-meta .tag{font-size:9px}.claim,.claim.open{min-width:32px;min-height:44px}.price-result h3{font-size:12px}.department p,.department-count{font-size:9px}.stat-card p{font-size:9px}.task{gap:5px}.edit-control{min-width:32px}}
+
+
+/* Actionable feedback must accept pointer and keyboard interaction. */
+#toast.show{pointer-events:auto}
+#toast:not(.show) button{visibility:hidden}

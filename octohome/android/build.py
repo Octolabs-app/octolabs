@@ -32,7 +32,7 @@ def main():
     key = BUILD/'development.keystore'
     if not key.exists():
         run('keytool','-genkeypair','-keystore',key,'-storepass','android','-keypass','android','-alias','androiddebugkey','-keyalg','RSA','-keysize','2048','-validity','10000','-dname','CN=OctoHome Development,O=Octolabs,C=MU')
-    out = BUILD/'octohome-0.2.0.apk'
+    out = BUILD/'octohome-0.2.1.apk'
     run(tool('apksigner',True),'sign','--ks',key,'--ks-pass','pass:android','--key-pass','pass:android','--out',out,BUILD/'aligned.apk')
     run(tool('apksigner',True),'verify','--verbose',out)
     run(tool('zipalign'),'-c','4',out)
