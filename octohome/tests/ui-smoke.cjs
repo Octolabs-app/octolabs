@@ -7,7 +7,7 @@ function app(){
  function element(id){if(!elements.has(id))elements.set(id,{id,innerHTML:'',textContent:'',value:'',classList:{toggle(){},add(){},remove(){}},insertAdjacentHTML(_p,v){this.innerHTML+=v},showModal(){this.open=true},close(){this.open=false},focus(){},querySelector(){return {disabled:false}}});return elements.get(id)}
  const body=element('body');body.insertAdjacentHTML=()=>{};
  const document={body,getElementById:element,querySelector:element,addEventListener(n,f){(handlers[n]??=[]).push(f)}};
- const storage=new Map();const context={document,location:{hash:'',hostname:'octolabs.app'},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},console,Intl,Date,Math,URL,Blob,setInterval(){},setTimeout(){},clearTimeout(){},confirm:()=>false,FormData:class{},fetch:()=>{throw Error('Unexpected network request')},AbortSignal};
+ const storage=new Map();const context={document,location:{hash:'',hostname:'octolabs.app'},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},console,Intl,Date,Math,URL,Blob,setInterval(){},setTimeout(){},clearTimeout(){},confirm:()=>false,FormData:class{constructor(target){this.values=target.values||{}}[Symbol.iterator](){return Object.entries(this.values)[Symbol.iterator]()}get(key){return this.values[key]}},fetch:()=>{throw Error('Unexpected network request')},AbortSignal};
  context.window=context;context.scrollTo=()=>{};context.addEventListener=()=>{};
  vm.createContext(context);
  for(const file of ['model.js','app.js','design.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'..',file),'utf8'),context,{filename:file});
@@ -43,5 +43,5 @@ test('editing a source price clears the imported-price claim',()=>{
  const event={target:{closest:()=>({dataset:{editGrocery:'g1'}})}};
  for(const f of a.handlers.click)f(event);
  assert.equal(typeof a.elements.get('modal-form').onsubmit,'function');
- assert.ok(a.run('state.groceries[0].source')==='Winners');
+ const form=a.elements.get('modal-form');form.values={name:'Fresh vegetables',qty:'1 basket',price:'300'};form.onsubmit({preventDefault(){},target:form});assert.equal(a.run('state.groceries[0].price'),300);assert.equal(a.run('state.groceries[0].source'),undefined);assert.equal(a.run('state.groceries[0].checkedAt'),undefined);
 });
