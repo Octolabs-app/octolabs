@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test octohome/tests/model.test.cjs
+      - run: node --test octohome/tests/model.test.cjs octohome/tests/ui-smoke.cjs
       - run: node --check octohome/design.js
       - run: node --check functions/octohome/api/prices.js
       - uses: actions/setup-java@v5
