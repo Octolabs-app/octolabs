@@ -1,6 +1,6 @@
 # Octolabs
 
-Octolabs makes browser games for friends and family. The homepage features OctoQuiz, Letters & Numbers and OctoFlag.
+Octolabs makes browser games for friends and family. The homepage features OctoQuiz, Letters & Numbers OctoFlag and OctoPairs.
 
 The studio homepage uses a shared paper/forest palette with distinct purple quiz
 and blue/coral letters-and-numbers marks. Product cards, studio principles and
@@ -49,3 +49,9 @@ Daily Sprint adds a server-scored leaderboard through `cloudflare/octoflag/`: a 
 This is casual competition: public geography assets, repeatable quizzes and anonymous identities allow lookup or automated play. The server rejects arbitrary score injection, but the board is not cheat-proof. The API needs the D1 and rate-limit bindings in its Wrangler config, not an application secret key. Cloudflare authentication is needed to deploy. See [the backend runbook](cloudflare/octoflag/README.md) for migration, local preview, deployment and verification steps.
 
 Run `node --test tests/octoflag*.test.mjs`, `npm ci --prefix cloudflare/octoflag`, then `npm test --prefix cloudflare/octoflag` before publishing. Checks cover quiz generation, gameplay helpers and real workerd/D1 API behavior. Casual play works with the normal static server; use the backend runbook's proxy for ranked play. After deploying the Worker and Pages, verify a full round, daily/challenge links, a ranked submission and both leaderboard periods, touch targets and light/dark screens on mobile/tablet, and confirm the country pack and flag responses. Roll back code by reverting the release commit; preserve D1 score data.
+
+## OctoPairs
+
+`octopairs/` is a dependency-free memory game at `/octopairs/`. Solo and two-player pass-and-play, 6/8/12 pairs, English/French, seeded share links and an eight-pair daily solo board (midnight UTC). Matches retain the turn; misses pass to the other player after explicit acknowledgement. No account, server or paid service. Local storage stores language and solo records only, with a safe fallback when storage is blocked. Games do not resume after a reload. Daily boards can be replayed and records are casual local results, not verified competition.
+
+Run `node --check octopairs/app.mjs` and `node --test tests/octopairs.test.mjs`. The generated-board checks cover 3,000 seeds across all sizes. Before release, check touch, keyboard, both languages, win/tie, next-turn controls and share links. Pages publishes it with the existing repository deployment.
