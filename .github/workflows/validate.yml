@@ -13,6 +13,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: node --check octocross/app.mjs
+      - run: node --test tests/octocross.test.mjs
+      - run: node scripts/build-crosswords.mjs
+      - run: git diff --exit-code -- octocross/catalog.json octocross/validation.json
       - run: node --check octopairs/app.mjs
       - run: node --test tests/octopairs.test.mjs octohome/tests/model.test.cjs
       - run: node --check octoflag/app.mjs

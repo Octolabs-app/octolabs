@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "total": 200008,
+  "themes": 8,
+  "originalClues": 256,
+  "uniqueGridHashes": 200008,
+  "rejected": 335,
+  "duplicates": 0,
+  "checks": [
+    "Answers match cells",
+    "Connected grid",
+    "No parallel overlaps",
+    "Every multi-letter run has a clue",
+    "No duplicate answer in a puzzle",
+    "At least nine answers",
+    "SHA-256 grid deduplication across entire catalog"
+  ]
+}
