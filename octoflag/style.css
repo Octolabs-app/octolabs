@@ -224,3 +224,10 @@ header .quiet[aria-pressed=true]{background:var(--panel);color:var(--accent)}
  .choice:hover,.option:hover:not(:disabled){transform:none}
  .celebration{animation:none!important}
 }
+
+/* Named navigation stays reachable when the game header wraps on phones. */
+header{flex-wrap:wrap}
+.game-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;color:var(--text);background:var(--surface);font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}
+.game-link:hover{background:var(--panel)}
+.summary-actions .game-link{min-width:170px}
+@media(max-width:760px){header .brand{margin-right:auto}header .game-link{padding:8px 10px;font-size:12px}.summary-actions .game-link{min-width:0}}
