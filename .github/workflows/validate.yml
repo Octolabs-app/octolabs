@@ -16,7 +16,7 @@ jobs:
       - run: node --check octocross/app.mjs
       - run: node --test tests/octocross.test.mjs
       - run: npm install --prefix "$RUNNER_TEMP/octolabs-dom" --ignore-scripts --no-audit --no-fund linkedom@0.18.13
-      - run: node --test tests/octocross-ui.cjs tests/home-discovery.test.mjs
+      - run: node --test tests/octocross-ui.cjs tests/home-discovery.test.mjs tests/game-navigation.cjs
         env:
           NODE_PATH: ${{ runner.temp }}/octolabs-dom/node_modules
       - run: node scripts/build-crosswords.mjs

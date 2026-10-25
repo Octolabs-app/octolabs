@@ -8,7 +8,7 @@ const t=(en,fr)=>lang==='fr'?fr:en;
 const query=new URLSearchParams(location.search);
 const sharedSeed=query.get('board')?.slice(0,100);
 const sharedPairs=Number(query.get('pairs'));
-function translate(){document.documentElement.lang=lang;$('board').setAttribute('aria-label',t('Memory cards','Cartes mémoire'));document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[lang]);$('language').textContent=lang==='en'?'FR':'EN';$('language').setAttribute('aria-label',t('Passer en français','Switch to English'));if(state)render();}
+function translate(){document.documentElement.lang=lang;$('board').setAttribute('aria-label',t('Memory cards','Cartes mémoire'));document.querySelector('header nav').setAttribute('aria-label',t('Game navigation','Navigation des jeux'));document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[lang]);$('language').textContent=lang==='en'?'FR':'EN';$('language').setAttribute('aria-label',t('Passer en français','Switch to English'));if(state)render();}
 $('language').onclick=()=>{lang=lang==='en'?'fr':'en';write('octopairs-language',lang);translate();};
 function start(isDaily=false,replay=false){
  daily=isDaily;
@@ -56,4 +56,4 @@ $('back').onclick=()=>{if(state.done)leave();else{$('confirm').hidden=false;$('s
 $('leave').onclick=leave;$('stay').onclick=()=>{$('confirm').hidden=true;$('back').focus();};
 $('share').onclick=async()=>{const url=new URL(location.href);url.search='';url.searchParams.set('board',seed);url.searchParams.set('pairs',state.cards.length/2);$('share-status').textContent=url.href;try{await navigator.clipboard.writeText(url.href);$('share-status').textContent=t('Board link copied. Same cards, fresh challenge!','Lien copié. Mêmes cartes, nouveau défi !');}catch{$('share-status').textContent=url.href;}};
 translate();
-if(sharedSeed)$('start').textContent=t('Play shared board ↗','Jouer le plateau partagé ↗');
+if(sharedSeed)$('start').textContent=t('Play shared board','Jouer le plateau partagé');
