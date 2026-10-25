@@ -920,3 +920,118 @@ h3 {
   .intro{margin:18px 0}
 }
 @media(prefers-reduced-motion:reduce){.game-card{transition:none}}
+
+/* Keep the game choices close on phone-sized screens. */
+@media (max-width: 700px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    padding-block: 14px;
+  }
+  .nav nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .nav nav > a:nth-child(2) {
+    display: none;
+  }
+  .hero {
+    padding-block: 26px 30px;
+    gap: 24px;
+  }
+  .cross-feature {
+    min-height: 0;
+    padding: 20px;
+  }
+  .cross-feature h2 {
+    max-width: calc(100% - 102px);
+    margin: 22px 0 10px;
+    font-size: 28px;
+    letter-spacing: -1.2px;
+  }
+  .cross-feature p {
+    max-width: calc(100% - 102px);
+    margin-block: 10px;
+  }
+  .mini-cross {
+    grid-template-columns: repeat(6, 12px);
+    gap: 3px;
+    top: 58px;
+    right: 20px;
+  }
+  .mini-cross > * {
+    height: 12px;
+    font-size: 9px;
+  }
+  .games {
+    padding-block: 34px;
+  }
+  .section-heading {
+    margin-bottom: 22px;
+  }
+  .game-filters {
+    margin-top: 22px;
+  }
+  .game-search input {
+    font-size: 16px;
+  }
+  .game-grid {
+    gap: 18px;
+  }
+  .game-art {
+    min-height: 150px;
+    padding-block: 26px;
+  }
+  .game-art > img {
+    width: 90px;
+    height: 90px;
+  }
+  .game-copy {
+    padding: 22px;
+  }
+  .game-copy h3 {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .game-copy > p {
+    font-size: 21px;
+    margin-bottom: 16px;
+  }
+  .game-detail {
+    line-height: 1.65;
+  }
+  .tags {
+    margin-block: 18px;
+  }
+  .android-actions > a:last-child,
+  .closing a,
+  .footer > div > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+@media (max-width: 360px) {
+  .nav nav > a:first-child {
+    display: inline-flex;
+  }
+  .feature-meta {
+    font-size: 8px;
+    letter-spacing: .6px;
+  }
+  .cross-feature h2,
+  .cross-feature p {
+    max-width: none;
+  }
+  .mini-cross {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button:hover,
+  .game-art:hover > img,
+  .game-card:hover {
+    transform: none;
+  }
+}
