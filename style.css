@@ -24,7 +24,9 @@ a {
   color: inherit;
 }
 a:focus-visible,
-summary:focus-visible {
+summary:focus-visible,
+button:focus-visible,
+input:focus-visible {
   outline: 3px solid #7055b5;
   outline-offset: 6px;
 }
@@ -249,12 +251,15 @@ h2 {
   gap: 28px;
 }
 .game-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
   border-radius: 20px;
   overflow: hidden;
   background: #fcfbf5;
 }
 .game-art {
+  flex-shrink: 0;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -329,7 +334,17 @@ h2 {
   font-size: 16px;
 }
 .game-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 32px;
+}
+.play-format {
+  display: block;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: -8px 0 16px;
 }
 .game-meta {
   display: flex;
@@ -366,7 +381,6 @@ h3 {
   line-height: 1.8;
   color: var(--muted);
   max-width: 430px;
-  min-height: 76px;
 }
 .tags {
   padding: 0;
@@ -394,6 +408,9 @@ h3 {
 }
 .text-link:hover {
   text-decoration: underline;
+}
+.game-card .text-link {
+  margin-top: auto;
 }
 .android-section {
   border-radius: 24px;
@@ -663,9 +680,6 @@ h3 {
   .game-copy {
     padding: 28px;
   }
-  .game-detail {
-    min-height: 100px;
-  }
 }
 @media (max-width: 700px) {
   .wrap {
@@ -854,7 +868,55 @@ h3 {
 }
 /* OctoFlag shares the studio product-card rhythm. */
 .flags-art{background:#e9e0ff;color:#41346a}.flag-trio{display:flex;align-items:center;justify-content:center;gap:12px}.flag-trio img{width:54px;height:36px;object-fit:contain;filter:drop-shadow(0 3px 2px #41346a22)}
-@media(min-width:1000px){.game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.game-art{min-height:350px}.game-copy{padding:28px}.game-detail{min-height:120px}.art-tag,.art-caption{font-size:9px}}
-@media(min-width:1000px){.game-copy h3{min-height:75px}}
 /* Arcade discovery and weekly crossword feature. */
-.cross-feature{display:block;position:relative;background:#dce8ce;border:1px solid #cbd6bc;border-radius:22px;padding:27px 30px;color:var(--ink);text-decoration:none;overflow:hidden;min-height:440px;box-shadow:8px 12px 0 #e7eadc}.feature-meta{display:flex;justify-content:space-between;font-size:9px;letter-spacing:1.2px;font-weight:bold}.cross-feature h2{font-size:39px;letter-spacing:-1.8px;position:relative;margin:170px 0 10px}.cross-feature p{font-size:12px;max-width:240px;line-height:1.6}.feature-play{display:inline-flex;min-height:44px;align-items:center;border-bottom:1px solid #718568;font-weight:bold;font-size:13px;margin-top:8px}.mini-cross{position:absolute;display:grid;grid-template-columns:repeat(6,27px);gap:4px;right:30px;top:60px;transform:rotate(8deg)}.mini-cross>*{height:27px;display:grid;place-items:center;background:#f9f8ed;border-radius:3px;font-size:17px}.mini-cross>span{background:#9bb58250}.cross-art{background:#dae6bf}.cross-tiles{display:flex;gap:5px;transform:rotate(-7deg)}.cross-tiles b{display:grid;place-items:center;background:#fffdf5;width:42px;height:48px;border-radius:5px;font-size:25px;box-shadow:0 5px 0 #7d965155}.cross-tiles b:nth-child(3){background:#abc77c}.game-filters{display:flex;justify-content:space-between;gap:20px;align-items:end;margin:28px 0 10px}.game-filters>div{display:flex;flex-wrap:wrap;gap:7px}.game-filters button{font:inherit;font-size:12px;padding:12px 16px;border:1px solid var(--line);border-radius:30px;color:var(--ink);background:transparent;min-height:44px;cursor:pointer}.game-filters button[aria-pressed=true]{background:var(--green);color:white;border-color:var(--green)}.game-search{font-size:10px;display:flex;flex-direction:column;gap:6px;min-width:180px}.game-search input{font:inherit;font-size:13px;border:1px solid var(--line);background:#fcfbf5;padding:12px 14px;border-radius:9px;min-height:44px;max-width:100%}.filter-status{font-size:12px;color:var(--muted);margin-bottom:22px}.game-card[hidden]{display:none}.game-filters button:focus-visible,.game-search input:focus-visible{outline:3px solid #7055b5;outline-offset:3px}.game-card .text-link{min-height:44px}.game-card{transition:box-shadow .2s,transform .2s}.game-card:hover{box-shadow:0 12px 26px #20342a0c;transform:translateY(-3px)}@media(min-width:1000px){.game-art{min-height:260px}.game-copy h3{min-height:0;font-size:29px}.game-copy>p{font-size:21px}.game-copy{padding:24px}.game-detail{min-height:125px}}@media(max-width:700px){.game-filters{display:block}.game-search{margin-top:16px}.cross-feature{min-height:400px;padding:23px}.cross-feature h2{margin-top:155px}.game-art{min-height:250px}.hero{padding-top:34px}.cross-feature{box-shadow:none}}@media(prefers-reduced-motion:reduce){.game-card{transition:none}}
+.cross-feature{display:block;position:relative;background:#dce8ce;border:1px solid #cbd6bc;border-radius:22px;padding:27px 30px;color:var(--ink);text-decoration:none;overflow:hidden;min-height:440px;box-shadow:8px 12px 0 #e7eadc}
+.feature-meta{display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:1.2px;font-weight:bold}
+.cross-feature h2{font-size:39px;letter-spacing:-1.8px;position:relative;margin:170px 0 10px}
+.cross-feature p{font-size:12px;max-width:240px;line-height:1.6}
+.feature-play{display:inline-flex;min-height:44px;align-items:center;border-bottom:1px solid #718568;font-weight:bold;font-size:13px;margin-top:8px}
+.mini-cross{position:absolute;display:grid;grid-template-columns:repeat(6,27px);gap:4px;right:30px;top:60px;transform:rotate(8deg)}
+.mini-cross>*{height:27px;display:grid;place-items:center;background:#f9f8ed;border-radius:3px;font-size:17px}
+.mini-cross>span{background:#9bb58250}
+.cross-art{background:#dae6bf}
+.cross-tiles{display:flex;gap:5px;transform:rotate(-7deg)}
+.cross-tiles b{display:grid;place-items:center;background:#fffdf5;width:42px;height:48px;border-radius:5px;font-size:25px;box-shadow:0 5px 0 #7d965155}
+.cross-tiles b:nth-child(3){background:#abc77c}
+.game-filters{display:flex;justify-content:space-between;gap:20px;align-items:end;margin:28px 0 10px}
+.game-filters>div{display:flex;flex-wrap:wrap;gap:7px}
+.game-filters button{font:inherit;font-size:12px;padding:12px 16px;border:1px solid var(--line);border-radius:30px;color:var(--ink);background:transparent;min-height:44px;cursor:pointer}
+.game-filters button[aria-pressed=true]{background:var(--green);color:white;border-color:var(--green)}
+.game-search{font-size:12px;display:flex;flex-direction:column;gap:6px;min-width:180px}
+.game-search input{font:inherit;font-size:14px;border:1px solid var(--line);background:#fcfbf5;padding:12px 14px;border-radius:9px;min-height:44px;max-width:100%}
+.filter-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;min-height:44px}
+.filter-status{font-size:12px;color:var(--muted);margin:0}
+#game-reset{font:inherit;font-size:12px;font-weight:700;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--green);min-height:44px;cursor:pointer;flex-shrink:0}
+#game-reset[hidden],.game-card[hidden]{display:none}
+.game-filters button:focus-visible,.game-search input:focus-visible{outline-offset:3px}
+.game-card .text-link{min-height:44px}
+.game-card{transition:box-shadow .2s,transform .2s}
+@media(hover:hover){.game-card:hover{box-shadow:0 12px 26px #20342a0c;transform:translateY(-3px)}}
+@media(min-width:1000px){
+  .game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .game-art{min-height:260px}
+  .game-copy h3{font-size:29px}
+  .game-copy>p{font-size:21px}
+  .game-copy{padding:24px}
+  .art-tag,.art-caption{font-size:9px}
+}
+@media(max-width:700px){
+  .game-filters{display:block}
+  .game-search{margin-top:16px}
+  .cross-feature{min-height:300px;padding:20px;box-shadow:none}
+  .cross-feature h2{font-size:32px;margin-top:90px}
+  .mini-cross{grid-template-columns:repeat(6,18px);gap:3px;right:22px;top:44px;transform:rotate(5deg)}
+  .mini-cross>*{height:18px;font-size:12px}
+  .game-art{min-height:190px;padding:32px 16px}
+  .game-art>img{width:120px;height:120px}
+  .game-art .answer-tiles,.game-art .number-equation,.game-art .flag-trio{display:none}
+  .art-tag{top:14px;left:20px}
+  .art-caption{bottom:14px;left:20px}
+  .hero{padding-top:28px;gap:28px}
+  .hero .eyebrow{margin-bottom:16px}
+  .intro{margin:18px 0}
+}
+@media(prefers-reduced-motion:reduce){.game-card{transition:none}}

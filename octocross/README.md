@@ -23,6 +23,7 @@ Progress is saved per puzzle in browser localStorage. Storage errors produce a v
 - `node scripts/build-crosswords.mjs`: rebuild and independently validate all 200,008 grids. `CROSSWORD_COUNT` optionally changes the per-theme count for local experiments; do not publish a partial catalog under the production count.
 - `node --test tests/octocross.test.mjs`: catalog counts, deterministic regeneration, grid invariants, deliberate corruption, weekly timezone/year rollover.
 - `node --check octocross/app.mjs`
+- DOM interaction checks: install the pinned test-only dependency with `npm install --prefix /tmp/octolabs-dom --ignore-scripts --no-audit --no-fund linkedom@0.18.13`, then run `NODE_PATH=/tmp/octolabs-dom/node_modules node --test tests/octocross-ui.cjs tests/home-discovery.test.mjs`. These exercise draft isolation, reversible word clearing, focus restoration and clue navigation against the actual page HTML. CI installs the same version under its temporary directory.
 - CI regenerates the full catalog and rejects unexpected checked-in differences.
 
 Treat engine v1, original clue answers/order, and seed catalog as immutable for saved puzzle identity. If generation or answers change, increment VERSION and update storage keys/catalog together; preserve old versions for shared links before migration.
