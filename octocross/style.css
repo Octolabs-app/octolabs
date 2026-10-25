@@ -5,3 +5,5 @@
 .answer-row input,.library-controls input,.library-controls select{font-size:16px}
 #keyboard button{min-height:44px}
 #board:not(.large){min-width:0}
+.context-status{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:8px;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}.context-status #timer{color:var(--ink);font-weight:700;min-width:3em;text-align:right}
+@media(max-width:850px){#play{overflow:clip}.play-context{position:sticky;top:0;z-index:3;background:#fcfbf6;padding:8px 0 12px;margin-top:-8px;box-shadow:0 5px 0 #fcfbf6}.play-context .active-clue{min-height:56px;margin-bottom:10px}.play-context .clue-navigation{margin:0}.context-status{margin-bottom:6px}.answer-row,#keyboard{scroll-margin-top:155px}}
