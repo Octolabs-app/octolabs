@@ -2,3 +2,6 @@
 
 #board.large{min-width:calc(var(--cols) * 36px);max-width:none}.board-scroll{overscroll-behavior:contain}
 .clue-navigation{display:flex;justify-content:space-between;gap:10px;margin:-8px 0 14px}.clue-navigation button{min-height:44px;flex:1;max-width:180px;font-size:12px;background:#f0f3e5}#undo-clear{border-color:var(--green);font-weight:700}#undo-clear[hidden]{display:none}@media(max-width:520px){.active-clue{margin-bottom:16px}.clue-navigation{margin-top:-4px}.clue-navigation button{max-width:none}}
+.answer-row input,.library-controls input,.library-controls select{font-size:16px}
+#keyboard button{min-height:44px}
+#board:not(.large){min-width:0}
