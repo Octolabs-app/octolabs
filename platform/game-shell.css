@@ -1,0 +1,6 @@
+/* Shared platform identity. Individual game mechanics and layouts stay local. */
+body > header .brand img, .stage > header .brand img { width:44px;height:44px;object-fit:contain; }
+a[href="/games/"]:focus-visible {outline:3px solid #b4d63a;outline-offset:5px;}
+.octo-game-mascot {width:132px;height:132px;object-fit:contain;float:right;margin:0 0 12px 18px;}
+@media(max-width:600px){.octo-game-mascot{width:94px;height:94px;}}
+@media(prefers-reduced-motion:reduce){.octo-game-mascot{animation:none!important;}}

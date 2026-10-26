@@ -1,10 +1,8 @@
 # Octolabs
 
-Octolabs makes browser games for friends and family. The homepage features OctoQuiz, Letters & Numbers OctoFlag and OctoPairs.
+Octolabs Games is a daily puzzle destination. The homepage introduces Octo; /games/ hosts Daily Numbers, Daily Cross, Daily Passport, personal device progress, and the practice/multiplayer library. OctoPairs is retired; its legacy routes redirect to /games/.
 
-The studio homepage uses a shared paper/forest palette with distinct purple quiz
-and blue/coral letters-and-numbers marks. Product cards, studio principles and
-Android installation details replace the previous simple product listing.
+The brand uses warm paper, forest green and lime. Octo wears a Rodrigues-inspired woven vacoa hat with a green band and a signature spiral arm. Game variants preserve the character and hat while changing body color and props. Optimized generated WebP artwork is in assets/.
 
 ## Android download
 
@@ -20,7 +18,7 @@ Run `python -m http.server 8080` from the repository root and open http://localh
 
 ## Architecture and deployment
 
-Dependency-free static HTML, CSS, and SVG. No build step, secrets, environment variables, database, or authentication are required for this homepage.
+Static HTML, CSS, ES modules and optimized raster artwork. No build step, secrets, environment variables, database, or authentication are required for this homepage.
 
 Cloudflare Pages project `octolabs` connects to `Octolabs-app/octolabs`. Production branch: `main`. Root and output directory: repository root. Branch pushes produce previews; merging to main publishes to octolabs.app and www.octolabs.app.
 
@@ -30,7 +28,7 @@ OctoQuiz is maintained separately in `Octolabs-app/octoquiz`. Its live domain is
 
 ## Brand
 
-The mark is a geometric number 8, replacing the octopus. Forest green #254f38, lime #d9ee88, warm paper #f5f1e8, lilac and peach accents. Use bold, clear typography and game-piece shapes. Keep the site lightweight, readable, and welcoming.
+Octo replaces the numeral-eight studio mark on the main platform. Master: forest green with A/8 tiles; crossword: muted plum with pencil/grid; geography: ocean blue with flag/globe; quiz: ochre with answer cards. Keep game boards free of decorative clutter.
 
 Other products are no longer promoted on this homepage. Their infrastructure and repositories have not been deleted. There were no separate public subpages in this repository to remove.
 
@@ -50,8 +48,13 @@ This is casual competition: public geography assets, repeatable quizzes and anon
 
 Run `node --test tests/octoflag*.test.mjs`, `npm ci --prefix cloudflare/octoflag`, then `npm test --prefix cloudflare/octoflag` before publishing. Checks cover quiz generation, gameplay helpers and real workerd/D1 API behavior. Casual play works with the normal static server; use the backend runbook's proxy for ranked play. After deploying the Worker and Pages, verify a full round, daily/challenge links, a ranked submission and both leaderboard periods, touch targets and light/dark screens on mobile/tablet, and confirm the country pack and flag responses. Roll back code by reverting the release commit; preserve D1 score data.
 
-## OctoPairs
 
-`octopairs/` is a dependency-free memory game at `/octopairs/`. Solo and two-player pass-and-play, 6/8/12 pairs, English/French, seeded share links and an eight-pair daily solo board (midnight UTC). Matches retain the turn; misses pass to the other player after explicit acknowledgement. No account, server or paid service. Local storage stores language and solo records only, with a safe fallback when storage is blocked. Games do not resume after a reload. Daily boards can be replayed and records are casual local results, not verified competition.
+## Daily platform — 26 October 2026
 
-Run `node --check octopairs/app.mjs` and `node --test tests/octopairs.test.mjs`. The generated-board checks cover 3,000 seeds across all sizes. Before release, check touch, keyboard, both languages, win/tie, next-turn controls and share links. Pages publishes it with the existing repository deployment.
+Daily Numbers is a static, deterministic edition of Letters & Numbers: six tiles, target100–999, exact positive-integer arithmetic, bounded construction and independently replayed solutions. Its date and daily crossword editions roll over at00:00 UTC. Existing weekly crosswords preserve Monday00:00 Mauritius rollover and content-based saves. Crosswords remain200,008 generated layouts from256 original clues, not200,008 independently authored puzzles.
+
+platform/progress.mjs stores bounded local starts and verified game completions. Replays cannot inflate a daily streak; weekly records do not create daily activity. Games emit progress after their genuine completion path. This is personal browser storage, with no account, cross-device sync, advertising SDK or additional third-party product analytics. Existing hosting analytics are separate from these local records.
+
+Streamer view in Daily Numbers enlarges the board and hides assistance. Shared versioned seeds reproduce the puzzle; independent viewers are not live-synchronized. Existing OctoQuiz remains the hosted multiplayer option.
+
+Validation: node --test tests/platform-progress.test.mjs tests/daily-numbers.test.mjs tests/octocross.test.mjs tests/octoflag*.test.mjs. Existing DOM checks use pinned linkedom in CI. See docs/DAILY_PLATFORM_PLAN.md for growth, measurement and later monetization decisions.

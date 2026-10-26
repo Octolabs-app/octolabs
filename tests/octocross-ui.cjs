@@ -14,9 +14,10 @@ async function setup(){
  // Linkedom has no select value setter; model the native selected value for this test.
  for(const select of document.querySelectorAll('select'))Object.defineProperty(select,'value',{value:'',writable:true});
  const engine=await import('../octocross/engine.mjs'),{themes}=await import('../octocross/themes.mjs');
+ const daily=await import('../octocross/daily.mjs');
  const catalog=JSON.parse(fs.readFileSync(path.join(root,'octocross/catalog.json'),'utf8'));
  const stored=new Map(),intervals=[];
- const context=vm.createContext({document,window,console,URL,URLSearchParams,themes,...engine,
+ const context=vm.createContext({document,window,console,URL,URLSearchParams,themes,...engine,...daily,recordStarted(){},recordCompletion(){},
   location:{href:'https://octolabs.app/octocross/?theme='+themes[0].id+'&puzzle=1'},history:{replaceState(){}},
   localStorage:{getItem:key=>stored.get(key),setItem:(key,value)=>stored.set(key,value)},
   navigator:{clipboard:{writeText:async()=>{}}},setInterval(callback){intervals.push(callback);},fetch:async()=>({ok:true,json:async()=>catalog})});

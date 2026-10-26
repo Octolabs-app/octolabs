@@ -14,6 +14,8 @@ jobs:
         with:
           node-version: '22'
       - run: node --check octocross/app.mjs
+      - run: node --check platform/progress.mjs && node --check platform/hub.mjs && node --check daily-numbers/app.mjs
+      - run: node --test tests/platform-progress.test.mjs tests/daily-numbers.test.mjs tests/cross-daily.test.mjs
       - run: node --test tests/octocross.test.mjs
       - run: npm install --prefix "$RUNNER_TEMP/octolabs-dom" --ignore-scripts --no-audit --no-fund linkedom@0.18.13
       - run: node --test tests/octocross-ui.cjs tests/home-discovery.test.mjs tests/game-navigation.cjs
@@ -21,8 +23,7 @@ jobs:
           NODE_PATH: ${{ runner.temp }}/octolabs-dom/node_modules
       - run: node scripts/build-crosswords.mjs
       - run: git diff --exit-code -- octocross/catalog.json octocross/validation.json
-      - run: node --check octopairs/app.mjs
-      - run: node --test tests/octopairs.test.mjs octohome/tests/model.test.cjs
+      - run: node --test octohome/tests/model.test.cjs
       - run: node --check octoflag/app.mjs
       - run: node --test tests/octoflag*.test.mjs
       - run: npm ci --prefix cloudflare/octoflag
