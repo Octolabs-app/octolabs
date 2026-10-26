@@ -1035,3 +1035,23 @@ h3 {
     transform: none;
   }
 }
+
+/* A focused landing page, with room for each destination. */
+.nav a[aria-current="page"]{font-weight:700;text-decoration:underline;text-underline-offset:6px}
+.site-destinations{padding-block:30px 65px}
+.destination-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.destination-card{display:flex;flex-direction:column;align-items:flex-start;padding:28px;border:1px solid var(--line);border-radius:20px;text-decoration:none;background:#fcfbf5;min-width:0}
+.destination-card:nth-child(2){background:#e8eddc}
+.destination-card:nth-child(3){background:#eee6d8}
+.destination-card h2,.destination-card h3{font-size:28px;letter-spacing:-1px;margin:12px 0}
+.destination-card p{font-size:15px;line-height:1.65;color:var(--muted);margin:0 0 22px;max-width:32ch}
+.destination-card .text-link{margin-top:auto;min-height:44px;display:inline-flex;align-items:center}
+.page-intro{padding-block:55px 30px}
+.page-intro h1{font-size:clamp(40px,6vw,72px);letter-spacing:-.055em;line-height:1.05;margin:14px 0 22px}
+.page-intro>p:last-child{font-size:18px;color:var(--muted);line-height:1.6;max-width:54ch}
+.subpage .games{padding-top:24px}
+.subpage .studio,.subpage .android-section{margin-top:0}
+.subpage .studio h1,.subpage .android-copy h1{font-size:clamp(38px,5vw,64px);letter-spacing:-.05em;line-height:1.05;margin:20px 0 26px}
+.page-cta{padding-block:20px 60px}.page-cta p{font-size:24px;letter-spacing:-.6px}
+.footer>div{flex-wrap:wrap}.footer>div>a{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:700px){.destination-grid{grid-template-columns:1fr;gap:14px}.destination-card{padding:24px}.site-destinations{padding-block:16px 36px}.page-intro{padding-block:32px 14px}.nav nav a{display:inline-flex!important}.nav nav{gap:18px;flex-wrap:wrap}.nav{flex-wrap:wrap;gap:14px}.nav nav a[aria-current="page"]{text-underline-offset:4px}}

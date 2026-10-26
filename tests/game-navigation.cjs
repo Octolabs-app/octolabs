@@ -22,7 +22,7 @@ function dom(game){
 function gameLink(container,label){
  const link=[...container.querySelectorAll('a')].find(a=>a.textContent.trim()===label);
  assert.ok(link,`missing named ${label} link`);
- assert.ok(['/', '/#games','https://octolabs.app/','https://octolabs.app/#games'].includes(link.getAttribute('href')),'catalog link must navigate to existing games');
+ assert.equal(link.getAttribute('href'),'/games/','catalog link must navigate to the dedicated games page');
 }
 function namedActions(document){
  for(const action of document.querySelectorAll('button,a'))assert.equal(arrows.test(action.textContent),false,`decorative arrow remains in ${action.textContent}`);
