@@ -1,6 +1,6 @@
 # Octolabs
 
-Octolabs makes browser games for friends and family. The homepage features OctoQuiz, Letters & Numbers OctoFlag and OctoPairs.
+Octolabs makes browser games for friends and family. The homepage features OctoQuiz, Letters & Numbers, OctoFlag and OctoCross.
 
 The studio homepage uses a shared paper/forest palette with distinct purple quiz
 and blue/coral letters-and-numbers marks. Product cards, studio principles and
@@ -50,8 +50,12 @@ This is casual competition: public geography assets, repeatable quizzes and anon
 
 Run `node --test tests/octoflag*.test.mjs`, `npm ci --prefix cloudflare/octoflag`, then `npm test --prefix cloudflare/octoflag` before publishing. Checks cover quiz generation, gameplay helpers and real workerd/D1 API behavior. Casual play works with the normal static server; use the backend runbook's proxy for ranked play. After deploying the Worker and Pages, verify a full round, daily/challenge links, a ranked submission and both leaderboard periods, touch targets and light/dark screens on mobile/tablet, and confirm the country pack and flag responses. Roll back code by reverting the release commit; preserve D1 score data.
 
-## OctoPairs
+## Daily play
 
-`octopairs/` is a dependency-free memory game at `/octopairs/`. Solo and two-player pass-and-play, 6/8/12 pairs, English/French, seeded share links and an eight-pair daily solo board (midnight UTC). Matches retain the turn; misses pass to the other player after explicit acknowledgement. No account, server or paid service. Local storage stores language and solo records only, with a safe fallback when storage is blocked. Games do not resume after a reload. Daily boards can be replayed and records are casual local results, not verified competition.
+`/daily/` selects a deterministic crossword from the validated catalog each UTC day and links directly to OctoFlag Daily Passport. It reads existing browser saves to show real crossword completion, hint counts and passport results. Crossword answers are checked against the generated puzzle; a stale finished flag cannot mark a puzzle complete. Progress is local to the browser, not an account or verified leaderboard. The weekly crossword remains on its Monday Mauritius schedule.
 
-Run `node --check octopairs/app.mjs` and `node --test tests/octopairs.test.mjs`. The generated-board checks cover 3,000 seeds across all sizes. Before release, check touch, keyboard, both languages, win/tie, next-turn controls and share links. Pages publishes it with the existing repository deployment.
+Run `node --test tests/daily.test.mjs` for UTC rollover, 366 unique validated daily selections and completion checks. Daily Passport deep links use `/octoflag/?daily=1` and the existing locked daily settings.
+
+## Retired game
+
+OctoPairs is no longer promoted. Cloudflare Pages redirects `/octopairs`, `/octopairs/`, and `/octopairs/index.html` to `/games/`. Its source is retained for rollback; browser records are not deleted.

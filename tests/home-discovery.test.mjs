@@ -30,7 +30,7 @@ function discovery() {
 
 test('catalog category and case-insensitive search combine against the real game cards', () => {
   const ui = discovery();
-  assert.equal(ui.cards.length, 5);
+  assert.equal(ui.cards.length, 4);
   ui.click(ui.filters.find(button => button.dataset.filter === 'friends'));
   ui.search.value = '  LETTERS  ';
   ui.input(ui.search);
@@ -41,7 +41,7 @@ test('catalog category and case-insensitive search combine against the real game
   assert.equal(ui.filters.find(button => button.dataset.filter === 'friends').getAttribute('aria-pressed'), 'true');
 });
 
-test('catalog Clear filters recovers the five games and returns focus to search', () => {
+test('catalog Clear filters recovers the four games and returns focus to search', () => {
   const ui = discovery();
   assert.equal(ui.reset.hidden, true);
   ui.click(ui.filters.find(button => button.dataset.filter === 'friends'));
@@ -54,7 +54,7 @@ test('catalog Clear filters recovers the five games and returns focus to search'
   assert.equal(ui.cards.every(card => !card.hidden), true);
   assert.equal(ui.filters.find(button => button.dataset.filter === 'all').getAttribute('aria-pressed'), 'true');
   assert.equal(ui.filters.find(button => button.dataset.filter === 'friends').getAttribute('aria-pressed'), 'false');
-  assert.equal(ui.results.textContent, '5 games to explore');
+  assert.equal(ui.results.textContent, '4 games to explore');
   assert.equal(ui.reset.hidden, true);
   assert.equal(ui.focused(), ui.search);
 });
