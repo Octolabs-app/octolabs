@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: '22'
       - run: node --check octocross/app.mjs
-      - run: node --test tests/octocross.test.mjs
+      - run: node --test tests/octocross.test.mjs tests/daily.test.mjs
       - run: npm install --prefix "$RUNNER_TEMP/octolabs-dom" --ignore-scripts --no-audit --no-fund linkedom@0.18.13
       - run: node --test tests/octocross-ui.cjs tests/home-discovery.test.mjs tests/game-navigation.cjs
         env:
