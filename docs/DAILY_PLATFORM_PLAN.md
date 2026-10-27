@@ -13,13 +13,13 @@ First release success means players understand what is available, finish a chall
 ## Edition identity and reset policy
 
 - Daily boundary: 00:00 UTC. Daily period ID is the UTC calendar date, e.g. `2026-10-26`. Display the reset convention near the daily set; Mauritius is UTC+4, so reset occurs at 04:00 there.
-- Weekly boundary: Monday 00:00 UTC. Weekly ID is the UTC date of that Monday, e.g. `2026-10-26`, avoiding ISO week-year ambiguity. Weekly reset in Mauritius is Monday 04:00.
+- Weekly boundary: Monday 00:00 Mauritius (Sunday 20:00 UTC). Preserve the existing integer weekIndex and content-based save keys; do not migrate the weekly schedule.
 - Completion key: schema version + game + mode + period type + period ID + puzzle content version. Store content identity/seed separately so edition rotation does not overwrite saved crossword answers.
 - Freeze edition identity when a game starts. Finishing after midnight belongs to the edition that was opened, not the finish date. The hub can offer the new edition without changing the board in progress.
 - Shared date alone is insufficient: a daily manifest or deterministic generator/data version must produce the same board and rules for everyone in that edition. Translated labels should preserve puzzle identity; genuinely different language puzzles require separate variants.
 - Refresh hub availability on visibility/focus and after a boundary. Do not abruptly reload an active puzzle. Use UTC functions, not browser locale date strings.
 
-Source review: OctoFlag `dailySeed()` already uses UTC dates. OctoCross `weekIndex()` currently offsets +14,400,000 milliseconds for Monday midnight Mauritius. Moving it to UTC is an intentional schedule change. Its answer storage key is content-based (`octocross-v1-{theme}-{seed}`); retain that compatibility and do not delete prior progress during the transition.
+Source review: OctoFlag `dailySeed()` already uses UTC dates. OctoCross `weekIndex()` currently offsets +14,400,000 milliseconds for Monday midnight Mauritius. This release retains that weekly schedule. Its answer storage key is content-based (`octocross-v1-{theme}-{seed}`); retain that compatibility and do not delete prior progress during the transition.
 
 ## Completion and progress rules
 
@@ -50,7 +50,7 @@ These test outcomes are behavioral requirements, not tests that merely reproduce
 | Scenario | Required outcome |
 |---|---|
 | 2026-10-26 23:59:59.999 UTC versus next millisecond | Daily ID changes once; weekly ID stays Monday 2026-10-26 |
-| Sunday 2026-11-01 23:59:59.999 UTC versus Monday 00:00 | Weekly ID changes from 2026-10-26 to 2026-11-02 |
+| Sunday 2026-11-01 19:59:59.999 UTC versus 20:00 | Weekly index advances once at Monday midnight Mauritius |
 | Year boundary, leap day, UTC+4 and UTC-8 browser timezone | Same instant yields same UTC edition; no locale drift |
 | Start before midnight, finish after midnight | Old edition completes once; current new edition remains playable |
 | Double submit, repeated results render, refresh after completion | One completion; first timestamp stable; score policy explicit |
