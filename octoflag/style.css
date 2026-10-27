@@ -232,3 +232,10 @@ header{flex-wrap:wrap}
 .game-link:hover{background:var(--panel)}
 .summary-actions .game-link{min-width:170px}
 @media(max-width:760px){header .brand{margin-right:auto}header .game-link{padding:8px 10px;font-size:12px}.summary-actions .game-link{min-width:0}}
+
+/* Shared identity remains legible beside the named game navigation. */
+header .brand img{object-fit:contain;border-radius:11px;background:transparent}
+.summary-actions .game-link:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+
+.welcome .octo-game-mascot{display:block;width:132px;height:132px;object-fit:contain;margin:0 0 14px}
+@media(max-width:760px){.welcome .octo-game-mascot{margin:0 auto 10px}}

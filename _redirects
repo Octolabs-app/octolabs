@@ -1,3 +1,6 @@
 /octopairs /games/ 301
 /octopairs/ /games/ 301
-/octopairs/index.html /games/ 301
+/octopairs/* /games/ 301
+/daily /games/ 301
+/daily/ /games/ 301
+/daily/index.html /games/ 301

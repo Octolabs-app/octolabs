@@ -1,1 +1,17 @@
-{"name":"Octolabs","short_name":"Octolabs","description":"Browser games for friends and family. Make room for play.","start_url":"/","display":"standalone","background_color":"#f5f1e8","theme_color":"#f5f1e8","icons":[{"src":"/brand-eight.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
+{
+  "name": "Octolabs Games",
+  "short_name": "Octolabs",
+  "description": "A little challenge. Every day. Free daily puzzles and shared good times.",
+  "start_url": "/games/",
+  "display": "standalone",
+  "background_color": "#f7f5ee",
+  "theme_color": "#194b3c",
+  "icons": [
+    {
+      "src": "/assets/octo-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
