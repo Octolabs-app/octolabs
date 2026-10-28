@@ -6,6 +6,7 @@ const job=normalizeJob({title:'Technical writing contractor',url:'https://exampl
 test('candidate match uses provided CV evidence',()=>{assert.equal(compare(job,profiles).winner,0);assert.equal(assess(job,profiles[0]).fit,'Fits work preferences');assert.equal(assess(job,profiles[0]).score,100);});
 test('missing profile prevents declaring a winner',()=>assert.equal(compare(job,[profiles[0],{name:'B',cv:''}]).winner,null));
 test('full time and excess hours are unsuitable even if contract',()=>{assert.equal(assess({...job,type:'full time contract'},profiles[0]).blocked,true);assert.equal(assess({...job,hours:5},profiles[0]).blocked,true);});
+test('a contract feed tag does not override a full-time job title',()=>{const full={...job,title:'Full Time Reporting Analyst',type:'contract'};assert.equal(assess(full,profiles[0]).blocked,true);assert.equal(filterJobs([full]).length,0);});
 test('remote EU listings do not imply Mauritius eligibility',()=>{assert.equal(assess({...job,location:'EU',hours:null},profiles[0]).fit,'Needs checking');assert.equal(assess({...job,location:'Remote'},profiles[0]).eligible,false);});
 test('explicit exclusion overrides worldwide text',()=>{assert.equal(assess({...job,eligibility:'no'},profiles[0]).blocked,true);});
 test('unknown hours are never treated as confirmed',()=>assert.equal(assess({...job,hours:null},profiles[0]).hoursOk,false));

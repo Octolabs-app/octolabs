@@ -17,7 +17,7 @@ export function assess(job, profile) {
  const country=job.eligibility!=='no' && (job.eligibility==='yes'|| /^(mauritius|worldwide|anywhere in the world|global|anywhere)$/i.test(location.trim()));
  const excluded=job.eligibility==='no';
  const hoursOk=job.hours!==null && job.hours>=1 && job.hours<=Math.min(4,Number(profile.hours)||4);
- const fullTime=/full[ -]?time/.test(job.type);
+ const fullTime=/full[ -]?time/i.test(job.type+' '+job.title);
  const flexible=/part[ -]?time|contract|freelance|task|project/.test(job.type);
  const reasons=[]; if(!ready) reasons.push('Add a name and CV before comparing candidates.');
  if(excluded) reasons.push('Listing excludes this candidate’s country.'); else if(!country) reasons.push('Mauritius eligibility needs confirmation.');
@@ -44,7 +44,7 @@ export function filterJobs(jobs,{query='',type='flexible',location='all',hours='
  const terms=plain(query).toLowerCase().split(/\s+/).filter(Boolean);
  return jobs.filter(j=>{
   const a=assess(j,{cv:'',hours:4}),haystack=(j.title+' '+j.company+' '+j.description).toLowerCase();
-  return terms.every(t=>haystack.includes(t)) && (type==='all'||(type==='task'?/task|freelance|project/:/part[ -]?time|contract|freelance|task|project/).test(j.type)) && (location==='all'||(location==='local'?/mauritius/i.test(j.location):a.eligible)) && (hours!=='confirmed'||a.hoursOk);
+  return terms.every(t=>haystack.includes(t)) && (type==='all'||(!/full[ -]?time/i.test(j.type+' '+j.title)&&(type==='task'?/task|freelance|project/:/part[ -]?time|contract|freelance|task|project/).test(j.type))) && (location==='all'||(location==='local'?/mauritius/i.test(j.location):a.eligible)) && (hours!=='confirmed'||a.hoursOk);
  });
 }
 export function letter(job,profile) {
