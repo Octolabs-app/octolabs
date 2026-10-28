@@ -1,44 +1,36 @@
-# OctoGarage — prototype 01
+# OctoGarage — Studio 02
 
-An Octolabs section at `/octogarage/`. Static HTML, CSS and ES modules; no build step, API keys or paid infrastructure. The main Octolabs homepage remains intact.
+Static Octolabs module at /octogarage/. No build, keys or paid infrastructure.
 
-## Included
+## Change in direction
 
-- Three real-car artist models: classic Fiat 500, MINI Cooper S and Tesla Model 3. Models load on demand, one at a time.
-- Touch orbit/pinch/pan, camera presets, optional auto-rotation.
-- Separate showroom and educational systems views. Select systems from the list or tap their geometry. Search, system filters, connections, descriptions and general symptoms.
-- X-ray body transparency and an explode slider **for the educational systems**, not a manufacturer teardown of the imported asset.
-- A car-library dialog with three 3D entries and on-demand NHTSA vPIC passenger-car makes and model-name searches.
-- Source links to Reddit and forum search results, clearly labelled as searches rather than retrieved evidence or diagnoses.
+The first prototype's procedural replacement internals have been removed. The viewer now renders, selects and visually separates only meshes that are actually in the imported artist asset. Nothing is substituted with primitive boxes or cylinders. The default reference is a Ferrari F40; the Fiat 500, MINI Cooper S and Tesla Model 3 remain in the library.
 
-## Accuracy and coverage
+Studio presentation uses a neutral graphite environment, physically based materials, environment reflections, soft directional shadows, a grounded floor and a lower camera. These changes improve presentation but do not turn an artist model into a manufacturer digital twin or guarantee photorealism.
 
-The imported models are artistic representations. Their exact model year, trim and mechanical accuracy have not been established. Internal teaching geometry is original, deliberately simplified, and not dimensionally accurate. It is not suitable for repair, assembly instructions, torque settings or high-voltage work. The Fiat overlay represents a rear air-cooled twin and drum brakes; MINI represents a front-engine transaxle; Tesla represents a rear-drive EV. Variants and modified cars differ.
+Tap a surface to inspect its source mesh. The mesh list uses author-supplied names; generic names become Surface 01, etc. One mesh can contain several physical parts. Neither mesh naming nor visual separation is a validated service assembly, disassembly sequence or collision simulation. Unknown meshes are not identified as engines. A component without a verified separate mesh is information-only, clearly indicated in the inspector. X-ray changes transparency of actual geometry; it does not invent hidden internals. Accurate internal systems and assembly games need appropriate licensed assets and remain unfinished.
 
-**The catalogue is not every car on Earth.** vPIC is manufacturer-reported and primarily US-market oriented. Make/model names are not a complete history of global cars, generations, trims or engines. Catalogue results do not imply a 3D model exists. No fake 3D placeholders or fabricated coverage counts are used. Makes come from `GetMakesForVehicleType/car`; models from `GetModelsForMakeId/{id}`. Model-name lists can include other vehicle types from that make. Model results are cached only in memory for the current page session. Live API failures display retryable errors.
+## Four car assets / attribution
 
-Assembly games (engine, brakes, wiring) are a subsequent milestone, not included in this release.
-
-## Asset credits and dependencies
-
-The models below retain **Creative Commons Attribution 4.0 International**: https://creativecommons.org/licenses/by/4.0/ . Attribution and source links are also displayed beside the active model in the app. No affiliation with the manufacturers is implied.
+All retain Creative Commons Attribution 4.0 International: https://creativecommons.org/licenses/by/4.0/
 
 | Model | Author | Original source |
 | --- | --- | --- |
+| Ferrari F40 | Black Snow | https://sketchfab.com/3d-models/ferrari-f40-52a66c41cfcd4f999fb1b1c49bf24d70 |
 | Fiat 500 (classic) | Francesco Coldesina | https://sketchfab.com/3d-models/fiat-500-4606659ff31142e3b8080f995514452f |
 | MINI Cooper S | cenobyte | https://sketchfab.com/3d-models/mini-cooper-s-b262744901a04cda823f17289d1a4847 |
 | Tesla Model 3 | David_Holiday | https://sketchfab.com/3d-models/tesla-model-3-123c10f376ec4f18b93c73afc382808b |
 
-Distribution host: https://sceneview.github.io/models/platforms/ . Credits cross-checked against https://github.com/sceneview/sceneview/blob/main/assets/CREDITS.md and https://sceneview.github.io/credits.html on 2026-10-28. Assets are loaded unchanged and transformed only in memory for positioning, scaling and transparency. X-ray is a presentation effect. Original educational geometry and written explanations are separate from the licensed assets.
+Distributor: https://sceneview.github.io/models/platforms/ . Credits verified against https://github.com/sceneview/sceneview/blob/main/assets/CREDITS.md and https://sceneview.github.io/credits.html . Assets retain original geometry and texture maps; presentation applies scaling, positioning, lighting, selection tint, transparency and optional mesh translation in memory. Exact year, trim, dimensions and mechanical completeness are unverified. No manufacturer affiliation is implied. Render a candidate before calling it realistic; the UI concept image is not evidence of available asset detail.
 
-Three.js 0.146.0 and its addons load from jsDelivr under the MIT licence: https://github.com/mrdoob/three.js/blob/r146/LICENSE . Draco and Meshopt decoders use the corresponding Three.js addon distribution. Fonts load from Google Fonts. External hosts receive ordinary asset requests; the prototype stores no personal data. Internet access and WebGL are required. For production resilience, vendor the vetted assets/dependencies in a dedicated follow-up and retain their licences. Do not claim offline support.
+Three.js 0.146.0 and addons: MIT, https://github.com/mrdoob/three.js/blob/r146/LICENSE . This release supports the Fiat asset's legacy specular/glossiness material extension. Dependencies are pinned through jsDelivr. Models and fonts load from external hosts and need internet; no offline guarantee or personal-data storage. Use a modern WebGL browser. Physical touch behaviour still needs device testing.
 
-## Run and validate
+## Catalogue and problems
 
-From repository root: `node octogarage/serve.cjs`, then open `http://127.0.0.1:8080/octogarage/`.
+On-demand NHTSA vPIC makes and model names are manufacturer-reported, primarily US-market oriented, and are not every historical/global car, generation, trim or engine. Model-name results may include other vehicle types for the make. Catalogue-only entries do not include 3D assets. API errors are retryable, and successful model results are cached only in current-session memory. Reddit/forum buttons open search results; no live discussion retrieval or verified diagnosis is claimed.
 
-`node --test octogarage/tests/*.test.mjs`
+## Run and verify
 
-`node --check octogarage/app.mjs` and `node --check octogarage/viewer.mjs`.
+From repository root: node octogarage/serve.cjs . Open http://127.0.0.1:8080/octogarage/ . Run node --test octogarage/tests/*.test.mjs and syntax checks for app.mjs and viewer.mjs.
 
-Before promotion to main, verify that all three real assets render, pinch/orbit works on a physical touchscreen, selecting parts and connected parts updates descriptions, X-ray and explosion operate on teaching geometry, and live catalogue success/error states work. Check phone portrait, tablet landscape and keyboard/dialog navigation. The repository's existing Cloudflare Pages integration supplies branch previews. Production publishes from main.
+Browser QA: inspect the F40 and the other three assets; select actual meshes by list and by tapping; test X-ray, separation and return to Studio; verify information-only components never create fake geometry; check portrait and landscape layouts and catalogue success/error states. Existing Cloudflare Pages branch previews publish the feature branch. Main remains the production branch. This update stays in draft PR #20 until reviewed.

@@ -1,6 +1,7 @@
 import {common,petrol,electric} from './data.mjs';
 // Artist-created representations, not manufacturer CAD. Credits verified 2026-10-28.
 export const cars = [
+ {id:'f40',name:'Ferrari F40',edition:'Studio reference / mid-engine supercar',make:'FERRARI',file:'ferrari_f40',author:'Black Snow',source:'https://sketchfab.com/3d-models/ferrari-f40-52a66c41cfcd4f999fb1b1c49bf24d70',layout:'rear',fuel:'petrol',length:4.36,yaw:0,description:'The new studio reference. Inspect actual artist-authored surfaces and assemblies. Internal components are available only where included in the asset.'},
  {id:'fiat500',name:'Fiat 500',edition:'Classic · rear-engine petrol',make:'FIAT',file:'fiat_500_classic',author:'Francesco Coldesina',source:'https://sketchfab.com/3d-models/fiat-500-4606659ff31142e3b8080f995514452f',layout:'rear',fuel:'petrol',length:2.97,yaw:0,description:'A small classic with a rear-mounted engine. Start here to explore a simple powertrain.'},
  {id:'mini',name:'MINI Cooper S',edition:'Petrol · front-engine',make:'MINI',file:'mini_cooper_s',author:'cenobyte',source:'https://sketchfab.com/3d-models/mini-cooper-s-b262744901a04cda823f17289d1a4847',layout:'front',fuel:'petrol',length:3.63,yaw:Math.PI,description:'A compact petrol hatchback. Compare its front-mounted powertrain with the classic Fiat. Exact year and engine variant are unverified.'},
  {id:'tesla',name:'Tesla Model 3',edition:'Electric · battery-floor architecture',make:'TESLA',file:'tesla_model_3',author:'David_Holiday',source:'https://sketchfab.com/3d-models/tesla-model-3-123c10f376ec4f18b93c73afc382808b',layout:'electric',fuel:'electric',length:4.69,yaw:0,description:'An electric saloon. The educational overlay uses a rear-drive arrangement; production variants can also have a front motor.'}
@@ -9,6 +10,12 @@ export const modelUrl = car => `https://sceneview.github.io/models/platforms/${c
 export const thumbnailUrl = car => `https://sceneview.github.io/models/platforms/thumbnails/${car.file}.webp`;
 export const VPIC_BASE='https://vpic.nhtsa.dot.gov/api/vehicles/';
 export function partsFor(car) {
+ if(car.id==='f40') {
+  const p=[...petrol,...common].filter(p=>!['driveshaft','differential'].includes(p.id)).map(p=>({...p,connections:[...p.connections]}));
+  const e=p.find(p=>p.id==='engine');e.name='Mid-mounted V8 engine';e.job='The F40 uses a mid-mounted petrol V8 that drives the rear wheels through a transaxle. This is a general functional description. A full internal engine assembly has not been verified in the artist asset.';
+  const t=p.find(p=>p.id==='transmission');t.job='The transaxle combines the gearbox and final drive near the rear-mounted powertrain. Its housing and internal parts are not assumed to exist in this model.';
+  const ids=new Set(p.map(p=>p.id));return p.map(p=>({...p,connections:p.connections.filter(id=>ids.has(id))}));
+ }
  const base=common.map(p=>({...p,connections:[...p.connections]}));
  const ids=car.fuel==='electric'?electric:petrol.filter(p=>!['driveshaft','differential'].includes(p.id)&&!(car.id==='fiat500'&&['radiator','alternator','intake'].includes(p.id)));
  const parts=[...ids.map(p=>({...p,connections:[...p.connections]})),...base];
