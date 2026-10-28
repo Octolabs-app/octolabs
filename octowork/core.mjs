@@ -40,6 +40,13 @@ export function compare(job,profiles) {
  if(available.length>1&&available[0].r.score===available[1].r.score) return {results,winner:null,label:'Similar match — review both'};
  return {results,winner:available[0].i,label:`Stronger keyword match: ${profiles[available[0].i].name}`};
 }
+export function filterJobs(jobs,{query='',type='flexible',location='all',hours='all'}={}){
+ const terms=plain(query).toLowerCase().split(/\s+/).filter(Boolean);
+ return jobs.filter(j=>{
+  const a=assess(j,{cv:'',hours:4}),haystack=(j.title+' '+j.company+' '+j.description).toLowerCase();
+  return terms.every(t=>haystack.includes(t)) && (type==='all'||(type==='task'?/task|freelance|project/:/part[ -]?time|contract|freelance|task|project/).test(j.type)) && (location==='all'||(location==='local'?/mauritius/i.test(j.location):a.eligible)) && (hours!=='confirmed'||a.hoursOk);
+ });
+}
 export function letter(job,profile) {
  const a=assess(job,profile); if(!a.ready) throw Error('Add a name and at least 80 characters of CV text first.');
  if(a.blocked) throw Error('This opportunity is outside the candidate’s work constraints.');
