@@ -10,11 +10,11 @@ export function createViewer(host,onSelect,onStatus) {
  const scene=new THREE.Scene();
  const camera=new THREE.PerspectiveCamera(38,1,.01,100);camera.position.set(7,4.3,7);
  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
- renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0x070e17,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;host.append(renderer.domElement);
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0x070e17,0);renderer.outputEncoding=THREE.sRGBEncoding;renderer.physicallyCorrectLights=true;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;host.append(renderer.domElement);
  const pmrem=new THREE.PMREMGenerator(renderer);const room=new RoomEnvironment();const env=pmrem.fromScene(room,.04);scene.environment=env.texture;room.dispose();pmrem.dispose();
- scene.add(new THREE.HemisphereLight(0xbbeeff,0x233046,2.4));
- const sun=new THREE.DirectionalLight(0xe9f5ff,4);sun.position.set(3,8,5);scene.add(sun);
- const rim=new THREE.DirectionalLight(0x67e8dc,2);rim.position.set(-5,3,-4);scene.add(rim);
+ scene.add(new THREE.HemisphereLight(0xbbeeff,0x233046,.8));
+ const sun=new THREE.DirectionalLight(0xe9f5ff,1.8);sun.position.set(3,8,5);scene.add(sun);
+ const rim=new THREE.DirectionalLight(0x67e8dc,1);rim.position.set(-5,3,-4);scene.add(rim);
  const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.7,0);controls.enableDamping=true;controls.minDistance=2;controls.maxDistance=17;controls.maxPolarAngle=Math.PI*.49;controls.autoRotateSpeed=.6;
  const grid=new THREE.GridHelper(22,44,0x31525a,0x16303b);grid.position.y=-.04;grid.material.transparent=true;grid.material.opacity=.35;scene.add(grid);
  const ring=new THREE.Mesh(new THREE.RingGeometry(3.5,3.515,120),new THREE.MeshBasicMaterial({color:0x67e8dc,transparent:true,opacity:.3,side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=-.025;scene.add(ring);
@@ -22,7 +22,7 @@ export function createViewer(host,onSelect,onStatus) {
  const assetRoot=new THREE.Group();scene.add(assetRoot);const lab=new THREE.Group();scene.add(lab);
  let currentAsset=null,car=null,revision=0,selected=null,systemMode=false,xray=false,explode=0,targetExplode=0,groups=new Map(),assetMaterials=[],pointerStart=null,paused=false;
  const raycaster=new THREE.Raycaster();const pointer=new THREE.Vector2();const label=document.querySelector('#part-label');let focusTarget=null,focusPosition=null;const activePointers=new Set();let multiTouch=false;
- const loader=new GLTFLoader();const draco=new DRACOLoader();draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/libs/draco/');loader.setDRACOLoader(draco);loader.setMeshoptDecoder(MeshoptDecoder);
+ const loader=new GLTFLoader();const draco=new DRACOLoader();draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.146.0/examples/jsm/libs/draco/');loader.setDRACOLoader(draco);loader.setMeshoptDecoder(MeshoptDecoder);
  function disposeObject(root){root.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of [].concat(o.material)){for(const v of Object.values(m))if(v?.isTexture)v.dispose();m.dispose();}});}
  function clearLab(){for(const g of [...lab.children]){lab.remove(g);disposeObject(g);}groups.clear();}
  function material(color=0x536e80){return new THREE.MeshStandardMaterial({color,roughness:.36,metalness:.65,emissive:0x0c3738,emissiveIntensity:.15});}

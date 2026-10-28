@@ -31,7 +31,7 @@ The models below retain **Creative Commons Attribution 4.0 International**: http
 
 Distribution host: https://sceneview.github.io/models/platforms/ . Credits cross-checked against https://github.com/sceneview/sceneview/blob/main/assets/CREDITS.md and https://sceneview.github.io/credits.html on 2026-10-28. Assets are loaded unchanged and transformed only in memory for positioning, scaling and transparency. X-ray is a presentation effect. Original educational geometry and written explanations are separate from the licensed assets.
 
-Three.js 0.169.0 and its addons load from jsDelivr under the MIT licence: https://github.com/mrdoob/three.js/blob/r169/LICENSE . Draco and Meshopt decoders use the corresponding Three.js addon distribution. Fonts load from Google Fonts. External hosts receive ordinary asset requests; the prototype stores no personal data. Internet access and WebGL are required. For production resilience, vendor the vetted assets/dependencies in a dedicated follow-up and retain their licences. Do not claim offline support.
+Three.js 0.146.0 and its addons load from jsDelivr under the MIT licence: https://github.com/mrdoob/three.js/blob/r146/LICENSE . Draco and Meshopt decoders use the corresponding Three.js addon distribution. Fonts load from Google Fonts. External hosts receive ordinary asset requests; the prototype stores no personal data. Internet access and WebGL are required. For production resilience, vendor the vetted assets/dependencies in a dedicated follow-up and retain their licences. Do not claim offline support.
 
 ## Run and validate
 
