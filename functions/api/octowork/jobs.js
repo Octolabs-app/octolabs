@@ -16,4 +16,3 @@ export async function onRequestGet(context) {
   if(cache)context.waitUntil(cache.put(key,response.clone()));return response;
  }catch{return Response.json({error:'Job feed unavailable. Saved jobs are unaffected.'},{status:502,headers:{'Cache-Control':'no-store'}});}
 }
-

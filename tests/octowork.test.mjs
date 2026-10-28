@@ -12,4 +12,3 @@ test('unknown hours are never treated as confirmed',()=>assert.equal(assess({...
 test('tie and zero overlap do not pick an ideal candidate',()=>{assert.equal(compare(job,[profiles[0],profiles[0]]).winner,null);assert.equal(compare({...job,title:'Nurse',description:'Clinical care'},profiles).winner,null);});
 test('letters contain CV evidence and request missing eligibility',()=>{const draft=letter({...job,location:'Remote',hours:null},profiles[0]);assert.match(draft,/Technical writing and documentation for engineering software/);assert.match(draft,/confirm whether you can engage/);assert.doesNotMatch(draft,/years of experience/);assert.throws(()=>letter(job,{name:'A',cv:''}));});
 test('untrusted URL and hours validation',()=>{assert.equal(safeUrl('javascript:alert(1)'),'');assert.throws(()=>normalizeJob({...job,hours:-1}));assert.equal(job.id,'https://example.com/job');assert.deepEqual(foundSkills('scam campaign'),[]);});
-
