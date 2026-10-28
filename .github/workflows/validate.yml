@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: node --check octogarage/app.mjs && node --check octogarage/viewer.mjs && node --check octogarage/cars.mjs
+      - run: node --test octogarage/tests/*.test.mjs
       - run: node --check octocross/app.mjs
       - run: node --check platform/progress.mjs && node --check platform/hub.mjs && node --check daily-numbers/app.mjs
       - run: node --test tests/platform-progress.test.mjs tests/daily-numbers.test.mjs tests/cross-daily.test.mjs
